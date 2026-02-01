@@ -97,6 +97,6 @@ The `feature` branches are used for adding new content into the project. For exa
 
 
 ## 📚 Dependencies
-- [Godot .NET](https://godotengine.org/) 4.5.x;
+- [Godot .NET](https://godotengine.org/) 4.6.x;
 - [GitHub](https://github.com) for version control;
 - [Optional] [Aseprite](https://www.aseprite.org/) for pixel art.
