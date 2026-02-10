@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://r6ueoherkmns"]
+
+[ext_resource type="Script" uid="uid://by4u5smh3vnmt" path="res://scenes/components/RowSnapper.cs" id="1_xmnne"]
+
+[node name="RowSnapper" type="Node2D" unique_id=1127624512]
+script = ExtResource("1_xmnne")
