@@ -57,26 +57,6 @@ public partial class ExampleComponent : Node
 }
 ```
 
-#### Singleton
-Singleton pattern applies only for autoload scripts.
-```cs
-public partial class Example : Node
-{
-    // One and only instance of the class. 
-    // Can be accessed across the project.
-    public static Example Instance { get; private set; }
-
-    // Some variables...
-
-    public override void _Ready()
-    {
-        Instance = this;
-    }
-
-    // Some methods...
-}
-```
-
 ## Branching Workflow
 [The Feature Branch](https://www.atlassian.com/git/tutorials/comparing-workflows/feature-branch-workflow) workflow is used for the repository. Ths workflow provides ease of adding new features to the project, while not being overwhelming for a small team of developers.
 
