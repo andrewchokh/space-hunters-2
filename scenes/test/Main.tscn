@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://civemxdsmh5m1"]
+
+[ext_resource type="Texture2D" uid="uid://doyfd3iwq35y0" path="res://icon.svg" id="2_efddr"]
+[ext_resource type="Script" uid="uid://cndqhpywcupu" path="res://scenes/components/GameCamera.cs" id="3_v70oj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v70oj"]
+
+[node name="Main" type="Node2D" unique_id=2099005699]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=191673518]
+position = Vector2(0, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=1986226896]
+position = Vector2(1, 0)
+scale = Vector2(0.2734375, 0.28125)
+texture = ExtResource("2_efddr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=600766107]
+shape = SubResource("RectangleShape2D_v70oj")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1620226799]
+script = ExtResource("3_v70oj")
