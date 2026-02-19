@@ -5,7 +5,7 @@ public partial class MapManager : Node
 {
 	public static MapManager Instance { get; private set; }
 
-	public readonly float[] FixedRows = new float[] { 2.0f, 1.0f, 0.0f, -1.0f, -2.0f };
+	public readonly float[] FixedRows = { 2.0f, 1.0f, 0.0f, -1.0f, -2.0f };
 
 	public override void _Ready()
 	{
