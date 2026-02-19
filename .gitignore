@@ -4,3 +4,6 @@
 
 # VS Code specific ignores
 .vscode/
+
+# IDEA specific ignores
+.idea/
