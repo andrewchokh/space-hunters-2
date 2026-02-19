@@ -13,7 +13,7 @@ public partial class GameCamera : Camera2D
     /// </summary>
     private void CenterCameraOnRows()
     {
-        float centerY = MapManager.GetCenterY();
+        float centerY = MapManager.Instance.GetCenterY();
         
         GlobalPosition = new Vector2(GlobalPosition.X, centerY);
     }
