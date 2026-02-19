@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
+/// <summary>
+/// A specialized 2D camera that maintains a fixed vertical alignment.
+/// Automatically centers itself on the map's rows at startup to ensure 
+/// consistent framing of the gameplay area.
+/// </summary>
 public partial class GameCamera : Camera2D
 {
     public override void _Ready()

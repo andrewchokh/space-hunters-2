@@ -1,11 +1,15 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Manages the global grid and coordinate conversions for the game world.
+/// Use this to translate mouse positions into tile coordinates.
+/// </summary>
 public partial class MapManager : Node
 {
 	public static MapManager Instance { get; private set; }
 
-	public readonly float[] FixedRows = { 2.0f, 1.0f, 0.0f, -1.0f, -2.0f };
+	public readonly float[] FixedRows = new float[] { 2.0f, 1.0f, 0.0f, -1.0f, -2.0f };
 
 	public override void _Ready()
 	{
@@ -15,6 +19,12 @@ public partial class MapManager : Node
 	/// <summary>
 	/// Retrieves the Y-coordinate for a given row index. The index is safely clamped to the available bounds.
 	/// </summary>
+	/// <param name="rowIndex">The index of Y-coordinate global position.</param>
+	/// <returns>The Y-coordinate in global position.</returns>
+	/// <remarks>
+	/// This assumes the map is centered at (0,0). If the map shifts, 
+	/// this logic will need to be updated to include the offset.
+	/// </remarks>
 	public float GetRowY(int rowIndex)
 	{
 		if (rowIndex < 0) rowIndex = 0;
@@ -26,6 +36,11 @@ public partial class MapManager : Node
 	/// <summary>
 	/// Calculates and returns the vertical center point of the map based on the highest and lowest rows.
 	/// </summary>
+	/// <returns>The center Y-coordinate of Fixed Rows.</returns>
+	/// <remarks>
+	/// This assumes the FixedRows array size is a paired number.
+	/// Otherwise, the center will be off.
+	/// </remarks>
 	public float GetCenterY()
 	{
 		return (FixedRows[0] + FixedRows[FixedRows.Length - 1]) / 2.0f;
@@ -34,6 +49,7 @@ public partial class MapManager : Node
 	/// <summary>
 	/// Finds the nearest row to the given node and snaps its Y-position to that row.
 	/// </summary>
+	/// <param name="node">The Node2D game object to be snapped.</param>
 	public void SnapToRow(Node2D node)
 	{
 		if (node == null) return;
