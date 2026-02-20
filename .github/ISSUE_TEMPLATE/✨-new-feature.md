@@ -2,7 +2,7 @@
 name: "✨ New Feature"
 about: A task to implement a specific game mechanic or content.
 title: "[FEATURE]"
-labels: ''
+labels: enhancement
 assignees: ''
 
 ---
@@ -18,5 +18,7 @@ assignees: ''
 - [ ] Feature is implemented in the engine.
 - [ ] No game-breaking bugs when using this feature.
 - [ ] Variables (speed, health, etc.) are exposed in the Inspector for tweaking.
+
+## 📝 Additional Notes
 
 ## 🖼️ Reference / Assets
