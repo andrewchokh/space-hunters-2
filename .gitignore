@@ -4,6 +4,7 @@
 
 # VS Code specific ignores
 .vscode/
+*.user
 
 # IDEA specific ignores
 .idea/
