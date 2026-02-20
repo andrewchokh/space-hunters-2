@@ -19,6 +19,6 @@ assignees: ''
 - [ ] No game-breaking bugs when using this feature.
 - [ ] Variables (speed, health, etc.) are exposed in the Inspector for tweaking.
 
-## 📝Additional Notes
+## 📝 Additional Notes
 
 ## 🖼️ Reference / Assets
