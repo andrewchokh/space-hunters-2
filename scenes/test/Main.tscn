@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://civemxdsmh5m1"]
 
 [ext_resource type="Texture2D" uid="uid://doyfd3iwq35y0" path="res://icon.svg" id="2_efddr"]
-[ext_resource type="Script" uid="uid://cndqhpywcupu" path="res://scenes/components/GameCamera.cs" id="3_v70oj"]
+[ext_resource type="PackedScene" uid="uid://5msk04e2p1bf" path="res://scenes/components/MovementComponent.tscn" id="2_v70oj"]
+[ext_resource type="Script" uid="uid://cndqhpywcupu" path="res://scenes/objects/GameCamera.cs" id="3_v70oj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v70oj"]
 
@@ -17,6 +18,9 @@ texture = ExtResource("2_efddr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=600766107]
 shape = SubResource("RectangleShape2D_v70oj")
+
+[node name="MovementComponent" parent="CharacterBody2D" unique_id=401531261 node_paths=PackedStringArray("Target") instance=ExtResource("2_v70oj")]
+Target = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1620226799]
 script = ExtResource("3_v70oj")
