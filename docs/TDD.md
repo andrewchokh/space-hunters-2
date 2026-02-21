@@ -79,7 +79,7 @@ Composition pattern helps to make a certain mechanic reusable for all entities r
 public partial class ExampleComponent : Node
 {
     // Use [Export] to assign the owner in the editor.
-    // Tip: Use a specific base class like 'Node2D' or 'CharacterBody2D' 
+	// Tip: Use a specific base class like 'Node2D' or 'CharacterBody2D' 
     // if the component requires advanced data.
     [Export] 
     public Node2D Entity; 
@@ -97,20 +97,20 @@ The Singleton pattern is a useful tool for solving the common use case where you
 ```cs
 public partial class ExampleAutoload : Node
 {
-    // Static keyword is used only for this particular field.
-    // Do not use it for any other field or method!
-    public static ExampleAutoload Instance { get; private set; }
+	// Static keyword is used only for this particular field.
+	// Do not use it for any other field or method!
+	public static ExampleAutoload Instance { get; private set; }
 
-    // Other fields...
+	// Other fields...
 
-    public override void _Ready()
-    {
-        Instance = this;
+	public override void _Ready()
+	{
+		Instance = this;
 
-        // Rest of the code...
-    }
+		// Rest of the code...
+	}
 
-    // Other methods...
+	// Other methods...
 }
 ```
 
@@ -123,9 +123,9 @@ A finite-state machine system will be used to track and change the behavior of m
 /// </summary>
 public abstract partial class State : Node
 {
-    public abstract void Enter();
-    public abstract void Exit();
-    public abstract void Update(double delta);
+	public abstract void Enter();
+	public abstract void Exit();
+	public abstract void Update(double delta);
 }
 ```
 
