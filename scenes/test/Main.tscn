@@ -19,8 +19,8 @@ texture = ExtResource("2_efddr")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=600766107]
 shape = SubResource("RectangleShape2D_v70oj")
 
-[node name="MovementComponent" parent="CharacterBody2D" unique_id=401531261 node_paths=PackedStringArray("Target") instance=ExtResource("2_v70oj")]
-Target = NodePath("..")
+[node name="MovementComponent" parent="CharacterBody2D" unique_id=401531261 node_paths=PackedStringArray("Entity") instance=ExtResource("2_v70oj")]
+Entity = NodePath("..")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1620226799]
 script = ExtResource("3_v70oj")

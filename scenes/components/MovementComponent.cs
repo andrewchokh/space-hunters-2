@@ -12,7 +12,7 @@ using System;
 public partial class MovementComponent : Node
 {
     [Export]
-    public Node2D Target;
+    public CharacterBody2D Entity;
     [Export]
     public float Speed = 15.0f;
     [Export]
@@ -22,52 +22,52 @@ public partial class MovementComponent : Node
     private float _targetY;
 
     /// <summary>
-    /// Initializes the target's position based on the starting row index.
+    /// Initializes the entity's position based on the starting row index.
     /// </summary>
     /// <remarks>
     /// Retrieves the initial Y-coordinate from <see cref="MapManager"/> and
-    /// instantly snaps the <see cref="Target"/> to avoid sliding during spawn.
+    /// instantly snaps the <see cref="Entity"/> to avoid sliding during spawn.
     /// </remarks>
     public override void _Ready()
     {
-        if (Target == null)
+        if (Entity == null)
         {
-            GD.PrintErr("MovementComponent: Target node is not assigned.");
+            GD.PrintErr("MovementComponent: Entity node is not assigned.");
             SetPhysicsProcess(false);
             return;
         }
 
         _rowIndex = Mathf.Clamp(StartingRow, 0, MapManager.Instance.FixedRows.Length - 1);
         _targetY = MapManager.Instance.GetRowY(_rowIndex);
-        Target.GlobalPosition = new Vector2(Target.GlobalPosition.X, _targetY);
+        Entity.GlobalPosition = new Vector2(Entity.GlobalPosition.X, _targetY);
     }
 
     /// <summary>
-    /// Updates the target's position every frame using linear interpolation.
+    /// Updates the entity's position every frame using linear interpolation.
     /// </summary>
     /// <param name="delta">The time elapsed since the previous frame in seconds.</param>
     public override void _PhysicsProcess(double delta)
     {
-        HandleInput();
+        float newY = Mathf.Lerp(Entity.GlobalPosition.Y, _targetY, Mathf.Min(Speed * (float)delta, 1.0f));
+        Entity.GlobalPosition = new Vector2(Entity.GlobalPosition.X, newY);
 
-        float newY = Mathf.Lerp(Target.GlobalPosition.Y, _targetY, Mathf.Min(Speed * (float)delta, 1.0f));
-        Target.GlobalPosition = new Vector2(Target.GlobalPosition.X, newY);
+        Entity.MoveAndSlide();
     }
 
     /// <summary>
     /// Detects player input and updates the target row index.
     /// </summary>
     /// <remarks>
-    /// Uses discrete input detection (JustPressed) to ensure one keypress equals one lane shift.
-    /// The index is safely bounded using <see cref="Mathf.Clamp"/> based on the <see cref="MapManager"/> row count.
+    /// Uses Godot's event-driven input method to guarantee no dropped inputs
+    /// regardless of framerate or physics tick rate.
     /// </remarks>
-    private void HandleInput()
+    public override void _UnhandledInput(InputEvent @event)
     {
         int previousRowIndex = _rowIndex;
 
-        if (Input.IsActionJustPressed("move_up"))
+        if (@event.IsActionPressed("move_up"))
             _rowIndex++;
-        else if (Input.IsActionJustPressed("move_down"))
+        else if (@event.IsActionPressed("move_down"))
             _rowIndex--;
 
         _rowIndex = Mathf.Clamp(_rowIndex, 0, MapManager.Instance.FixedRows.Length - 1);
