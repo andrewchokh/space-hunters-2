@@ -23,9 +23,7 @@ public partial class LinearPattern : AIPattern
     /// <param name="delta">The physics process delta time.</param>
     public override void Execute(CharacterBody2D entity, double delta)
     {
-        Vector2 direction;
-        direction.X = DirectionX;
-        direction.Y = 0.0f;
+        var direction = new Vector2(DirectionX, 0.0f);
         entity.Velocity = direction.Normalized() * Speed;
         entity.MoveAndSlide();
     }
