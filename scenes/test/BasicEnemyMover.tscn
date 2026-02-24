@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bf0vf4utmp2ch"]
+
+[ext_resource type="PackedScene" uid="uid://byve8a0fvr13j" path="res://scenes/spaceships/RookieEnemy.tscn" id="2_g3rr0"]
+[ext_resource type="Script" uid="uid://cndqhpywcupu" path="res://scenes/objects/GameCamera.cs" id="3_t50rr"]
+
+[node name="BasicEnemyMover" type="Node2D" unique_id=2006784114]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1968947508]
+script = ExtResource("3_t50rr")
+
+[node name="RookieEnemy" parent="." unique_id=1707847485 instance=ExtResource("2_g3rr0")]
+position = Vector2(345, 0)

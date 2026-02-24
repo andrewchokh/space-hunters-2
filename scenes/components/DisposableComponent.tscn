@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dscbmxoqxt2pw"]
+
+[ext_resource type="Script" uid="uid://bpne3n3mjyvsx" path="res://scenes/components/DisposableComponent.cs" id="1_nn53f"]
+
+[node name="DisposableComponent" type="VisibleOnScreenNotifier2D" unique_id=2096509937]
+script = ExtResource("1_nn53f")
