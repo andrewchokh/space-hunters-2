@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://byve8a0fvr13j"]
+
+[ext_resource type="Texture2D" uid="uid://doyfd3iwq35y0" path="res://icon.svg" id="1_t6jqs"]
+[ext_resource type="PackedScene" uid="uid://ddalcbqjjvhel" path="res://scenes/components/AIComponent.tscn" id="2_t6jqs"]
+[ext_resource type="Resource" uid="uid://iadau6fic2ry" path="res://resources/ai_patterns/RookieMovement.tres" id="3_cu4d8"]
+[ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="4_t4kex"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
+
+[node name="RookieEnemy" type="CharacterBody2D" unique_id=448440192]
+position = Vector2(0, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383606160]
+self_modulate = Color(0.41215247, 0.41215247, 0.41215247, 1)
+position = Vector2(1, 0)
+scale = Vector2(0.2734375, 0.28125)
+texture = ExtResource("1_t6jqs")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=582903279]
+shape = SubResource("RectangleShape2D_yngdg")
+
+[node name="AiComponent" parent="." unique_id=638742263 node_paths=PackedStringArray("Entity") instance=ExtResource("2_t6jqs")]
+Entity = NodePath("..")
+Pattern = ExtResource("3_cu4d8")
+
+[node name="DisposableComponent" parent="." unique_id=2096509937 node_paths=PackedStringArray("Entity") instance=ExtResource("4_t4kex")]
+Entity = NodePath("..")
