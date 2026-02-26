@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 /// <summary>
-/// A factory node that periodically spawns entities into the game world at dynamic positions.
+/// A node that periodically spawns entities into the game world at dynamic positions.
 /// </summary>
 /// <remarks>
 /// This spawner reads the horizontal width of the viewport and specific vertical rows
@@ -14,6 +14,8 @@ public partial class RowSpawner : Node2D
     public PackedScene Entity;
     [Export]
     public float OffsetX = 30.0f;
+    [Export]
+    public Timer Timer;
 
     /// <summary>
     /// subscribes to the spawn timer.
@@ -26,13 +28,7 @@ public partial class RowSpawner : Node2D
             return;
         }
 
-        if (GetNodeOrNull<Timer>("Timer") is Timer timer)
-            timer.Timeout += SpawnEntity;
-        else
-        {
-            GD.PushError($"{Name}: Timer node is missing!");
-            return;
-        }
+        Timer.Timeout += SpawnEntity;
     }
 
     /// <summary>
