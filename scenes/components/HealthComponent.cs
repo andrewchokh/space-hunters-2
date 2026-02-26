@@ -1,6 +1,14 @@
 using Godot;
 using System;
 
+/// <summary>
+/// A reusable component that manages the health, protection, and invincibility of an entity.
+/// </summary>
+/// <remarks>
+/// This component uses composition. It should be attached to an entity (like a player or enemy)
+/// as a child node. It tracks health, applies damage reduction via protection, triggers
+/// a temporary invincibility period upon taking damage, and destroys the entity when health reaches zero.
+/// </remarks>
 public partial class HealthComponent : Node2D
 {
     [Signal]
@@ -17,6 +25,9 @@ public partial class HealthComponent : Node2D
     private int _protection = 1;
     private bool _isInvincible;
 
+    /// <summary>
+    /// The current health of the entity. Cannot be modified directly from outside; use TakeDamage instead.
+    /// </summary>
     [Export]
     public int Health
     {
@@ -33,6 +44,9 @@ public partial class HealthComponent : Node2D
         }
     }
 
+    /// <summary>
+    /// The damage reduction value. This amount is subtracted from any incoming damage.
+    /// </summary>
     [Export]
     public int Protection
     {
@@ -40,6 +54,9 @@ public partial class HealthComponent : Node2D
         private set => _protection = Mathf.Max(0, value);
     }
 
+    /// <summary>
+    /// Subscribes to necessary signals for entity death and invincibility reset.
+    /// </summary>
     public override void _Ready()
     {
         if (Entity == null)
@@ -52,6 +69,10 @@ public partial class HealthComponent : Node2D
         EntityDied += Entity.QueueFree;
     }
 
+    /// <summary>
+    /// Applies damage to the entity, factoring in protection and invincibility frames.
+    /// </summary>
+    /// <param name="damage">The raw amount of damage to inflict.</param>
     public void TakeDamage(int damage)
     {
         if (_isInvincible)
