@@ -9,3 +9,4 @@ Entity = ExtResource("2_48hff")
 
 [node name="Timer" type="Timer" parent="." unique_id=1657362290]
 wait_time = 2.0
+autostart = true
