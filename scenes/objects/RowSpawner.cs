@@ -10,8 +10,19 @@ public partial class RowSpawner : Node2D
 
     public override void _Ready()
     {
-        Timer timer = GetNode<Timer>("Timer");
-        timer.Timeout += SpawnEntity;
+        if (Entity == null)
+        {
+            GD.PushError($"{Name}: Entity is not assigned!");
+            return;
+        }
+
+        if (GetNodeOrNull<Timer>("Timer") is Timer timer)
+            timer.Timeout += SpawnEntity;
+        else
+        {
+            GD.PushError($"{Name}: Timer node is missing!");
+            return;
+        }
     }
 
     private void SpawnEntity()
