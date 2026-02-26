@@ -16,7 +16,7 @@ public partial class HealthComponent : Node2D
     public int Health
     {
         get => _health;
-        set
+        private set
         {
             int oldHealth = _health;
             _health = Mathf.Max(0, value);
@@ -27,8 +27,18 @@ public partial class HealthComponent : Node2D
                 EmitSignal(SignalName.EntityDied);
         }
     }
+
+    private int _protection = 1;
+
     [Export]
-    public int Protection = 1;
+    public int Protection
+    {
+        get => _protection;
+        private set
+        {
+            _protection = Mathf.Max(0, value);
+        }
+    }
 
     public override void _Ready()
     {
