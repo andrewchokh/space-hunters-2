@@ -15,14 +15,14 @@ public partial class MapManager : Node
 	{
 		Instance = this;
 	}
-	
+
 	/// <summary>
 	/// Retrieves the Y-coordinate for a given row index. The index is safely clamped to the available bounds.
 	/// </summary>
 	/// <param name="rowIndex">The index of Y-coordinate global position.</param>
 	/// <returns>The Y-coordinate in global position.</returns>
 	/// <remarks>
-	/// This assumes the map is centered at (0,0). If the map shifts, 
+	/// This assumes the map is centered at (0,0). If the map shifts,
 	/// this logic will need to be updated to include the offset.
 	/// </remarks>
 	public float GetRowY(int rowIndex)
@@ -32,7 +32,7 @@ public partial class MapManager : Node
 
 		return FixedRows[rowIndex];
 	}
-	
+
 	/// <summary>
 	/// Calculates and returns the vertical center point of the map based on the highest and lowest rows.
 	/// </summary>
