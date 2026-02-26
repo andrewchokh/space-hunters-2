@@ -3,6 +3,9 @@ using System;
 
 public partial class RowSpawner : Node2D
 {
+    [Export]
+    public PackedScene Entity;
+
     public override void _Ready()
     {
         Timer timer = GetNode<Timer>("Timer");
@@ -11,6 +14,12 @@ public partial class RowSpawner : Node2D
 
     private void SpawnEntity()
     {
-        int randomRowIndex = GD.RandRange(0, 4);
+        int rowCount = MapManager.Instance.FixedRows.Length;
+        int randomRowIndex = GD.RandRange(0, rowCount - 1);
+
+        var enemyInstance = Entity.Instantiate<CharacterBody2D>();
+        enemyInstance.GlobalPosition = new Vector2(GlobalPosition.X, MapManager.Instance.GetRowY(randomRowIndex));
+
+        GetParent().AddChild(enemyInstance);
     }
 }
