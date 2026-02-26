@@ -11,6 +11,9 @@ public partial class HealthComponent : Node2D
     [Export]
     public CharacterBody2D Entity;
 
+    [Export] public Timer Timer;
+    private bool _isInvincible;
+
     private int _health = 6;
     [Export]
     public int Health
@@ -29,15 +32,11 @@ public partial class HealthComponent : Node2D
     }
 
     private int _protection = 1;
-
     [Export]
     public int Protection
     {
         get => _protection;
-        private set
-        {
-            _protection = Mathf.Max(0, value);
-        }
+        private set => _protection = Mathf.Max(0, value);
     }
 
     public override void _Ready()
@@ -48,8 +47,18 @@ public partial class HealthComponent : Node2D
             return;
         }
 
+        Timer.Timeout += () => _isInvincible = false;
+
         EntityDied += Entity.QueueFree;
     }
 
-    public void TakeDamage(int damage) => Health -= Mathf.Max(1, damage - Protection);
+    public void TakeDamage(int damage)
+    {
+        if (_isInvincible)
+            return;
+
+        Health -= Mathf.Max(1, damage - Protection);
+        _isInvincible = true;
+        Timer.Start();
+    }
 }
