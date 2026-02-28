@@ -18,8 +18,6 @@ public partial class HealthComponent : Node2D
 
     [Export]
     public Node2D Entity;
-    [Export]
-    public Timer Timer;
 
     private int _health = 6;
     private int _protection = 1;
@@ -55,7 +53,7 @@ public partial class HealthComponent : Node2D
     }
 
     /// <summary>
-    /// Subscribes to necessary signals for entity death and invincibility reset.
+    /// Subscribes to necessary signals for entity death.
     /// </summary>
     public override void _Ready()
     {
@@ -65,7 +63,6 @@ public partial class HealthComponent : Node2D
             return;
         }
 
-        Timer.Timeout += () => _isInvincible = false;
         EntityDied += Entity.QueueFree;
     }
 
@@ -73,7 +70,7 @@ public partial class HealthComponent : Node2D
     /// Applies damage to the entity, factoring in protection and invincibility frames.
     /// </summary>
     /// <param name="damage">The raw amount of damage to inflict.</param>
-    public void TakeDamage(int damage)
+    public async void TakeDamage(int damage)
     {
         if (_isInvincible)
             return;
@@ -84,6 +81,7 @@ public partial class HealthComponent : Node2D
             return;
 
         _isInvincible = true;
-        Timer.Start();
+        await ToSignal(Entity.GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+        _isInvincible = false;
     }
 }

@@ -2,10 +2,5 @@
 
 [ext_resource type="Script" uid="uid://df5t3yj0ekqwu" path="res://scenes/components/HealthComponent.cs" id="1_iv1uk"]
 
-[node name="HealthComponent" type="Node2D" unique_id=876423460 node_paths=PackedStringArray("Timer")]
+[node name="HealthComponent" type="Node2D" unique_id=876423460]
 script = ExtResource("1_iv1uk")
-Timer = NodePath("Timer")
-
-[node name="Timer" type="Timer" parent="." unique_id=2049676500]
-wait_time = 2.0
-one_shot = true
