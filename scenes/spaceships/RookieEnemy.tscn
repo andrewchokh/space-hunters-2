@@ -33,7 +33,8 @@ Entity = NodePath("..")
 [node name="HealthComponent" parent="." unique_id=876423460 node_paths=PackedStringArray("Entity") instance=ExtResource("5_cu4d8")]
 Entity = NodePath("..")
 
-[node name="HitboxComponent" parent="." unique_id=574661659 instance=ExtResource("6_yngdg")]
+[node name="HitboxComponent" parent="." unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_yngdg")]
+HealthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=873290421]
 position = Vector2(1, 0)
