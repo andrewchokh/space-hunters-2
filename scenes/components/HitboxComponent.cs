@@ -27,5 +27,5 @@ public partial class HitboxComponent : Area2D
     /// Receives damage from external sources and forwards it to the linked health system safely.
     /// </summary>
     /// <param name="value">The raw amount of damage to apply.</param>
-    public void Damage(int value) => HealthComponent?.TakeDamage(value);
+    public void ReceiveDamage(int value) => HealthComponent?.TakeDamage(value);
 }
