@@ -5,6 +5,7 @@
 [ext_resource type="Resource" uid="uid://iadau6fic2ry" path="res://resources/ai_patterns/RookieMovement.tres" id="3_cu4d8"]
 [ext_resource type="PackedScene" path="res://scenes/components/DisposableComponent.tscn" id="4_t4kex"]
 [ext_resource type="PackedScene" path="res://scenes/components/HealthComponent.tscn" id="5_cu4d8"]
+[ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="6_yngdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
 size = Vector2(32, 34)
@@ -31,3 +32,9 @@ Entity = NodePath("..")
 
 [node name="HealthComponent" parent="." unique_id=876423460 node_paths=PackedStringArray("Entity") instance=ExtResource("5_cu4d8")]
 Entity = NodePath("..")
+
+[node name="HitboxComponent" parent="." unique_id=574661659 instance=ExtResource("6_yngdg")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=873290421]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_yngdg")

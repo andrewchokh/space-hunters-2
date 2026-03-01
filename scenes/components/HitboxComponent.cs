@@ -1,6 +1,14 @@
 using Godot;
 using System;
 
+/// <summary>
+/// A detection area that acts as a non-physical hit box for the entity.
+/// </summary>
+/// <remarks>
+/// This component is responsible for registering incoming attacks (e.g., from projectiles)
+/// and safely routing the damage values to the entity's dedicated HealthSystem.
+/// Using a separate Area2D decouples combat triggers from the entity's physical collision.
+/// </remarks>
 public partial class HitboxComponent : Area2D
 {
     [Export]
@@ -15,5 +23,9 @@ public partial class HitboxComponent : Area2D
         }
     }
 
+    /// <summary>
+    /// Receives damage from external sources and forwards it to the linked health system safely.
+    /// </summary>
+    /// <param name="value">The raw amount of damage to apply.</param>
     public void Damage(int value) => HealthComponent?.TakeDamage(value);
 }
