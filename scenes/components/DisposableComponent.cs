@@ -11,7 +11,7 @@ using System;
 public partial class DisposableComponent : VisibleOnScreenNotifier2D
 {
     [Export]
-    public CharacterBody2D Entity;
+    public Node2D Entity;
     /// <summary>
     /// subscribes to the screen exited event.
     /// </summary>
