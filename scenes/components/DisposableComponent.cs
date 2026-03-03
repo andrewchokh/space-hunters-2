@@ -23,6 +23,6 @@ public partial class DisposableComponent : VisibleOnScreenNotifier2D
             return;
         }
 
-        ScreenExited += () => Entity.QueueFree();
+        ScreenExited += Entity.QueueFree;
     }
 }
