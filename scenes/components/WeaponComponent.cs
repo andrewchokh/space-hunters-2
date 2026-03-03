@@ -14,4 +14,14 @@ public partial class WeaponComponent : Node2D
             return;
         }
     }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event.IsActionPressed("fire"))
+        {
+            var bullet = BulletScene.Instantiate<Bullet>();
+            bullet.GlobalPosition = GlobalPosition;
+            GetTree().CurrentScene.AddChild(bullet);
+        }
+    }
 }
