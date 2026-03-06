@@ -1,6 +1,11 @@
-# Technical Design Documentation v1.1 - «Space Hunters 2»
+# Technical Design Documentation - «Space Hunters 2»
+```
+Version: 1.3
+Last Updated: Mar 6, 2026 
+```
 
-## 1. 📑♻️ Project Structure
+
+## 1. 📑 Project Structure
 ```
 res://
 ├── assets/
@@ -71,7 +76,7 @@ public float GetRowY(int rowIndex)
 }
 ```
 
-### 3. Patterns
+### 3. 🖼️ Patterns
 
 #### Component (Composition)
 Composition pattern helps to make a certain mechanic reusable for all entities regardless of their class. Components are disposable: they are tied to node, and will die with it.
@@ -181,6 +186,7 @@ When commiting a specific change, you should specify its 'type'. It helps to dif
 - `docs:` for documentation changes;
 - `assets:` for assets addition;
 - `style:` for code optimizing and formatting. 
+- `chore:` for miscellaneous changes.
 
 ##### Examples
 - `feat: add smooth zoom to GameCamera`;
@@ -190,19 +196,9 @@ When commiting a specific change, you should specify its 'type'. It helps to dif
 ### Pull Requests
 PRs must include a Summary, a list of Key Changes, and Testing Steps. Include a screenshot or GIF for any visual/UI changes.
 
-All PRs must be reviewed by @andrewchokh before merging into `develop`.
+All PRs must be reviewed by [@andrewchokh](https://github.com/andrewchokh) before merging into `develop`.
 
 PRs for the default branch (`main`) are done only when a Milestone is completed.
-
-### Testing Policy
-During the feature addition, it is crucial to make a separate test scene. The purpose of this scene is to test the implemented changes and an isolated enviroment, to ensure their stability and functionality.
-
-In order for Testing Process to be counted as "successful", they should met the following criteria:
-- Every new feature branch should include a corresponding `TestScene`;
-- Test Scene runs without console errors or warnings;
-- Implemented content should work as intended.
-
-**Warning:** Do NOT make test scene a default scene to run in Godot Editor! The test scene will not be included in the final release. Therefore, they should not be used as a default scene to run the project.
 
 ## 5. 📚 Dependencies
 - [.NET](https://dotnet.microsoft.com/en-us/download) 10.0.x
