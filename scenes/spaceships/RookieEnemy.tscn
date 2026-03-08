@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://byve8a0fvr13j"]
 
 [ext_resource type="Texture2D" uid="uid://doyfd3iwq35y0" path="res://icon.svg" id="1_t6jqs"]
-[ext_resource type="PackedScene" path="res://scenes/components/AIComponent.tscn" id="2_t6jqs"]
+[ext_resource type="PackedScene" uid="uid://ddalcbqjjvhel" path="res://scenes/components/AIComponent.tscn" id="2_t6jqs"]
 [ext_resource type="Resource" uid="uid://iadau6fic2ry" path="res://resources/ai_patterns/RookieMovement.tres" id="3_cu4d8"]
-[ext_resource type="PackedScene" path="res://scenes/components/DisposableComponent.tscn" id="4_t4kex"]
-[ext_resource type="PackedScene" path="res://scenes/components/HealthComponent.tscn" id="5_cu4d8"]
+[ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="4_t4kex"]
+[ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_cu4d8"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="6_yngdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
@@ -34,6 +34,8 @@ Entity = NodePath("..")
 Entity = NodePath("..")
 
 [node name="HitboxComponent" parent="." unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_yngdg")]
+collision_layer = 2
+collision_mask = 5
 HealthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=873290421]

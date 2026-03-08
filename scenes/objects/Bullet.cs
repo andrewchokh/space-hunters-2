@@ -13,6 +13,23 @@ public partial class Bullet : Area2D
     [Export]
     public float Speed = 200.0f;
 
+    [Export]
+    public int Damage = 3;
+
+    public override void _Ready()
+    {
+        AreaEntered += OnAreaEntered;
+    }
+
     public override void _PhysicsProcess(double delta) =>
         GlobalPosition += new Vector2(Speed * (float) delta, 0);
+
+    private void OnAreaEntered(Area2D area)
+    {
+        if (area is not HitboxComponent hitbox)
+            return;
+
+        hitbox.ReceiveDamage(Damage);
+        QueueFree();
+    }
 }
