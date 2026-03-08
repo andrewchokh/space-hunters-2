@@ -1,0 +1,33 @@
+[gd_scene format=3 uid="uid://dg4cr6ho8ixmj"]
+
+[ext_resource type="Texture2D" uid="uid://doyfd3iwq35y0" path="res://icon.svg" id="1_sddtn"]
+[ext_resource type="PackedScene" uid="uid://5msk04e2p1bf" path="res://scenes/components/MovementComponent.tscn" id="2_4nla1"]
+[ext_resource type="PackedScene" uid="uid://bs5bocglrro2j" path="res://scenes/components/WeaponComponent.tscn" id="3_jqig0"]
+[ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://scenes/objects/GameCamera.tscn" id="5_4nla1"]
+[ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://scenes/objects/RowSpawner.tscn" id="5_sddtn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_duann"]
+
+[node name="BasicCollisionHp" type="Node2D" unique_id=236161424]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1710066701]
+position = Vector2(319, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=655362990]
+position = Vector2(1, 0)
+scale = Vector2(0.2734375, 0.28125)
+texture = ExtResource("1_sddtn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=556131709]
+shape = SubResource("RectangleShape2D_duann")
+
+[node name="MovementComponent" parent="CharacterBody2D" unique_id=401531261 node_paths=PackedStringArray("Entity") instance=ExtResource("2_4nla1")]
+Entity = NodePath("..")
+
+[node name="WeaponComponent" parent="CharacterBody2D" unique_id=1062407856 instance=ExtResource("3_jqig0")]
+position = Vector2(0, 1)
+
+[node name="RowSpawner" parent="." unique_id=1130102641 instance=ExtResource("5_sddtn")]
+
+[node name="GameCamera" parent="." unique_id=1530620862 instance=ExtResource("5_4nla1")]
+position = Vector2(318.3172, 183.39574)
