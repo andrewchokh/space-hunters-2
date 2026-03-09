@@ -14,6 +14,13 @@ public partial class HitboxComponent : Area2D
     [Export]
     public HealthComponent HealthComponent;
 
+    /// <summary>
+    /// Validates required dependencies and subscribes to collision events to handle fatal ship-to-ship collisions.
+    /// </summary>
+    /// <remarks>
+    /// Listens for incoming areas and triggers a catastrophic damage response (999 damage)
+    /// if both the current and colliding areas belong to root nodes flagged with the "Ship" global group.
+    /// </remarks>
     public override void _Ready()
     {
         if (HealthComponent == null)

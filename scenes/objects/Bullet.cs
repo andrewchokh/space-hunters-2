@@ -24,6 +24,14 @@ public partial class Bullet : Area2D
     public override void _PhysicsProcess(double delta) =>
         GlobalPosition += new Vector2(Speed * (float) delta, 0);
 
+    /// <summary>
+    /// Handles the collision event when the projectile enters another valid detection area.
+    /// </summary>
+    /// <param name="area">The detecting Area2D node that this projectile has physics-overlapped with.</param>
+    /// <remarks>
+    /// Employs an early return pattern to safely ignore non-hitbox triggers. Upon validating a target hitbox,
+    /// it applies its designated damage and immediately destroys the projectile object to prevent phantom hits.
+    /// </remarks>
     private void OnAreaEntered(Area2D area)
     {
         if (area is not HitboxComponent hitbox)
