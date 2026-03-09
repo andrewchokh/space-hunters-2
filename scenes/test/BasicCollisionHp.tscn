@@ -9,13 +9,14 @@
 [ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://scenes/objects/RowSpawner.tscn" id="5_sddtn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_duann"]
+size = Vector2(34, 35)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqig0"]
-size = Vector2(32, 34)
+size = Vector2(36, 36)
 
 [node name="BasicCollisionHp" type="Node2D" unique_id=236161424]
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1710066701]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1710066701 groups=["Ship"]]
 position = Vector2(319, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=655362990]
@@ -24,6 +25,7 @@ scale = Vector2(0.2734375, 0.28125)
 texture = ExtResource("1_sddtn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=556131709]
+position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_duann")
 
 [node name="MovementComponent" parent="CharacterBody2D" unique_id=401531261 node_paths=PackedStringArray("Entity") instance=ExtResource("2_4nla1")]

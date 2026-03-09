@@ -21,6 +21,15 @@ public partial class HitboxComponent : Area2D
             GD.PushError($"{Name}: Component is not assigned!");
             return;
         }
+
+        AreaEntered += (area) =>
+        {
+            if (area is not HitboxComponent)
+                return;
+
+            if (GetParent().IsInGroup("Ship") && area.GetParent().IsInGroup("Ship"))
+                HealthComponent.TakeDamage(999);
+        };
     }
 
     /// <summary>

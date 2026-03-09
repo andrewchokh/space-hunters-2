@@ -8,9 +8,12 @@
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="6_yngdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
-size = Vector2(32, 34)
+size = Vector2(36, 36)
 
-[node name="RookieEnemy" type="CharacterBody2D" unique_id=448440192]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n807b"]
+size = Vector2(34, 34)
+
+[node name="RookieEnemy" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
 position = Vector2(0, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383606160]
@@ -18,10 +21,6 @@ self_modulate = Color(0.41215247, 0.41215247, 0.41215247, 1)
 position = Vector2(1, 0)
 scale = Vector2(0.2734375, 0.28125)
 texture = ExtResource("1_t6jqs")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=582903279]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_yngdg")
 
 [node name="AiComponent" parent="." unique_id=638742263 node_paths=PackedStringArray("Entity") instance=ExtResource("2_t6jqs")]
 Entity = NodePath("..")
@@ -41,3 +40,7 @@ HealthComponent = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=873290421]
 position = Vector2(1, 0)
 shape = SubResource("RectangleShape2D_yngdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=694456879]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_n807b")
