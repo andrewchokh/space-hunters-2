@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b51q0ry8k1nab"]
+[gd_scene format=3 uid="uid://bwi4onkso4xm5"]
 
 [ext_resource type="Texture2D" uid="uid://lu3atkjlyea1" path="res://assets/sprites/spaceships/player_spaceship.png" id="1_gey8w"]
 [ext_resource type="PackedScene" uid="uid://5msk04e2p1bf" path="res://scenes/components/MovementComponent.tscn" id="2_vfp5l"]
@@ -19,7 +19,6 @@ position = Vector2(319, -2)
 
 [node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=498318591]
 position = Vector2(1, 0)
-scale = Vector2(0.2734375, 0.28125)
 texture = ExtResource("1_gey8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1758375043]
