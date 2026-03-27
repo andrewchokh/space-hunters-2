@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="4_ca47c"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_wu61r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq7te"]
-size = Vector2(3.3, 4.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfp5l"]
+size = Vector2(10, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gey8w"]
 size = Vector2(12, 15)
@@ -18,8 +18,8 @@ size = Vector2(12, 15)
 texture = ExtResource("1_gey8w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1758375043]
-position = Vector2(320, -2.125)
-shape = SubResource("RectangleShape2D_rq7te")
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_vfp5l")
 
 [node name="MovementComponent" parent="." unique_id=401531261 node_paths=PackedStringArray("Entity") instance=ExtResource("2_vfp5l")]
 Entity = NodePath("..")
