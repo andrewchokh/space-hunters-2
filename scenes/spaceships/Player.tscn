@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://b51q0ry8k1nab"]
+
+[ext_resource type="Texture2D" uid="uid://lu3atkjlyea1" path="res://assets/sprites/spaceships/player_spaceship.png" id="1_gey8w"]
+[ext_resource type="PackedScene" uid="uid://5msk04e2p1bf" path="res://scenes/components/MovementComponent.tscn" id="2_vfp5l"]
+[ext_resource type="PackedScene" uid="uid://bs5bocglrro2j" path="res://scenes/components/WeaponComponent.tscn" id="3_god0j"]
+[ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="4_ca47c"]
+[ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_wu61r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq7te"]
+size = Vector2(3.3, 4.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkcpe"]
+size = Vector2(4, 4.25)
+
+[node name="Player" type="Node2D" unique_id=1908451322]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." unique_id=1477161930 groups=["Ship"]]
+position = Vector2(319, -2)
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D" unique_id=498318591]
+position = Vector2(1, 0)
+scale = Vector2(0.2734375, 0.28125)
+texture = ExtResource("1_gey8w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D" unique_id=1758375043]
+position = Vector2(1, -0.125)
+shape = SubResource("RectangleShape2D_rq7te")
+
+[node name="MovementComponent" parent="CharacterBody2D" unique_id=401531261 node_paths=PackedStringArray("Entity") instance=ExtResource("2_vfp5l")]
+Entity = NodePath("..")
+
+[node name="WeaponComponent" parent="CharacterBody2D" unique_id=1062407856 instance=ExtResource("3_god0j")]
+position = Vector2(0, 1)
+
+[node name="HitboxComponent" parent="CharacterBody2D" unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("4_ca47c")]
+collision_mask = 10
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D/HitboxComponent" unique_id=996100613]
+position = Vector2(1, -0.125)
+shape = SubResource("RectangleShape2D_qkcpe")
+
+[node name="HealthComponent" parent="CharacterBody2D" unique_id=876423460 node_paths=PackedStringArray("Entity") instance=ExtResource("5_wu61r")]
+Entity = NodePath("..")

@@ -1,17 +1,17 @@
 [gd_scene format=3 uid="uid://byve8a0fvr13j"]
 
-[ext_resource type="Texture2D" uid="uid://doyfd3iwq35y0" path="res://icon.svg" id="1_t6jqs"]
+[ext_resource type="Texture2D" uid="uid://coar73oeu2b3p" path="res://assets/sprites/spaceships/rookie_spaceship.png" id="1_yngdg"]
 [ext_resource type="PackedScene" uid="uid://ddalcbqjjvhel" path="res://scenes/components/AIComponent.tscn" id="2_t6jqs"]
 [ext_resource type="Resource" uid="uid://iadau6fic2ry" path="res://resources/ai_patterns/RookieMovement.tres" id="3_cu4d8"]
 [ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="4_t4kex"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_cu4d8"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="6_yngdg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
-size = Vector2(36, 36)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n807b"]
-size = Vector2(34, 34)
+size = Vector2(4, 4.25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wmx3"]
+size = Vector2(3.3, 4.25)
 
 [node name="RookieEnemy" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
 position = Vector2(0, -2)
@@ -20,13 +20,14 @@ position = Vector2(0, -2)
 self_modulate = Color(0.41215247, 0.41215247, 0.41215247, 1)
 position = Vector2(1, 0)
 scale = Vector2(0.2734375, 0.28125)
-texture = ExtResource("1_t6jqs")
+texture = ExtResource("1_yngdg")
 
 [node name="AiComponent" parent="." unique_id=638742263 node_paths=PackedStringArray("Entity") instance=ExtResource("2_t6jqs")]
 Entity = NodePath("..")
 Pattern = ExtResource("3_cu4d8")
 
 [node name="DisposableComponent" parent="." unique_id=2096509937 node_paths=PackedStringArray("Entity") instance=ExtResource("4_t4kex")]
+rect = Rect2(-1, -2, 4, 4)
 Entity = NodePath("..")
 
 [node name="HealthComponent" parent="." unique_id=876423460 node_paths=PackedStringArray("Entity") instance=ExtResource("5_cu4d8")]
@@ -37,10 +38,10 @@ collision_layer = 2
 collision_mask = 5
 HealthComponent = NodePath("../HealthComponent")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=873290421]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_yngdg")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=694456879]
-position = Vector2(1, 0)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1957661873]
+position = Vector2(1, -0.125)
 shape = SubResource("RectangleShape2D_n807b")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046453216]
+position = Vector2(1, -0.125)
+shape = SubResource("RectangleShape2D_8wmx3")
