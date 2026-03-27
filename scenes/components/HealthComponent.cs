@@ -18,6 +18,8 @@ public partial class HealthComponent : Node2D
 
     [Export]
     public Node2D Entity;
+    [Export]
+    public bool HasInvincibilityFrames = false;
 
     private int _health = 6;
     private int _protection = 1;
@@ -78,6 +80,9 @@ public partial class HealthComponent : Node2D
         Health -= Mathf.Max(1, damage - Protection);
 
         if (_health <= 0)
+            return;
+
+        if (!HasInvincibilityFrames) 
             return;
 
         _isInvincible = true;
