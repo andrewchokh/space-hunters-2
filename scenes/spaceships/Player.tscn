@@ -9,8 +9,8 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rq7te"]
 size = Vector2(3.3, 4.25)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qkcpe"]
-size = Vector2(4, 4.25)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gey8w"]
+size = Vector2(12, 15)
 
 [node name="Player" type="CharacterBody2D" unique_id=2030279024]
 
@@ -31,8 +31,9 @@ collision_mask = 10
 HealthComponent = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=996100613]
-position = Vector2(1, -0.125)
-shape = SubResource("RectangleShape2D_qkcpe")
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_gey8w")
+debug_color = Color(0.7270476, 0.36695454, 0.77557635, 0.41960785)
 
 [node name="HealthComponent" parent="." unique_id=876423460 node_paths=PackedStringArray("Entity") instance=ExtResource("5_wu61r")]
 Entity = NodePath("..")
