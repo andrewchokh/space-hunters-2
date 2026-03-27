@@ -38,3 +38,4 @@ debug_color = Color(0.7270476, 0.36695454, 0.77557635, 0.41960785)
 
 [node name="HealthComponent" parent="." unique_id=876423460 node_paths=PackedStringArray("Entity") instance=ExtResource("5_wu61r")]
 Entity = NodePath("..")
+HasInvincibilityFrames = true
