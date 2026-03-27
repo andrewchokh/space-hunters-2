@@ -40,7 +40,7 @@ public partial class RowSpawner : Node2D
         int randomRowIndex = GD.RandRange(0, rowCount - 1);
 
         var enemyInstance = Entity.Instantiate<CharacterBody2D>();
-        enemyInstance.GlobalPosition = new Vector2(GetViewportRect().Size.X + OffsetX,
+        enemyInstance.GlobalPosition = new Vector2(0 + OffsetX,
             MapManager.Instance.GetRowY(randomRowIndex));
 
         GetParent().AddChild(enemyInstance);
