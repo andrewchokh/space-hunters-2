@@ -1,3 +1,17 @@
 [gd_scene format=3 uid="uid://b85ex6s5jqqxl"]
 
+[ext_resource type="PackedScene" uid="uid://b51q0ry8k1nab" path="res://scenes/spaceships/Player.tscn" id="1_7fgwr"]
+[ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://scenes/objects/RowSpawner.tscn" id="2_i77b0"]
+
 [node name="GameScene" type="Node2D" unique_id=1342168030]
+
+[node name="Player" parent="." unique_id=1908451322 instance=ExtResource("1_7fgwr")]
+position = Vector2(-359, 0)
+
+[node name="RowSpawner" parent="." unique_id=1130102641 instance=ExtResource("2_i77b0")]
+position = Vector2(-330, 0)
+scale = Vector2(5, 5)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1359812617]
+position = Vector2(0, -2)
+zoom = Vector2(5, 5)
