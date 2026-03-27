@@ -15,6 +15,7 @@ size = Vector2(3.3, 4.25)
 
 [node name="RookieEnemy" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
 position = Vector2(0, -2)
+motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383606160]
 self_modulate = Color(0.41215247, 0.41215247, 0.41215247, 1)
