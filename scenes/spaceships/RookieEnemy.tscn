@@ -20,7 +20,7 @@ motion_mode = 1
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383606160]
 texture = ExtResource("1_yngdg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046453216]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046453216 groups=["Ship"]]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_yngdg")
 

@@ -12,7 +12,7 @@ size = Vector2(10, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gey8w"]
 size = Vector2(12, 15)
 
-[node name="Player" type="CharacterBody2D" unique_id=2030279024]
+[node name="Player" type="CharacterBody2D" unique_id=2030279024 groups=["Ship"]]
 motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=498318591]
