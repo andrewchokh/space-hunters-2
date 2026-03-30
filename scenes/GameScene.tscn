@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b2gvpicdka6gk"]
+
+[ext_resource type="PackedScene" uid="uid://bwi4onkso4xm5" path="res://scenes/spaceships/Player.tscn" id="1_7fgwr"]
+[ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://scenes/objects/RowSpawner.tscn" id="2_i77b0"]
+[ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://scenes/objects/GameCamera.tscn" id="3_i77b0"]
+[ext_resource type="PackedScene" uid="uid://byve8a0fvr13j" path="res://scenes/spaceships/RookieEnemy.tscn" id="4_uojrr"]
+
+[node name="GameScene" type="Node2D" unique_id=1342168030]
+
+[node name="Player" parent="." unique_id=2030279024 instance=ExtResource("1_7fgwr")]
+position = Vector2(-64, 0)
+
+[node name="RowSpawner" parent="." unique_id=1130102641 instance=ExtResource("2_i77b0")]
+Entity = ExtResource("4_uojrr")
+OffsetX = 110.0
+
+[node name="GameCamera" parent="." unique_id=1530620862 instance=ExtResource("3_i77b0")]
