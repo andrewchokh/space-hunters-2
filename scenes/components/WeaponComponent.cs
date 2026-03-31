@@ -12,7 +12,7 @@ using System;
 public partial class WeaponComponent : Node2D
 {
     [Export]
-    public PackedScene BulletScene;
+    public PackedScene ProjectileScene;
 
     /// <summary>
     /// Listens for the designated fire action and safely instantiates the projectile at the current global position.
@@ -22,9 +22,9 @@ public partial class WeaponComponent : Node2D
     {
         if (@event.IsActionPressed("fire"))
         {
-            var bullet = BulletScene.Instantiate<Bullet>();
-            bullet.GlobalPosition = GlobalPosition;
-            GetTree().CurrentScene.AddChild(bullet);
+            var projectile = ProjectileScene.Instantiate<Projectile>();
+            projectile.GlobalPosition = GlobalPosition;
+            GetTree().CurrentScene.AddChild(projectile);
         }
     }
 
@@ -34,7 +34,7 @@ public partial class WeaponComponent : Node2D
     /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
     private bool Setup()
     {
-        if (!this.IsAssigned(BulletScene, nameof(BulletScene))) return false;
+        if (!this.IsAssigned(ProjectileScene, nameof(ProjectileScene))) return false;
         return true;
     }
 }
