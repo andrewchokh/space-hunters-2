@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://yd4y3elnhhl2" path="res://assets/sprites/projectiles/enemy_projectile.png" id="2_eyvh2"]
 [ext_resource type="Script" uid="uid://b1tn2fb00yvyf" path="res://scenes/objects/EnemyProjectile.cs" id="2_k3dt2"]
 
-[node name="Projectile" unique_id=1921015443 instance=ExtResource("1_q68qs")]
+[node name="EnemyProjectile" unique_id=1921015443 instance=ExtResource("1_q68qs")]
 collision_layer = 8
 collision_mask = 1
 script = ExtResource("2_k3dt2")
@@ -13,3 +13,6 @@ script = ExtResource("2_k3dt2")
 position = Vector2(0, -1)
 rotation = 3.1415927
 texture = ExtResource("2_eyvh2")
+
+[node name="DisposableComponent" parent="." index="2" unique_id=2096509937 node_paths=PackedStringArray("Entity")]
+Entity = NodePath("..")
