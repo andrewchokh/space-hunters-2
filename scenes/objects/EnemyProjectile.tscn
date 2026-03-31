@@ -5,6 +5,8 @@
 [ext_resource type="Script" uid="uid://b1tn2fb00yvyf" path="res://scenes/objects/EnemyProjectile.cs" id="2_k3dt2"]
 
 [node name="Projectile" unique_id=1921015443 instance=ExtResource("1_q68qs")]
+collision_layer = 8
+collision_mask = 1
 script = ExtResource("2_k3dt2")
 
 [node name="Sprite2D" parent="." index="1" unique_id=145007140]
