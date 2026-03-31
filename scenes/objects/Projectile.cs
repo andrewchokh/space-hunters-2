@@ -8,7 +8,7 @@ using System;
 /// Built on top of Area2D to serve as a lightweight combat trigger rather than a heavy physics body.
 /// Movement is tied to the engine's physics step to ensure reliable hit registration without clipping through targets.
 /// </remarks>
-public partial class Projectile : Area2D
+public abstract partial class Projectile : Area2D
 {
     [Export]
     public float Speed = 200.0f;
