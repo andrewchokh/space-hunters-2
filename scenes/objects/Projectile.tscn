@@ -7,8 +7,6 @@
 size = Vector2(4, 1)
 
 [node name="Projectile" type="Area2D" unique_id=1921015443]
-collision_layer = 4
-collision_mask = 2
 script = ExtResource("1_7xl2w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015711682]
