@@ -14,15 +14,6 @@ public partial class WeaponComponent : Node2D
     [Export]
     public PackedScene BulletScene;
 
-    public override void _Ready()
-    {
-        if (BulletScene == null)
-        {
-            GD.PushError($"{Name}: Component is not assigned!");
-            return;
-        }
-    }
-
     /// <summary>
     /// Listens for the designated fire action and safely instantiates the projectile at the current global position.
     /// </summary>
@@ -35,5 +26,15 @@ public partial class WeaponComponent : Node2D
             bullet.GlobalPosition = GlobalPosition;
             GetTree().CurrentScene.AddChild(bullet);
         }
+    }
+
+    /// <summary>
+    /// Verifies that all required dependencies and exported fields are correctly assigned.
+    /// </summary>
+    /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
+    private bool Setup()
+    {
+        if (!this.IsAssigned(BulletScene, nameof(BulletScene))) return false;
+        return true;
     }
 }

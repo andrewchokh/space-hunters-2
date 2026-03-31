@@ -40,6 +40,16 @@ public partial class HitboxComponent : Area2D
     }
 
     /// <summary>
+    /// Verifies that all required dependencies and exported fields are correctly assigned.
+    /// </summary>
+    /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
+    private bool Setup()
+    {
+        if (!this.IsAssigned(HealthComponent, nameof(HealthComponent))) return false;
+        return true;
+    }
+
+    /// <summary>
     /// Receives damage from external sources and forwards it to the linked health system safely.
     /// </summary>
     /// <param name="value">The raw amount of damage to apply.</param>
