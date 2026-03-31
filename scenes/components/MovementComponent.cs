@@ -30,13 +30,6 @@ public partial class MovementComponent : Node
     /// </remarks>
     public override void _Ready()
     {
-        if (Entity == null)
-        {
-            GD.PrintErr("MovementComponent: Entity node is not assigned.");
-            SetPhysicsProcess(false);
-            return;
-        }
-
         _rowIndex = Mathf.Clamp(StartingRow, 0, MapManager.Instance.FixedRows.Length - 1);
         _targetY = MapManager.Instance.GetRowY(_rowIndex);
         Entity.GlobalPosition = new Vector2(Entity.GlobalPosition.X, _targetY);
@@ -76,5 +69,15 @@ public partial class MovementComponent : Node
             return;
 
         _targetY = MapManager.Instance.GetRowY(_rowIndex);
+    }
+
+    /// <summary>
+    /// Verifies that all required dependencies and exported fields are correctly assigned.
+    /// </summary>
+    /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
+    private bool Setup()
+    {
+        if (!this.IsAssigned(Entity, nameof(Entity))) return false;
+        return true;
     }
 }

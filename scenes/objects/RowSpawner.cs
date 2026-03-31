@@ -22,12 +22,6 @@ public partial class RowSpawner : Node2D
     /// </summary>
     public override void _Ready()
     {
-        if (Entity == null)
-        {
-            GD.PushError($"{Name}: Entity is not assigned!");
-            return;
-        }
-
         Timer.Timeout += SpawnEntity;
     }
 
@@ -44,5 +38,15 @@ public partial class RowSpawner : Node2D
             MapManager.Instance.GetRowY(randomRowIndex));
 
         GetParent().AddChild(enemyInstance);
+    }
+
+    /// <summary>
+    /// Verifies that all required dependencies and exported fields are correctly assigned.
+    /// </summary>
+    /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
+    private bool Setup()
+    {
+        if (!this.IsAssigned(Entity, nameof(Entity))) return false;
+        return true;
     }
 }

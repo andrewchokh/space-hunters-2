@@ -17,19 +17,7 @@ public partial class AIComponent : Node
 
     public override void _Ready()
     {
-        if (Entity == null)
-        {
-            GD.PushError($"{Name}: Entity is not assigned!");
-            SetPhysicsProcess(false);
-            return;
-        }
-
-        if (Pattern == null)
-        {
-            GD.PushError($"{Name}: Pattern is not assigned!");
-            SetPhysicsProcess(false);
-            return;
-        }
+        if (!Setup()) return;
     }
 
     /// <summary>
@@ -37,4 +25,15 @@ public partial class AIComponent : Node
     /// </summary>
     /// <param name="delta">The elapsed time since the previous physics frame.</param>
     public override void _PhysicsProcess(double delta) => Pattern.Execute(Entity, delta);
+
+    /// <summary>
+    /// Verifies that all required dependencies and exported fields are correctly assigned.
+    /// </summary>
+    /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
+    private bool Setup()
+    {
+        if (!this.IsAssigned(Entity, nameof(Entity))) return false;
+        if (!this.IsAssigned(Pattern, nameof(Pattern))) return false;
+        return true;
+    }
 }
