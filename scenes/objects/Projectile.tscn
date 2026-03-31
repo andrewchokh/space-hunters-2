@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://bnver1nf7b7oq"]
 
 [ext_resource type="Script" uid="uid://d0wh022vjsrcq" path="res://scenes/objects/Projectile.cs" id="1_7xl2w"]
-[ext_resource type="Texture2D" uid="uid://7f6swojakjyv" path="res://assets/sprites/projectiles/player_projectile.png" id="2_703yk"]
 [ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="3_gtjeo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4b24"]
@@ -17,7 +16,6 @@ position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_d4b24")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=145007140]
-texture = ExtResource("2_703yk")
 
 [node name="DisposableComponent" parent="." unique_id=2096509937 node_paths=PackedStringArray("Entity") instance=ExtResource("3_gtjeo")]
 rect = Rect2(-2, -1, 4, 1)

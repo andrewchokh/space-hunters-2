@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://b2gvpicdka6gk"]
+[gd_scene format=3 uid="uid://7ldq82cg2tuc"]
 
 [ext_resource type="PackedScene" uid="uid://bwi4onkso4xm5" path="res://scenes/spaceships/Player.tscn" id="1_7fgwr"]
 [ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://scenes/objects/RowSpawner.tscn" id="2_i77b0"]
