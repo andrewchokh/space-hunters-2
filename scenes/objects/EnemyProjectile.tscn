@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://61t4wt20quem"]
+
+[ext_resource type="PackedScene" uid="uid://bnver1nf7b7oq" path="res://scenes/objects/Projectile.tscn" id="1_q68qs"]
+[ext_resource type="Texture2D" uid="uid://yd4y3elnhhl2" path="res://assets/sprites/projectiles/enemy_projectile.png" id="2_eyvh2"]
+[ext_resource type="Script" uid="uid://b1tn2fb00yvyf" path="res://scenes/objects/EnemyProjectile.cs" id="2_k3dt2"]
+
+[node name="EnemyProjectile" unique_id=1921015443 instance=ExtResource("1_q68qs")]
+collision_layer = 8
+collision_mask = 1
+script = ExtResource("2_k3dt2")
+Speed = -200.0
+
+[node name="Sprite2D" parent="." index="1" unique_id=145007140]
+position = Vector2(0, -1)
+rotation = 3.1415927
+texture = ExtResource("2_eyvh2")
+
+[node name="DisposableComponent" parent="." index="2" unique_id=2096509937 node_paths=PackedStringArray("Entity")]
+Entity = NodePath("..")

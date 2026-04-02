@@ -12,19 +12,48 @@ using System;
 public partial class LinearPattern : AIPattern
 {
     [Export]
+    public PackedScene ProjectileScene;
+    [Export]
     public float Speed = 10.0f;
     [Export]
     public float DirectionX = -1.0f;
+
+    private RandomNumberGenerator _shootTimer  = new RandomNumberGenerator();
+    private double _cooldownTimer = 0;
 
     /// <summary>
     /// Calculates the horizontal velocity and applies it to the entity using MoveAndSlide.
     /// </summary>
     /// <param name="entity">The entity to move.</param>
     /// <param name="delta">The physics process delta time.</param>
+    /// <remarks>
+    /// Operates purely on a synchronous game loop. When the cooldown timer drops below zero,
+    /// the Shoot method is invoked and the timer resets to a random value using Godot's global RNG.
+    /// </remarks>
     public override void Execute(CharacterBody2D entity, double delta)
     {
         var direction = new Vector2(DirectionX, 0.0f);
         entity.Velocity = direction.Normalized() * Speed;
         entity.MoveAndSlide();
+
+        _cooldownTimer -= delta;
+
+        if(_cooldownTimer > 0)
+            return;
+
+        Shoot(entity);
+
+        _cooldownTimer = _shootTimer.RandfRange(3.0f, 5.0f);
+    }
+
+    /// <summary>
+    /// Instantiates a projectile and adds it to the current scene at the entity's global position.
+    /// </summary>
+    /// <param name="entity">The entity that is firing the projectile, used to determine the spawn point.</param>
+    private void Shoot(CharacterBody2D entity)
+    {
+        var projectile = ProjectileScene.Instantiate<Projectile>();
+        projectile.GlobalPosition = entity.GlobalPosition;
+        entity.GetTree().CurrentScene.AddChild(projectile);
     }
 }

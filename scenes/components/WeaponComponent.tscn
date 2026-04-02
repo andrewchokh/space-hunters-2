@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bs5bocglrro2j"]
 
 [ext_resource type="Script" uid="uid://6ceah68g1m0d" path="res://scenes/components/WeaponComponent.cs" id="1_uxjmp"]
-[ext_resource type="PackedScene" uid="uid://bnver1nf7b7oq" path="res://scenes/objects/Bullet.tscn" id="2_bgmsy"]
+[ext_resource type="PackedScene" uid="uid://bnver1nf7b7oq" path="res://scenes/objects/Projectile.tscn" id="2_bgmsy"]
 
 [node name="WeaponComponent" type="Node2D" unique_id=1062407856]
 script = ExtResource("1_uxjmp")

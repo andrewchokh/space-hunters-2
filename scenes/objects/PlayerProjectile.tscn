@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b870533ih0dlv"]
+
+[ext_resource type="PackedScene" uid="uid://bnver1nf7b7oq" path="res://scenes/objects/Projectile.tscn" id="1_qd6qc"]
+[ext_resource type="Texture2D" uid="uid://7f6swojakjyv" path="res://assets/sprites/projectiles/player_projectile.png" id="2_d0moy"]
+[ext_resource type="Script" uid="uid://c2fshhabugemp" path="res://scenes/objects/PlayerProjectile.cs" id="2_g7wyx"]
+
+[node name="PlayerProjectile" unique_id=1921015443 instance=ExtResource("1_qd6qc")]
+script = ExtResource("2_g7wyx")
+
+[node name="Sprite2D" parent="." index="1" unique_id=145007140]
+texture = ExtResource("2_d0moy")
+
+[node name="DisposableComponent" parent="." index="2" unique_id=2096509937 node_paths=PackedStringArray("Entity")]
+Entity = NodePath("..")

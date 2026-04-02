@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://5msk04e2p1bf" path="res://scenes/components/MovementComponent.tscn" id="2_vfp5l"]
 [ext_resource type="PackedScene" uid="uid://bs5bocglrro2j" path="res://scenes/components/WeaponComponent.tscn" id="3_god0j"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="4_ca47c"]
+[ext_resource type="PackedScene" uid="uid://b870533ih0dlv" path="res://scenes/objects/PlayerProjectile.tscn" id="4_vfp5l"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_wu61r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfp5l"]
@@ -26,6 +27,7 @@ shape = SubResource("RectangleShape2D_vfp5l")
 Entity = NodePath("..")
 
 [node name="WeaponComponent" parent="." unique_id=1062407856 instance=ExtResource("3_god0j")]
+ProjectileScene = ExtResource("4_vfp5l")
 
 [node name="HitboxComponent" parent="." unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("4_ca47c")]
 collision_mask = 10
