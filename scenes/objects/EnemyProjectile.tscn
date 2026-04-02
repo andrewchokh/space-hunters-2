@@ -8,6 +8,7 @@
 collision_layer = 8
 collision_mask = 1
 script = ExtResource("2_k3dt2")
+Speed = -200.0
 
 [node name="Sprite2D" parent="." index="1" unique_id=145007140]
 position = Vector2(0, -1)

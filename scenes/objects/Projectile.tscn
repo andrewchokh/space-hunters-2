@@ -1,15 +1,14 @@
 [gd_scene format=3 uid="uid://bnver1nf7b7oq"]
 
-[ext_resource type="Script" uid="uid://d0wh022vjsrcq" path="res://scenes/objects/Projectile.cs" id="1_7xl2w"]
 [ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="3_gtjeo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4b24"]
 size = Vector2(4, 1)
 
 [node name="Projectile" type="Area2D" unique_id=1921015443]
+position = Vector2(0, -3)
 collision_layer = 4
 collision_mask = 2
-script = ExtResource("1_7xl2w")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015711682]
 position = Vector2(0, -0.5)

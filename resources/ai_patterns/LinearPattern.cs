@@ -12,10 +12,14 @@ using System;
 public partial class LinearPattern : AIPattern
 {
     [Export]
+    public PackedScene ProjectileScene { get; private set; }
+    [Export]
     public float Speed = 10.0f;
     [Export]
     public float DirectionX = -1.0f;
 
+    private RandomNumberGenerator _shootTimer = new RandomNumberGenerator();
+    private double _cooldownTimer = 0;
     /// <summary>
     /// Calculates the horizontal velocity and applies it to the entity using MoveAndSlide.
     /// </summary>
@@ -26,5 +30,21 @@ public partial class LinearPattern : AIPattern
         var direction = new Vector2(DirectionX, 0.0f);
         entity.Velocity = direction.Normalized() * Speed;
         entity.MoveAndSlide();
+
+        _cooldownTimer -= delta;
+
+        if(_cooldownTimer > 0)
+            return;
+
+        Shoot(entity);
+
+        _cooldownTimer = _shootTimer.RandfRange(3.0f, 5.0f);
+    }
+
+    private void Shoot(CharacterBody2D entity)
+    {
+        var projectile = ProjectileScene.Instantiate<Projectile>();
+        projectile.GlobalPosition = entity.GlobalPosition;
+        entity.GetTree().CurrentScene.AddChild(projectile);
     }
 }
