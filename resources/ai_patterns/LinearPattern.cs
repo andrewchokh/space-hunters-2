@@ -12,7 +12,7 @@ using System;
 public partial class LinearPattern : AIPattern
 {
     [Export]
-    public PackedScene ProjectileScene { get; private set; }
+    public PackedScene ProjectileScene;
     [Export]
     public float Speed = 10.0f;
     [Export]
