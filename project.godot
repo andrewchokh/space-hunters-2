@@ -8,15 +8,11 @@
 
 config_version=5
 
-[animation]
-
-compatibility/default_parent_skeleton_in_mesh_instance_3d=true
-
 [application]
 
 config/name="Space Hunters 2"
-run/main_scene="uid://b2gvpicdka6gk"
-config/features=PackedStringArray("4.6", "C#", "Forward Plus")
+run/main_scene="uid://7ldq82cg2tuc"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

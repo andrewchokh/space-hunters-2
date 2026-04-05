@@ -2,13 +2,20 @@
 
 [ext_resource type="Texture2D" uid="uid://coar73oeu2b3p" path="res://assets/sprites/spaceships/rookie_spaceship.png" id="1_yngdg"]
 [ext_resource type="PackedScene" uid="uid://ddalcbqjjvhel" path="res://scenes/components/AIComponent.tscn" id="2_t6jqs"]
-[ext_resource type="Resource" uid="uid://iadau6fic2ry" path="res://resources/ai_patterns/RookieMovement.tres" id="3_cu4d8"]
+[ext_resource type="PackedScene" uid="uid://61t4wt20quem" path="res://scenes/objects/EnemyProjectile.tscn" id="3_n807b"]
+[ext_resource type="Script" uid="uid://3dijbx127nyq" path="res://resources/ai_patterns/LinearPattern.cs" id="3_yngdg"]
 [ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="4_t4kex"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_cu4d8"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="6_yngdg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
 size = Vector2(10, 13)
+
+[sub_resource type="Resource" id="Resource_8wmx3"]
+resource_local_to_scene = true
+script = ExtResource("3_yngdg")
+ProjectileScene = ExtResource("3_n807b")
+Speed = 30.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n807b"]
 size = Vector2(12, 15)
@@ -26,7 +33,7 @@ shape = SubResource("RectangleShape2D_yngdg")
 
 [node name="AiComponent" parent="." unique_id=638742263 node_paths=PackedStringArray("Entity") instance=ExtResource("2_t6jqs")]
 Entity = NodePath("..")
-Pattern = ExtResource("3_cu4d8")
+Pattern = SubResource("Resource_8wmx3")
 
 [node name="DisposableComponent" parent="." unique_id=2096509937 node_paths=PackedStringArray("Entity") instance=ExtResource("4_t4kex")]
 position = Vector2(-1, -1)
