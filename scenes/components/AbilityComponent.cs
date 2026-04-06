@@ -7,58 +7,56 @@ using System;
 public partial class AbilityComponent : Node2D
 {
     [Export]
+    public CharacterBody2D Entity;
+    [Export]
     public AbilityPattern Ability;
 
-    private Timer _durationTimer;
-    private Timer _cooldownTimer;
+    private Timer _abilityTimer;
+    private bool _isAbilityActive = false;
 
-    /// <summary>
-    /// Dynamically creating required timers.
-    /// </summary>
     public override void _Ready()
     {
         if(!Setup())
             return;
 
-        _durationTimer = new Timer();
-        _durationTimer.OneShot = true;
-        AddChild(_durationTimer);
+        _abilityTimer = new Timer();
+        _abilityTimer.OneShot = true;
+        AddChild(_abilityTimer);
+    }
 
-        _cooldownTimer = new Timer();
-        _cooldownTimer.OneShot = true;
-        AddChild(_cooldownTimer);
+    public override void _Process(double delta) {
+        if (_isAbilityActive)
+            Ability.Execute(Entity, delta);
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
-        if (@event.IsActionPressed("ability"))
+        if (@event.IsActionPressed("ability") && 
+            !_isAbilityActive && _abilityTimer.TimeLeft > 0
+        )
             ActivateAbility();
     }
 
     /// <summary>
-    /// Attempts to activate the ability, checking against current active duration and cooldown timers.
+    /// Activates the ability.
     /// </summary>
     private async void ActivateAbility()
     {
-        if (_durationTimer.TimeLeft > 0)
-        {
-            this.DebugLog("Ability already activated!");
-            return;
-        }
+        _isAbilityActive = true;
+        _abilityTimer.Start(Ability.Duration);
 
-        if (_cooldownTimer.TimeLeft > 0)
-        {
-            this.DebugLog($"Ability cooldown!!! ({Math.Round(_cooldownTimer.TimeLeft, 1)}s left)");
-            return;
-        }
+        Ability.Enter(Entity);
 
         this.DebugLog("Ability activated!");
-        _durationTimer.Start(Ability.Duration);
 
-        await ToSignal(_durationTimer, Timer.SignalName.Timeout);
+        await ToSignal(_abilityTimer, Timer.SignalName.Timeout);
+
+        _isAbilityActive = false;
+        _abilityTimer.Start(Ability.Cooldown);
+
+        Ability.Exit(Entity);
 
         this.DebugLog("Ability timed out!");
-        _cooldownTimer.Start(Ability.Cooldown);
     }
 
     private bool Setup() => this.IsAssigned(Ability, nameof(Ability));
