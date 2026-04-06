@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="AbilityPattern" format=3 uid="uid://d05cexj043f5k"]
+
+[ext_resource type="Script" uid="uid://bb2oeda3wjk52" path="res://resources/ability_patterns/AbilityPattern.cs" id="1_m6gqn"]
+
+[resource]
+script = ExtResource("1_m6gqn")
+metadata/_custom_type_script = "uid://bb2oeda3wjk52"

@@ -4,15 +4,16 @@ using System;
 public partial class AbilityComponent : Node2D
 {
     [Export]
-    public double Duration = 3.0;
-    [Export]
-    public double Cooldown = 10.0;
+    public AbilityPattern Ability;
 
     private Timer _durationTimer;
     private Timer _cooldownTimer;
 
     public override void _Ready()
     {
+        if(!Setup())
+            return;
+
         _durationTimer = new Timer();
         _durationTimer.OneShot = true;
         AddChild(_durationTimer);
@@ -25,11 +26,17 @@ public partial class AbilityComponent : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("ability"))
-            Ability();
+            ActivateAbility();
     }
 
-    private async void Ability()
+    private async void ActivateAbility()
     {
+        if (_durationTimer.TimeLeft > 0)
+        {
+            this.DebugLog("Ability already activated!");
+            return;
+        }
+
         if (_cooldownTimer.TimeLeft > 0)
         {
             this.DebugLog($"Ability cooldown!!! ({Math.Round(_cooldownTimer.TimeLeft, 1)}s left)");
@@ -37,11 +44,13 @@ public partial class AbilityComponent : Node2D
         }
 
         this.DebugLog("Ability activated!");
-        _durationTimer.Start(Duration);
+        _durationTimer.Start(Ability.Duration);
 
         await ToSignal(_durationTimer, Timer.SignalName.Timeout);
 
         this.DebugLog("Ability timed out!");
-        _cooldownTimer.Start(Cooldown);
+        _cooldownTimer.Start(Ability.Cooldown);
     }
+
+    private bool Setup() => this.IsAssigned(Ability, nameof(Ability));
 }
