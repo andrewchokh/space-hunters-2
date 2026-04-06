@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Manages the activation, duration, and cooldown states of an entity's ability.
+/// </summary>
 public partial class AbilityComponent : Node2D
 {
     [Export]
@@ -9,6 +12,9 @@ public partial class AbilityComponent : Node2D
     private Timer _durationTimer;
     private Timer _cooldownTimer;
 
+    /// <summary>
+    /// Dynamically creating required timers.
+    /// </summary>
     public override void _Ready()
     {
         if(!Setup())
@@ -29,6 +35,9 @@ public partial class AbilityComponent : Node2D
             ActivateAbility();
     }
 
+    /// <summary>
+    /// Attempts to activate the ability, checking against current active duration and cooldown timers.
+    /// </summary>
     private async void ActivateAbility()
     {
         if (_durationTimer.TimeLeft > 0)
