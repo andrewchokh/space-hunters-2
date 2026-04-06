@@ -13,6 +13,6 @@ public abstract partial class AbilityPattern : Resource
     public double Cooldown = 10.0;
 
     public abstract void Enter(CharacterBody2D entity);
-    public abstract void Execute(CharacterBody2D entity);
+    public abstract void Execute(CharacterBody2D entity, double delta);
     public abstract void Exit(CharacterBody2D entity);
 }
