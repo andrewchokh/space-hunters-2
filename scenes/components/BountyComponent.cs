@@ -7,7 +7,7 @@ using System;
 public partial class BountyComponent : Node2D
 {
    [Export]
-   public int ScoreForKill = 100;
+   public int Bounty = 100;
    [Export]
    public HealthComponent HealthComponent;
 
