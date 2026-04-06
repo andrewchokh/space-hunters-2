@@ -24,15 +24,16 @@ public partial class AbilityComponent : Node2D
         AddChild(_abilityTimer);
     }
 
-    public override void _Process(double delta) {
-        if (_isAbilityActive)
-            Ability.Execute(Entity, delta);
+    public override void _PhysicsProcess(double delta) {
+        if (!_isAbilityActive) return;
+
+        Ability.Execute(Entity, delta);
     }
 
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("ability") && 
-            !_isAbilityActive && _abilityTimer.TimeLeft > 0
+            !_isAbilityActive && _abilityTimer.TimeLeft == 0
         )
             ActivateAbility();
     }
@@ -57,6 +58,10 @@ public partial class AbilityComponent : Node2D
         Ability.Exit(Entity);
 
         this.DebugLog("Ability timed out!");
+
+        await ToSignal(_abilityTimer, Timer.SignalName.Timeout);
+
+        this.DebugLog("Ability is recharged!");
     }
 
     private bool Setup() => this.IsAssigned(Ability, nameof(Ability));
