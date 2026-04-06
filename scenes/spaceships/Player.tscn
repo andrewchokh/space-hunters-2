@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b870533ih0dlv" path="res://scenes/objects/PlayerProjectile.tscn" id="4_vfp5l"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_wu61r"]
 [ext_resource type="PackedScene" uid="uid://20qngelbjp5l" path="res://scenes/components/AbilityComponent.tscn" id="7_god0j"]
-[ext_resource type="Resource" uid="uid://d05cexj043f5k" path="res://resources/ability_patterns/BaseAbility.tres" id="8_ca47c"]
+[ext_resource type="Resource" uid="uid://dtl08vsbpvouy" path="res://resources/ability_patterns/DebugAbility.tres" id="8_ca47c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfp5l"]
 size = Vector2(10, 13)
@@ -44,5 +44,6 @@ debug_color = Color(0.7270476, 0.36695454, 0.77557635, 0.41960785)
 Entity = NodePath("..")
 HasInvincibilityFrames = true
 
-[node name="AbilityComponent" parent="." unique_id=452013189 instance=ExtResource("7_god0j")]
+[node name="AbilityComponent" parent="." unique_id=452013189 node_paths=PackedStringArray("Entity") instance=ExtResource("7_god0j")]
+Entity = NodePath("..")
 Ability = ExtResource("8_ca47c")
