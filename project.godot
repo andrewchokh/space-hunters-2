@@ -18,7 +18,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 MapManager="*uid://be7eyi5r6ilwn"
-ScoreManager="*uid://ic4a0ue8o76y"
 
 [debug]
 
