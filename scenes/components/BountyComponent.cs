@@ -23,5 +23,5 @@ public partial class BountyComponent : Node2D
    /// <summary>
    /// Handles the EntityDied event by increasing the global score.
    /// </summary>
-   private void OnEntityDied() => ScoreManager.Instance.Score += ScoreForKill;
+   private void OnEntityDied() => ScoreManager.Instance.Score += Bounty;
 }
