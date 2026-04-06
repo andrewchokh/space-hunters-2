@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://r538fk5itnpp"]
 
+[ext_resource type="Script" uid="uid://c1dpy8t0uenq5" path="res://scenes/components/BountyComponent.cs" id="1_y1065"]
+
 [node name="BountyComponent" type="Node2D" unique_id=432254669]
+script = ExtResource("1_y1065")

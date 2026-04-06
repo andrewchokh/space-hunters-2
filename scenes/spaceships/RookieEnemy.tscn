@@ -7,11 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="4_t4kex"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://scenes/components/HealthComponent.tscn" id="5_cu4d8"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://scenes/components/HitboxComponent.tscn" id="6_yngdg"]
+[ext_resource type="PackedScene" uid="uid://r538fk5itnpp" path="res://scenes/components/BountyComponent.tscn" id="8_8wmx3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
 size = Vector2(10, 13)
 
-[sub_resource type="Resource" id="Resource_8wmx3"]
+[sub_resource type="Resource" id="Resource_jrwwl"]
 resource_local_to_scene = true
 script = ExtResource("3_yngdg")
 ProjectileScene = ExtResource("3_n807b")
@@ -33,7 +34,7 @@ shape = SubResource("RectangleShape2D_yngdg")
 
 [node name="AiComponent" parent="." unique_id=638742263 node_paths=PackedStringArray("Entity") instance=ExtResource("2_t6jqs")]
 Entity = NodePath("..")
-Pattern = SubResource("Resource_8wmx3")
+Pattern = SubResource("Resource_jrwwl")
 
 [node name="DisposableComponent" parent="." unique_id=2096509937 node_paths=PackedStringArray("Entity") instance=ExtResource("4_t4kex")]
 position = Vector2(-1, -1)
@@ -52,3 +53,6 @@ HealthComponent = NodePath("../HealthComponent")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_n807b")
 debug_color = Color(0.7254902, 0.36862746, 0.7764706, 0.41960785)
+
+[node name="BountyComponent" parent="." unique_id=432254669 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("8_8wmx3")]
+HealthComponent = NodePath("../HealthComponent")
