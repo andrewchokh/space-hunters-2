@@ -4,18 +4,18 @@ using System;
 public partial class AbilityComponent : Node2D
 {
     [Export]
-    public double AbilityTime = 3.0;
+    public double Duration = 3.0;
     [Export]
     public double Cooldown = 10.0;
 
-    private Timer _timer;
+    private Timer _durationTimer;
     private Timer _cooldownTimer;
 
     public override void _Ready()
     {
-        _timer = new Timer();
-        _timer.OneShot = true;
-        AddChild(_timer);
+        _durationTimer = new Timer();
+        _durationTimer.OneShot = true;
+        AddChild(_durationTimer);
 
         _cooldownTimer = new Timer();
         _cooldownTimer.OneShot = true;
@@ -37,9 +37,9 @@ public partial class AbilityComponent : Node2D
         }
 
         this.DebugLog("Ability activated!");
-        _timer.Start(AbilityTime);
+        _durationTimer.Start(Duration);
 
-        await ToSignal(_timer, Timer.SignalName.Timeout);
+        await ToSignal(_durationTimer, Timer.SignalName.Timeout);
 
         this.DebugLog("Ability timed out!");
         _cooldownTimer.Start(Cooldown);
