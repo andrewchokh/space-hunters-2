@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>spacehunters2</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="resources\ability_patterns\" />
+  </ItemGroup>
 </Project>
