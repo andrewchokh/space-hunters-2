@@ -6,11 +6,15 @@ using System;
 /// </summary>
 public partial class ScoreLabel : Label
 {
-    /// <summary>
-    /// Updates the label's text every frame with the latest value from the ScoreManager.
-    /// </summary>
-    public override void _Process(double delta)
+
+    public override void _Ready()
     {
         Text = ScoreManager.Instance.Score.ToString();
+        ScoreManager.Instance.ScoreChanged += OnScoreChanged;
     }
+
+    /// <summary>
+    /// Updates the label's text only when the score actually changes.
+    /// </summary>
+    private void OnScoreChanged(int newScore) => Text = newScore.ToString();
 }

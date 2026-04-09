@@ -8,6 +8,9 @@ public partial class ScoreManager : Node
 {
     public static ScoreManager Instance { get; private set; }
 
+    [Signal]
+    public delegate void ScoreChangedEventHandler(int newScore);
+
     private int _score;
 
     public override void _Ready()
@@ -30,10 +33,10 @@ public partial class ScoreManager : Node
         set
         {
             if (value <= _score)
-            {
                 return;
-            }
+
             _score = value;
+            EmitSignal(SignalName.ScoreChanged, _score);
             this.DebugLog("New Score: " + Score);
         }
     }
