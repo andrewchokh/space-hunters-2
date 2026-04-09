@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://scenes/objects/RowSpawner.tscn" id="2_i77b0"]
 [ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://scenes/objects/GameCamera.tscn" id="3_i77b0"]
 [ext_resource type="PackedScene" uid="uid://byve8a0fvr13j" path="res://scenes/spaceships/RookieEnemy.tscn" id="4_uojrr"]
+[ext_resource type="Script" uid="uid://cnc5yvwg7lihy" path="res://scenes/ScoreLabel.cs" id="5_7s5hy"]
 
 [node name="GameScene" type="Node2D" unique_id=1342168030]
 
@@ -15,3 +16,15 @@ Entity = ExtResource("4_uojrr")
 OffsetX = 110.0
 
 [node name="GameCamera" parent="." unique_id=1530620862 instance=ExtResource("3_i77b0")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2053618181]
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=702090476]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+horizontal_alignment = 2
+script = ExtResource("5_7s5hy")
