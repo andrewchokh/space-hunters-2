@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b4mw44nphibyu" path="res://scenes/MainMenuScene.cs" id="1_h7bbl"]
 
-[node name="MainMenuScene" type="Control" unique_id=532325153]
+[node name="MainMenuScene" type="Control" unique_id=532325153 node_paths=PackedStringArray("PlayButton", "QuitButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,6 +10,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h7bbl")
+PlayButton = NodePath("VBoxContainer/PlayButton")
+QuitButton = NodePath("VBoxContainer/QuitButton")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1700521636]
 layout_mode = 1

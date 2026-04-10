@@ -6,14 +6,15 @@ using System;
 /// </summary>
 public partial class MainMenuScene : Control
 {
+    [Export]
+    public Button PlayButton;
+    [Export]
+    public Button QuitButton;
 
     public override void _Ready()
     {
-        Button playButton = GetNode<Button>("VBoxContainer/PlayButton");
-        Button quitButton = GetNode<Button>("VBoxContainer/QuitButton");
-
-        playButton.Pressed += OnPlayButtonPressed;
-        quitButton.Pressed += OnQuitButtonPressed;
+        PlayButton.Pressed += OnPlayButtonPressed;
+        QuitButton.Pressed += OnQuitButtonPressed;
     }
 
     /// <summary>
