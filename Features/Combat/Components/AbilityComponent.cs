@@ -4,12 +4,12 @@ using System;
 /// <summary>
 /// Manages the activation, duration, and cooldown states of an entity's ability.
 /// </summary>
-public partial class AbilityComponent : Node2D
+public partial class AbilityComponent : Node2D, IComponent
 {
+    public Node2D Actor => GetParent() as Node2D;
+
     [Export]
-    public CharacterBody2D Entity;
-    [Export]
-    public AbilityPattern Ability;
+    public AbilityPattern AbilityData;
 
     private Timer _abilityTimer;
     private bool _isAbilityActive = false;
@@ -24,7 +24,7 @@ public partial class AbilityComponent : Node2D
     public override void _PhysicsProcess(double delta) {
         if (!_isAbilityActive) return;
 
-        Ability.Execute(Entity, delta);
+        AbilityData.Execute(Actor as CharacterBody2D, delta);
     }
 
     public override void _UnhandledInput(InputEvent @event)
@@ -35,24 +35,32 @@ public partial class AbilityComponent : Node2D
             ActivateAbility();
     }
 
+    public override string[] _GetConfigurationWarnings()
+    {
+        if (GetParent() is not CharacterBody2D)
+            return new string[] { "This component requires a CharacterBody2D parent to execute physics patterns." };
+            
+        return base._GetConfigurationWarnings();
+    }
+
     /// <summary>
     /// Activates the ability.
     /// </summary>
     private async void ActivateAbility()
     {
         _isAbilityActive = true;
-        _abilityTimer.Start(Ability.Duration);
+        _abilityTimer.Start(AbilityData.Duration);
 
-        Ability.Enter(Entity);
+        AbilityData.Enter(Actor as CharacterBody2D);
 
         this.DebugLog("Ability activated!");
 
         await ToSignal(_abilityTimer, Timer.SignalName.Timeout);
 
         _isAbilityActive = false;
-        _abilityTimer.Start(Ability.Cooldown);
+        _abilityTimer.Start(AbilityData.Cooldown);
 
-        Ability.Exit(Entity);
+        AbilityData.Exit(Actor as CharacterBody2D);
 
         this.DebugLog("Ability timed out!");
 

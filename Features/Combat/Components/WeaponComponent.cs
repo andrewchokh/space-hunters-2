@@ -9,8 +9,10 @@ using System;
 /// It uses _UnhandledInput to avoid firing when interacting with UI elements,
 /// and adds projectiles to the global scene tree so their trajectories remain decoupled from the shooter.
 /// </remarks>
-public partial class WeaponComponent : Node2D
+public partial class WeaponComponent : Node2D, IComponent
 {
+    public Node2D Actor => GetParent() as Node2D;
+
     [Export]
     public PackedScene ProjectileScene;
 

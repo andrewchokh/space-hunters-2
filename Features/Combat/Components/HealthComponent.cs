@@ -9,15 +9,15 @@ using System;
 /// as a child node. It tracks health, applies damage reduction via protection, triggers
 /// a temporary invincibility period upon taking damage, and destroys the entity when health reaches zero.
 /// </remarks>
-public partial class HealthComponent : Node2D
+public partial class HealthComponent : Node2D, IComponent
 {
     [Signal]
     public delegate void HealthChangedEventHandler(int oldHealth, int newHealth);
     [Signal]
     public delegate void EntityDiedEventHandler();
 
-    [Export]
-    public Node2D Entity;
+    public Node2D Actor => GetParent() as Node2D;
+
     [Export]
     public bool HasInvincibilityFrames = false;
 
@@ -54,12 +54,14 @@ public partial class HealthComponent : Node2D
         private set => _protection = Mathf.Max(0, value);
     }
 
+    
+
     /// <summary>
     /// Subscribes to necessary signals for entity death.
     /// </summary>
     public override void _Ready()
     {
-        EntityDied += Entity.QueueFree;
+        EntityDied += Actor.QueueFree;
     }
 
     /// <summary>
@@ -80,7 +82,7 @@ public partial class HealthComponent : Node2D
             return;
 
         _isInvincible = true;
-        await ToSignal(Entity.GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
+        await ToSignal(Actor.GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
         _isInvincible = false;
     }
 }

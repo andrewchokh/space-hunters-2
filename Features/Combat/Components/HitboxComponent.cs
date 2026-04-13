@@ -9,8 +9,10 @@ using System;
 /// and safely routing the damage values to the entity's dedicated HealthSystem.
 /// Using a separate Area2D decouples combat triggers from the entity's physical collision.
 /// </remarks>
-public partial class HitboxComponent : Area2D
+public partial class HitboxComponent : Area2D, IComponent
 {
+    public Node2D Actor => GetParent() as Node2D;
+
     [Export]
     public HealthComponent HealthComponent;
 

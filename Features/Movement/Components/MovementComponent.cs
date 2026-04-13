@@ -11,8 +11,8 @@ using System;
 /// </remarks>
 public partial class MovementComponent : Node
 {
-    [Export]
-    public CharacterBody2D Entity;
+    public Node2D Actor => GetParent() as Node2D;
+
     [Export]
     public float Speed = 15.0f;
     [Export]
@@ -30,9 +30,11 @@ public partial class MovementComponent : Node
     /// </remarks>
     public override void _Ready()
     {
+        var body = Actor as CharacterBody2D;
+
         _rowIndex = Mathf.Clamp(StartingRow, 0, MapManager.Instance.FixedRows.Length - 1);
         _targetY = MapManager.Instance.GetRowY(_rowIndex);
-        Entity.GlobalPosition = new Vector2(Entity.GlobalPosition.X, _targetY);
+        body.GlobalPosition = new Vector2(body.GlobalPosition.X, _targetY);
     }
 
     /// <summary>
@@ -41,10 +43,12 @@ public partial class MovementComponent : Node
     /// <param name="delta">The time elapsed since the previous frame in seconds.</param>
     public override void _PhysicsProcess(double delta)
     {
-        float newY = Mathf.Lerp(Entity.GlobalPosition.Y, _targetY, Mathf.Min(Speed * (float)delta, 1.0f));
-        Entity.GlobalPosition = new Vector2(Entity.GlobalPosition.X, newY);
+        var body = Actor as CharacterBody2D;
 
-        Entity.MoveAndSlide();
+        float newY = Mathf.Lerp(body.GlobalPosition.Y, _targetY, Mathf.Min(Speed * (float)delta, 1.0f));
+        body.GlobalPosition = new Vector2(body.GlobalPosition.X, newY);
+
+        body.MoveAndSlide();
     }
 
     /// <summary>
@@ -69,5 +73,13 @@ public partial class MovementComponent : Node
             return;
 
         _targetY = MapManager.Instance.GetRowY(_rowIndex);
+    }
+
+    public override string[] _GetConfigurationWarnings()
+    {
+        if (GetParent() is not CharacterBody2D)
+            return new string[] { "This component requires a CharacterBody2D parent to execute physics patterns." };
+            
+        return base._GetConfigurationWarnings();
     }
 }
