@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://coar73oeu2b3p"
-path="res://.godot/imported/rookie_spaceship.png-8366d13dc1044ee138b2efb29fd16d5f.ctex"
+uid="uid://dtlld4nquxs85"
+path="res://.godot/imported/rookie_spaceship.png-2afffe57ce1c8fc37a7eecae4e79beb3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/spaceships/rookie_spaceship.png"
-dest_files=["res://.godot/imported/rookie_spaceship.png-8366d13dc1044ee138b2efb29fd16d5f.ctex"]
+source_file="res://Assets/sprites/spaceships/rookie_spaceship.png"
+dest_files=["res://.godot/imported/rookie_spaceship.png-2afffe57ce1c8fc37a7eecae4e79beb3.ctex"]
 
 [params]
 
