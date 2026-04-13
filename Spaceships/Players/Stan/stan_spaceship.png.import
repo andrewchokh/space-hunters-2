@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dtlld4nquxs85"
-path="res://.godot/imported/rookie_spaceship.png-be44e823e078e4ed25f7c138f447ddf0.ctex"
+uid="uid://76sklcu3hlts"
+path="res://.godot/imported/stan_spaceship.png-37ae8d69392331934ea9d79024d04c8b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Entities/Enemies/Rookie/rookie_spaceship.png"
-dest_files=["res://.godot/imported/rookie_spaceship.png-be44e823e078e4ed25f7c138f447ddf0.ctex"]
+source_file="res://Spaceships/Players/Stan/stan_spaceship.png"
+dest_files=["res://.godot/imported/stan_spaceship.png-37ae8d69392331934ea9d79024d04c8b.ctex"]
 
 [params]
 

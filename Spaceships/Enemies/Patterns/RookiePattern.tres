@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="LinearPattern" format=3 uid="uid://bklpsjg5pam3m"]
 
 [ext_resource type="PackedScene" uid="uid://61t4wt20quem" path="res://Features/Combat/Projectiles/EnemyProjectile/EnemyProjectile.tscn" id="1_7ktyu"]
-[ext_resource type="Script" uid="uid://3dijbx127nyq" path="res://Entities/Enemies/Patterns/LinearPattern.cs" id="1_rmtn5"]
+[ext_resource type="Script" uid="uid://3dijbx127nyq" path="res://Spaceships/Enemies/Patterns/LinearPattern.cs" id="1_rmtn5"]
 
 [resource]
 script = ExtResource("1_rmtn5")

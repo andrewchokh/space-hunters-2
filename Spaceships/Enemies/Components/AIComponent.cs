@@ -8,7 +8,6 @@ using System;
 /// This uses the Strategy design pattern. By assigning different Resource-based AIPatterns
 /// in the Godot Inspector, the entity's behavior can be changed dynamically without editing this script.
 /// </remarks>
-[Tool]
 [GlobalClass]
 public partial class AIComponent : Node2D, IComponent
 {
@@ -16,14 +15,6 @@ public partial class AIComponent : Node2D, IComponent
 
     [Export]
     public AIPattern Pattern;
-
-    public override string[] _GetConfigurationWarnings()
-    {
-        if (GetParent() is not CharacterBody2D)
-            return new string[] { "This component requires a CharacterBody2D parent to execute physics patterns." };
-            
-        return base._GetConfigurationWarnings();
-    }
 
     /// <summary>
     /// Executes the assigned pattern's logic every physics frame.

@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PlayerSpaceshipData" format=3 uid="uid://bdup6wa42p22x"]
+
+[ext_resource type="Script" uid="uid://dbm167lyxf11b" path="res://Spaceships/Base/PlayerSpaceshipData.cs" id="2_tkcgp"]
+
+[resource]
+script = ExtResource("2_tkcgp")
+HasInvincibilityFrames = true

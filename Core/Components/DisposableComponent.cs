@@ -8,7 +8,6 @@ using System;
 /// A self-contained cleanup tool. Attach this to moving scenes (like enemies or projectiles)
 /// to automatically prevent memory leaks when they leave the battlefield.
 /// </remarks>
-[Tool]
 [GlobalClass]
 public partial class DisposableComponent : VisibleOnScreenNotifier2D, IComponent
 {

@@ -1,7 +1,0 @@
-[gd_resource type="Resource" format=3 uid="uid://dtl08vsbpvouy"]
-
-[ext_resource type="Script" uid="uid://clda8gtc3dgoi" path="res://resources/ability_patterns/DebugAbility.cs" id="1_1wtrn"]
-
-[resource]
-script = ExtResource("1_1wtrn")
-Cooldown = 5.0

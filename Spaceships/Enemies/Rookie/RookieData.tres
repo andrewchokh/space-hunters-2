@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemySpaceshipData" format=3 uid="uid://c6n3dgnab44m8"]
+
+[ext_resource type="Script" uid="uid://iy3k70k3vq80" path="res://Spaceships/Base/EnemySpaceshipData.cs" id="1_d2umv"]
+
+[resource]
+script = ExtResource("1_d2umv")
+BaseHealth = 6
+metadata/_custom_type_script = "uid://iy3k70k3vq80"

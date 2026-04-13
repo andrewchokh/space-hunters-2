@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://ddalcbqjjvhel"]
-
-[ext_resource type="Script" uid="uid://da4vqu48d7qtn" path="res://scenes/components/AIComponent.cs" id="1_eu4u8"]
-
-[node name="AiComponent" type="Node2D" unique_id=638742263]
-script = ExtResource("1_eu4u8")
