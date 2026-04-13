@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bqpwyibqqky18"
-path="res://.godot/imported/enemy_projectile.png-d1b3b7ad0fb4989db14f0f6f99d0991e.ctex"
+uid="uid://cqif26g6hvc1m"
+path="res://.godot/imported/stan_projectile.png-15792cd9a98470d25245a828dacc61ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Features/Combat/Projectiles/EnemyProjectile/enemy_projectile.png"
-dest_files=["res://.godot/imported/enemy_projectile.png-d1b3b7ad0fb4989db14f0f6f99d0991e.ctex"]
+source_file="res://Features/Combat/Projectiles/StanProjectile/stan_projectile.png"
+dest_files=["res://.godot/imported/stan_projectile.png-15792cd9a98470d25245a828dacc61ee.ctex"]
 
 [params]
 

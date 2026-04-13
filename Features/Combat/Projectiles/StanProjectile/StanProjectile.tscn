@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://dkpuijkoo3x0y"]
+
+[ext_resource type="Texture2D" uid="uid://cqif26g6hvc1m" path="res://Features/Combat/Projectiles/StanProjectile/stan_projectile.png" id="1_3x2ha"]
+[ext_resource type="Script" uid="uid://cetask0hya7no" path="res://Features/Combat/Projectiles/Base/LinearProjectile.cs" id="1_12w6m"]
+[ext_resource type="Script" uid="uid://bpne3n3mjyvsx" path="res://Core/Components/DisposableComponent.cs" id="2_juwqi"]
+[ext_resource type="Resource" uid="uid://bdup6wa42p22x" path="res://Spaceships/Players/Stan/StanData.tres" id="2_rtqtp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x2ha"]
+size = Vector2(4, 1)
+
+[node name="StanProjectile" type="Area2D" unique_id=2018646106]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_12w6m")
+ID = "stan_projectile"
+SpaceshipData = ExtResource("2_rtqtp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=142323513]
+position = Vector2(0, -1)
+rotation = 3.1415927
+texture = ExtResource("1_3x2ha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=465603003]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3x2ha")
+
+[node name="DisposableComponent" type="VisibleOnScreenNotifier2D" parent="." unique_id=1807368199]
+rect = Rect2(-2, -1, 4, 1)
+script = ExtResource("2_juwqi")
+metadata/_custom_type_script = "uid://bpne3n3mjyvsx"

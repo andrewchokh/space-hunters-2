@@ -8,21 +8,36 @@ using System;
 /// Built on top of Area2D to serve as a lightweight combat trigger rather than a heavy physics body.
 /// Movement is tied to the engine's physics step to ensure reliable hit registration without clipping through targets.
 /// </remarks>
-public abstract partial class Projectile : Area2D
+public abstract partial class Projectile : Area2D, IIdentifiable, IHDirectable
 {
+    [ExportGroup("Identification")]
     [Export]
-    public float Speed = 200.0f;
+    public string ID { get; set; }
 
+    [ExportGroup("Data")]
     [Export]
-    public int Damage = 3;
+    public SpaceshipData SpaceshipData;
+    [Export]
+    public HDirection HorizontalDirection { get; set; } = HDirection.Right;
+
+    private int _damage;
+
+    public abstract void Enter(Projectile projectile);
+    public abstract void Execute(Projectile projectile, double delta);
+    public abstract void Exit(Projectile projectile);
 
     public override void _Ready()
     {
+        _damage = SpaceshipData.ProjectileDamage;
+
+        Enter(this);
+
         AreaEntered += OnAreaEntered;
     }
 
-    public override void _PhysicsProcess(double delta) =>
-        GlobalPosition += new Vector2(Speed * (float) delta, 0);
+    public override void _PhysicsProcess(double delta) {
+        Execute(this, delta);
+    }
 
     /// <summary>
     /// Handles the collision event when the projectile enters another valid detection area.
@@ -37,7 +52,9 @@ public abstract partial class Projectile : Area2D
         if (area is not HitboxComponent hitbox)
             return;
 
-        hitbox.ReceiveDamage(Damage);
+        Exit(this);
+
+        hitbox.ReceiveDamage(_damage);
         QueueFree();
     }
 }
