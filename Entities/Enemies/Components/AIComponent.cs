@@ -8,6 +8,8 @@ using System;
 /// This uses the Strategy design pattern. By assigning different Resource-based AIPatterns
 /// in the Godot Inspector, the entity's behavior can be changed dynamically without editing this script.
 /// </remarks>
+[Tool]
+[GlobalClass]
 public partial class AIComponent : Node2D, IComponent
 {
     public Node2D Actor => GetParent() as Node2D;

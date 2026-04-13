@@ -9,6 +9,8 @@ using System;
 /// as a child node. It tracks health, applies damage reduction via protection, triggers
 /// a temporary invincibility period upon taking damage, and destroys the entity when health reaches zero.
 /// </remarks>
+[Tool]
+[GlobalClass]
 public partial class HealthComponent : Node2D, IComponent
 {
     [Signal]

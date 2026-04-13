@@ -4,6 +4,8 @@ using System;
 /// <summary>
 /// Grants a specified amount of score to the player when the attached entity is defeated.
 /// </summary>
+[Tool]
+[GlobalClass]
 public partial class BountyComponent : Node2D, IComponent
 {
     public Node2D Actor => GetParent() as Node2D;

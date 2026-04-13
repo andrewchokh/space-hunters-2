@@ -9,6 +9,8 @@ using System;
 /// It relies on <see cref="MapManager"/> to translate row indices into Y-coordinates
 /// and uses <see cref="Mathf.Lerp"/> to provide smooth transitions between lanes.
 /// </remarks>
+[Tool]
+[GlobalClass]
 public partial class MovementComponent : Node
 {
     public Node2D Actor => GetParent() as Node2D;

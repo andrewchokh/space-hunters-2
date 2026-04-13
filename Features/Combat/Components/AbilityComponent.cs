@@ -4,6 +4,8 @@ using System;
 /// <summary>
 /// Manages the activation, duration, and cooldown states of an entity's ability.
 /// </summary>
+[Tool]
+[GlobalClass]
 public partial class AbilityComponent : Node2D, IComponent
 {
     public Node2D Actor => GetParent() as Node2D;
