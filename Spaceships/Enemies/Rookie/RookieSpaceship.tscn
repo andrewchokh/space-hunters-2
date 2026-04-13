@@ -15,7 +15,7 @@ size = Vector2(10, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n807b"]
 size = Vector2(12, 15)
 
-[node name="Rookie" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
+[node name="RookieSpaceship" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
 rotation = -3.1415925
 collision_layer = 2
 collision_mask = 4

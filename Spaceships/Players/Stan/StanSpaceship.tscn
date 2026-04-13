@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://5msk04e2p1bf" path="res://Features/Movement/Components/MovementComponent.tscn" id="2_vfp5l"]
 [ext_resource type="PackedScene" uid="uid://bs5bocglrro2j" path="res://Features/Combat/Components/WeaponComponent.tscn" id="3_god0j"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://Features/Combat/Components/HitboxComponent.tscn" id="4_ca47c"]
-[ext_resource type="PackedScene" uid="uid://b870533ih0dlv" path="res://Features/Combat/Projectiles/PlayerProjectile/PlayerProjectile.tscn" id="4_vfp5l"]
+[ext_resource type="PackedScene" uid="uid://dkpuijkoo3x0y" path="res://Features/Combat/Projectiles/StanProjectile/StanProjectile.tscn" id="4_tkqry"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://Features/Combat/Components/HealthComponent.tscn" id="5_wu61r"]
 [ext_resource type="Resource" uid="uid://bdup6wa42p22x" path="res://Spaceships/Players/Stan/StanData.tres" id="7_6dyat"]
 [ext_resource type="PackedScene" uid="uid://20qngelbjp5l" path="res://Features/Combat/Components/AbilityComponent.tscn" id="7_god0j"]
@@ -16,7 +16,7 @@ size = Vector2(10, 13)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gey8w"]
 size = Vector2(12, 15)
 
-[node name="Stan" type="CharacterBody2D" unique_id=2030279024 groups=["Ship"]]
+[node name="StanSpaceship" type="CharacterBody2D" unique_id=2030279024 groups=["Ship"]]
 motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=498318591]
@@ -29,7 +29,7 @@ shape = SubResource("RectangleShape2D_vfp5l")
 [node name="MovementComponent" parent="." unique_id=401531261 instance=ExtResource("2_vfp5l")]
 
 [node name="WeaponComponent" parent="." unique_id=1062407856 instance=ExtResource("3_god0j")]
-ProjectileScene = ExtResource("4_vfp5l")
+ProjectileScene = ExtResource("4_tkqry")
 
 [node name="HitboxComponent" parent="." unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("4_ca47c")]
 collision_mask = 10

@@ -4,4 +4,7 @@
 
 [resource]
 script = ExtResource("2_tkcgp")
+ID = "stan"
+DisplayName = "Stan"
+Description = "The standart spaceship."
 HasInvincibilityFrames = true
