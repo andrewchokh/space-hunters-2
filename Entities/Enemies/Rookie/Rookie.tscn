@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://byve8a0fvr13j"]
+
+[ext_resource type="Texture2D" uid="uid://dtlld4nquxs85" path="res://Entities/Enemies/Rookie/rookie_spaceship.png" id="1_40xb2"]
+[ext_resource type="PackedScene" uid="uid://ddalcbqjjvhel" path="res://Entities/Enemies/Components/AIComponent.tscn" id="2_t6jqs"]
+[ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://Core/Components/DisposableComponent.tscn" id="4_t4kex"]
+[ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://Features/Combat/Components/HealthComponent.tscn" id="5_cu4d8"]
+[ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://Features/Combat/Components/HitboxComponent.tscn" id="6_yngdg"]
+[ext_resource type="PackedScene" uid="uid://r538fk5itnpp" path="res://Features/Combat/Components/BountyComponent.tscn" id="8_8wmx3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
+size = Vector2(10, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n807b"]
+size = Vector2(12, 15)
+
+[node name="Rookie" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
+rotation = 3.1415927
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383606160]
+texture = ExtResource("1_40xb2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046453216 groups=["Ship"]]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_yngdg")
+
+[node name="AiComponent" parent="." unique_id=638742263 instance=ExtResource("2_t6jqs")]
+
+[node name="DisposableComponent" parent="." unique_id=2096509937 instance=ExtResource("4_t4kex")]
+position = Vector2(-1, -1)
+rect = Rect2(-1, -2, 4, 4)
+
+[node name="HealthComponent" parent="." unique_id=876423460 instance=ExtResource("5_cu4d8")]
+
+[node name="HitboxComponent" parent="." unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_yngdg")]
+collision_layer = 2
+collision_mask = 5
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=1957661873]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_n807b")
+debug_color = Color(0.7254902, 0.36862746, 0.7764706, 0.41960785)
+
+[node name="BountyComponent" parent="." unique_id=432254669 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("8_8wmx3")]
+HealthComponent = NodePath("../HealthComponent")

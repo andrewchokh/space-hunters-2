@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bnver1nf7b7oq"]
 
-[ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://scenes/components/DisposableComponent.tscn" id="3_gtjeo"]
+[ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://Core/Components/DisposableComponent.tscn" id="3_gtjeo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4b24"]
 size = Vector2(4, 1)
@@ -9,11 +9,11 @@ size = Vector2(4, 1)
 collision_layer = 4
 collision_mask = 2
 
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=145007140]
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1015711682]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_d4b24")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=145007140]
 
 [node name="DisposableComponent" parent="." unique_id=2096509937 instance=ExtResource("3_gtjeo")]
 rect = Rect2(-2, -1, 4, 1)
