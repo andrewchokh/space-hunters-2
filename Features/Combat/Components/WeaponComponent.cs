@@ -27,14 +27,4 @@ public partial class WeaponComponent : Node2D
             GetTree().CurrentScene.AddChild(projectile);
         }
     }
-
-    /// <summary>
-    /// Verifies that all required dependencies and exported fields are correctly assigned.
-    /// </summary>
-    /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
-    private bool Setup()
-    {
-        if (!this.IsAssigned(ProjectileScene, nameof(ProjectileScene))) return false;
-        return true;
-    }
 }

@@ -13,12 +13,8 @@ public partial class BountyComponent : Node2D
 
    public override void _Ready()
    {
-       if (!Setup()) return;
-
        HealthComponent.EntityDied += OnEntityDied;
    }
-
-   private bool Setup() => this.IsAssigned(HealthComponent, nameof(HealthComponent));
 
    /// <summary>
    /// Handles the EntityDied event by increasing the global score.

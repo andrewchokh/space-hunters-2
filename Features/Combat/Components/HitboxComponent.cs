@@ -23,12 +23,6 @@ public partial class HitboxComponent : Area2D
     /// </remarks>
     public override void _Ready()
     {
-        if (HealthComponent == null)
-        {
-            GD.PushError($"{Name}: Component is not assigned!");
-            return;
-        }
-
         AreaEntered += (area) =>
         {
             if (area is not HitboxComponent)
@@ -37,16 +31,6 @@ public partial class HitboxComponent : Area2D
             if (GetParent().IsInGroup("Ship") && area.GetParent().IsInGroup("Ship"))
                 HealthComponent.TakeDamage(999);
         };
-    }
-
-    /// <summary>
-    /// Verifies that all required dependencies and exported fields are correctly assigned.
-    /// </summary>
-    /// <returns>True if the component is safe to initialize; false if a critical assignment is missing.</returns>
-    private bool Setup()
-    {
-        if (!this.IsAssigned(HealthComponent, nameof(HealthComponent))) return false;
-        return true;
     }
 
     /// <summary>

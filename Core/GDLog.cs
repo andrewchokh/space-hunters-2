@@ -9,20 +9,6 @@ using System;
 public static class GDLog
 {
     /// <summary>
-    /// Checks if an [Export] field is assigned. 
-    /// If null, pushes a red error and stops the node.
-    /// </summary>
-    public static bool IsAssigned(this Node caller, object member, string memberName, bool callError = true)
-    {
-        if (member != null) return true;
-
-        if (callError) 
-            caller.CriticalError($"The exported field '{memberName}' is missing an assignment!");
-        
-        return false;
-    }
-
-    /// <summary>
     /// Pushes a standard white text message to the console. 
     /// Useful for tracking logic flow without triggering alerts.
     /// </summary>

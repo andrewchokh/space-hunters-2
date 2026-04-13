@@ -16,9 +16,6 @@ public partial class AbilityComponent : Node2D
 
     public override void _Ready()
     {
-        if(!Setup())
-            return;
-
         _abilityTimer = new Timer();
         _abilityTimer.OneShot = true;
         AddChild(_abilityTimer);
@@ -63,6 +60,4 @@ public partial class AbilityComponent : Node2D
 
         this.DebugLog("Ability is recharged!");
     }
-
-    private bool Setup() => this.IsAssigned(Ability, nameof(Ability));
 }
