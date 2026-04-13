@@ -24,7 +24,7 @@ texture = ExtResource("1_40xb2")
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_yngdg")
 
-[node name="AiComponent" parent="." unique_id=638742263 instance=ExtResource("2_t6jqs")]
+[node name="AIComponent" parent="." unique_id=638742263 instance=ExtResource("2_t6jqs")]
 
 [node name="DisposableComponent" parent="." unique_id=2096509937 instance=ExtResource("4_t4kex")]
 position = Vector2(-1, -1)

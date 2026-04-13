@@ -29,5 +29,10 @@ public partial class AIComponent : Node2D, IComponent
     /// Executes the assigned pattern's logic every physics frame.
     /// </summary>
     /// <param name="delta">The elapsed time since the previous physics frame.</param>
-    public override void _PhysicsProcess(double delta) => Pattern.Execute(Actor as CharacterBody2D, delta);
+    public override void _PhysicsProcess(double delta) 
+    {
+        if (Pattern == null) return;
+
+        Pattern.Execute(Actor as CharacterBody2D, delta);
+    }
 }

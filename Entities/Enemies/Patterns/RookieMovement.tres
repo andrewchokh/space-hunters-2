@@ -1,8 +1,0 @@
-[gd_resource type="Resource" script_class="LinearPattern" format=3 uid="uid://iadau6fic2ry"]
-
-[ext_resource type="Script" uid="uid://3dijbx127nyq" path="res://resources/ai_patterns/LinearPattern.cs" id="1_83mik"]
-
-[resource]
-resource_local_to_scene = true
-script = ExtResource("1_83mik")
-Speed = 30.0
