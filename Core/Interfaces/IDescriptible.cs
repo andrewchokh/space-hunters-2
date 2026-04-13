@@ -1,6 +1,8 @@
 using Godot;
 using System;
 
-public partial class IDescriptible : Node
+public interface IDescriptible
 {
+    public string DisplayName { get; }
+    public string Description { get; }
 }
