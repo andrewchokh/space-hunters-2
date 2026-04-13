@@ -21,7 +21,7 @@ public partial class MainMenuScene : Control
     /// Event handler for the play button. Transitions the active scene tree to the game scene.
     /// </summary>
     private void OnPlayButtonPressed() =>
-        GetTree().ChangeSceneToFile("res://scenes/GameScene.tscn");
+        GetTree().ChangeSceneToFile("res://UI/GameScene.tscn");
 
     /// <summary>
     /// Event handler for the quit button. Terminates the application gracefully.
