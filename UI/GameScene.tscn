@@ -8,15 +8,6 @@
 
 [node name="GameScene" type="Node2D" unique_id=1342168030]
 
-[node name="Player" parent="." unique_id=2030279024 instance=ExtResource("1_7fgwr")]
-position = Vector2(-64, 0)
-
-[node name="RowSpawner" parent="." unique_id=1130102641 instance=ExtResource("2_i77b0")]
-Entity = ExtResource("4_uojrr")
-OffsetX = 110.0
-
-[node name="GameCamera" parent="." unique_id=1530620862 instance=ExtResource("3_i77b0")]
-
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2053618181]
 
 [node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=702090476]
@@ -28,3 +19,12 @@ offset_bottom = 23.0
 grow_horizontal = 0
 horizontal_alignment = 2
 script = ExtResource("5_7s5hy")
+
+[node name="Player" parent="." unique_id=2030279024 instance=ExtResource("1_7fgwr")]
+position = Vector2(-64, 0)
+
+[node name="RowSpawner" parent="." unique_id=1130102641 instance=ExtResource("2_i77b0")]
+Entity = ExtResource("4_uojrr")
+OffsetX = 110.0
+
+[node name="GameCamera" parent="." unique_id=1530620862 instance=ExtResource("3_i77b0")]

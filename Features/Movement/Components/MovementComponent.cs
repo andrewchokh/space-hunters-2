@@ -75,12 +75,4 @@ public partial class MovementComponent : Node
 
         _targetY = MapManager.Instance.GetRowY(_rowIndex);
     }
-
-    public override string[] _GetConfigurationWarnings()
-    {
-        if (GetParent() is not CharacterBody2D)
-            return new string[] { "This component requires a CharacterBody2D parent to execute physics patterns." };
-            
-        return base._GetConfigurationWarnings();
-    }
 }
