@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 /// <summary>
 /// Represents a basic combat projectile that travels horizontally across the screen at a constant speed.
@@ -8,7 +9,7 @@ using System;
 /// Built on top of Area2D to serve as a lightweight combat trigger rather than a heavy physics body.
 /// Movement is tied to the engine's physics step to ensure reliable hit registration without clipping through targets.
 /// </remarks>
-public abstract partial class Projectile : Area2D, IIdentifiable, IHDirectable
+public abstract partial class Projectile : Area2D, IIdentifiable
 {
     [ExportGroup("Identification")]
     [Export]
@@ -17,10 +18,9 @@ public abstract partial class Projectile : Area2D, IIdentifiable, IHDirectable
     [ExportGroup("Data")]
     [Export]
     public SpaceshipData SpaceshipData;
-    [Export]
-    public HDirection HorizontalDirection { get; set; } = HDirection.Right;
 
-    private int _damage;
+    protected float Speed;
+    protected int Damage;
 
     public abstract void Enter(Projectile projectile);
     public abstract void Execute(Projectile projectile, double delta);
@@ -28,14 +28,16 @@ public abstract partial class Projectile : Area2D, IIdentifiable, IHDirectable
 
     public override void _Ready()
     {
-        _damage = SpaceshipData.ProjectileDamage;
+        Speed = SpaceshipData.ProjectileSpeed;
+        Damage = SpaceshipData.ProjectileDamage;
 
         Enter(this);
 
         AreaEntered += OnAreaEntered;
     }
 
-    public override void _PhysicsProcess(double delta) {
+    public override void _PhysicsProcess(double delta) 
+    {
         Execute(this, delta);
     }
 
@@ -54,7 +56,12 @@ public abstract partial class Projectile : Area2D, IIdentifiable, IHDirectable
 
         Exit(this);
 
-        hitbox.ReceiveDamage(_damage);
+        hitbox.ReceiveDamage(Damage);
         QueueFree();
+    }
+
+    public void SetHDirection(float directionX) 
+    {
+        Speed *= directionX;
     }
 }

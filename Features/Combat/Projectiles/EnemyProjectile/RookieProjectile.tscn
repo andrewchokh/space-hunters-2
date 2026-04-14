@@ -13,7 +13,7 @@ collision_layer = 8
 script = ExtResource("1_24lyg")
 ID = "rookie_projectile"
 SpaceshipData = ExtResource("2_o2prb")
-HorizontalDirection = 0
+Direction = Vector2(-1, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=142323513]
 texture = ExtResource("3_o2prb")
