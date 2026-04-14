@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uqpb1gp4wski"]
 
-[ext_resource type="Script" uid="uid://cetask0hya7no" path="res://Features/Combat/Projectiles/Base/LinearProjectile.cs" id="1_24lyg"]
+[ext_resource type="Script" uid="uid://cetask0hya7no" path="res://Features/Combat/Projectiles/LinearProjectile.cs" id="1_24lyg"]
 [ext_resource type="Resource" uid="uid://c6n3dgnab44m8" path="res://Spaceships/Enemies/Rookie/RookieData.tres" id="2_o2prb"]
 [ext_resource type="Texture2D" uid="uid://bqpwyibqqky18" path="res://Features/Combat/Projectiles/EnemyProjectile/rookie_projectile.png" id="3_o2prb"]
 [ext_resource type="Script" uid="uid://bpne3n3mjyvsx" path="res://Core/Components/DisposableComponent.cs" id="4_37mux"]
@@ -13,7 +13,6 @@ collision_layer = 8
 script = ExtResource("1_24lyg")
 ID = "rookie_projectile"
 SpaceshipData = ExtResource("2_o2prb")
-Direction = Vector2(-1, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=142323513]
 texture = ExtResource("3_o2prb")

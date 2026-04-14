@@ -22,16 +22,12 @@ public abstract partial class Projectile : Area2D, IIdentifiable
     protected float Speed;
     protected int Damage;
 
-    public abstract void Enter(Projectile projectile);
     public abstract void Execute(Projectile projectile, double delta);
-    public abstract void Exit(Projectile projectile);
 
     public override void _Ready()
     {
         Speed = SpaceshipData.ProjectileSpeed;
         Damage = SpaceshipData.ProjectileDamage;
-
-        Enter(this);
 
         AreaEntered += OnAreaEntered;
     }
@@ -53,8 +49,6 @@ public abstract partial class Projectile : Area2D, IIdentifiable
     {
         if (area is not HitboxComponent hitbox)
             return;
-
-        Exit(this);
 
         hitbox.ReceiveDamage(Damage);
         QueueFree();

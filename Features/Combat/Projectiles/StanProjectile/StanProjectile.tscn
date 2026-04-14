@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkpuijkoo3x0y"]
 
 [ext_resource type="Texture2D" uid="uid://cqif26g6hvc1m" path="res://Features/Combat/Projectiles/StanProjectile/stan_projectile.png" id="1_3x2ha"]
-[ext_resource type="Script" uid="uid://cetask0hya7no" path="res://Features/Combat/Projectiles/Base/LinearProjectile.cs" id="1_12w6m"]
+[ext_resource type="Script" uid="uid://cetask0hya7no" path="res://Features/Combat/Projectiles/LinearProjectile.cs" id="1_12w6m"]
 [ext_resource type="Script" uid="uid://bpne3n3mjyvsx" path="res://Core/Components/DisposableComponent.cs" id="2_juwqi"]
 [ext_resource type="Resource" uid="uid://bdup6wa42p22x" path="res://Spaceships/Players/Stan/StanData.tres" id="2_rtqtp"]
 
