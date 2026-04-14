@@ -5,11 +5,15 @@ using System;
 public abstract partial class AbilityData : Resource
 {
     [Export]
-    public int Duration = 5;
+    public float Duration = 5.0f;
     [Export]
-    public int Cooldown = 5;
+    public float Cooldown = 5.0f;
 
-    public abstract void Enter(CharacterBody2D actor);
+    public virtual void Enter(CharacterBody2D actor) =>
+        actor.DebugLog($"\"{actor.Name}\" activated its ultimate ability!");
+
     public abstract void Execute(CharacterBody2D actor, double delta);
-    public abstract void Exit(CharacterBody2D actor);
+
+    public virtual void Exit(CharacterBody2D actor) =>
+        actor.DebugLog($"The ultimate ability of \"{actor.Name}\" finished!");
 }
