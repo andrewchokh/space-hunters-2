@@ -9,25 +9,41 @@ using System;
 /// It uses _UnhandledInput to avoid firing when interacting with UI elements,
 /// and adds projectiles to the global scene tree so their trajectories remain decoupled from the shooter.
 /// </remarks>
-[GlobalClass]
-public partial class WeaponComponent : Node2D, IComponent
+public abstract partial class WeaponComponent : Node2D, IComponent, IDirectable
 {
-    public Node2D Actor => GetParent() as Node2D;
 
     [Export]
-    public PackedScene ProjectileScene;
+    public AttackPattern Pattern;
+    [Export]
+    public float Cooldown = 0.5f;
+    [Export]
+    public Marker2D[] ShotPoints;
+    [Export]
+    public Vector2 Direction { get; set; } = new Vector2(1, 0);
 
-    /// <summary>
-    /// Listens for the designated fire action and safely instantiates the projectile at the current global position.
-    /// </summary>
-    /// <param name="event">The captured input event used to match against the "fire" keybind.</param>
-    public override void _UnhandledInput(InputEvent @event)
-    {
-        if (@event.IsActionPressed("fire"))
-        {
-            var projectile = ProjectileScene.Instantiate<Projectile>();
-            projectile.GlobalPosition = GlobalPosition;
-            GetTree().CurrentScene.AddChild(projectile);
-        }
+    protected Timer CooldownTimer;
+    public Node2D Actor => GetParent() as Node2D;
+
+    public override void _Ready() {
+        CooldownTimer = new Timer {
+            OneShot = true,
+            WaitTime = Cooldown
+        };
+
+        AddChild(CooldownTimer);
     }
+
+    public override void _Process(double delta)
+    {
+        if (ShouldFire() && CooldownTimer.IsStopped())
+        {
+            Fire();
+            CooldownTimer.Start();
+        }
+            
+    }
+
+    public abstract bool ShouldFire();
+
+    public virtual void Fire() => Pattern.Execute(this);
 }
