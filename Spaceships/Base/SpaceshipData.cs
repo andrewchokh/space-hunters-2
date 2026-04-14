@@ -2,7 +2,7 @@ using Godot;
 using System;
 
 [GlobalClass]
-public abstract partial class SpaceshipData : Resource, IIdentifiable, IDescriptible
+public abstract partial class SpaceshipData : Resource, IIdentifiable, IDescriptable
 {
     [ExportGroup("Identification")]
     [Export]
