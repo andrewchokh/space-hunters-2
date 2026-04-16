@@ -7,6 +7,6 @@ script = ExtResource("1_d2umv")
 ID = "rookie"
 DisplayName = "Rookie"
 Description = "The weakest unit."
-BaseHealth = 6
+BaseHealth = 9
 BaseProtection = 0
 metadata/_custom_type_script = "uid://iy3k70k3vq80"

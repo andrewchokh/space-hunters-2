@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://Features/Combat/Components/HitboxComponent.tscn" id="6_yngdg"]
 [ext_resource type="PackedScene" uid="uid://r538fk5itnpp" path="res://Features/Combat/Components/BountyComponent.tscn" id="8_8wmx3"]
 [ext_resource type="Script" uid="uid://cmlh560b12e7i" path="res://Spaceships/Components/EnemyWeaponComponent.cs" id="9_bcnlr"]
+[ext_resource type="PackedScene" uid="uid://djt3hymfhbdcf" path="res://Spaceships/Components/EnemyMovementComponent.tscn" id="9_fava4"]
+[ext_resource type="Script" uid="uid://06neeu1njkex" path="res://Features/Movement/LinearMovePattern.cs" id="10_274e4"]
 [ext_resource type="Resource" uid="uid://b3ynmp3jas2mm" path="res://Spaceships/Enemies/Rookie/RookieAttackPattern.tres" id="10_bcnlr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
@@ -14,6 +16,11 @@ size = Vector2(10, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n807b"]
 size = Vector2(12, 15)
+
+[sub_resource type="Resource" id="Resource_exrlp"]
+script = ExtResource("10_274e4")
+MoveSpeed = 55.0
+metadata/_custom_type_script = "uid://06neeu1njkex"
 
 [node name="RookieSpaceship" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
 rotation = -3.1415925
@@ -61,3 +68,6 @@ position = Vector2(6, -9.0597484e-07)
 [node name="BountyComponent" parent="." unique_id=432254669 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("8_8wmx3")]
 EnemySpaceshipData = ExtResource("5_aqq6k")
 HealthComponent = NodePath("../HealthComponent")
+
+[node name="EnemyMovementComponent" parent="." unique_id=1402468263 instance=ExtResource("9_fava4")]
+Pattern = SubResource("Resource_exrlp")
