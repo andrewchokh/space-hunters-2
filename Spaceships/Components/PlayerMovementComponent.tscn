@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cvqklqdyesf3g"]
+
+[ext_resource type="Script" uid="uid://d3qnsbahkap2m" path="res://Spaceships/Components/PlayerMovementComponent.cs" id="1_ikn6d"]
+
+[node name="PlayerMovementComponent" type="Node2D" unique_id=768917647]
+script = ExtResource("1_ikn6d")
+Speed = null

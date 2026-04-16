@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://djt3hymfhbdcf"]
+
+[ext_resource type="Script" uid="uid://beyk6kiepx5aa" path="res://Spaceships/Components/EnemyMovementComponent.cs" id="1_fa1hx"]
+
+[node name="EnemyMovementComponent" type="Node2D" unique_id=1402468263]
+script = ExtResource("1_fa1hx")
+Speed = null
+StartingRow = null
