@@ -1,20 +1,26 @@
 [gd_scene format=3 uid="uid://bwi4onkso4xm5"]
 
 [ext_resource type="Texture2D" uid="uid://76sklcu3hlts" path="res://Spaceships/Players/Stan/stan_spaceship.png" id="1_6x5f7"]
-[ext_resource type="PackedScene" uid="uid://5msk04e2p1bf" path="res://Features/Movement/Components/MovementComponent.tscn" id="2_vfp5l"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://Features/Combat/Components/HitboxComponent.tscn" id="4_ca47c"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://Features/Combat/Components/HealthComponent.tscn" id="5_wu61r"]
 [ext_resource type="PackedScene" uid="uid://d3prrkq8v213b" path="res://Spaceships/Components/PlayerWeaponComponent.tscn" id="6_em42f"]
 [ext_resource type="Resource" uid="uid://bdup6wa42p22x" path="res://Spaceships/Players/Stan/StanData.tres" id="7_6dyat"]
 [ext_resource type="PackedScene" uid="uid://20qngelbjp5l" path="res://Features/Combat/Components/AbilityComponent.tscn" id="7_god0j"]
 [ext_resource type="Resource" uid="uid://duhquk30jstjb" path="res://Spaceships/Players/Stan/StanAttackPattern.tres" id="7_rs81c"]
+[ext_resource type="PackedScene" uid="uid://cvqklqdyesf3g" path="res://Spaceships/Components/PlayerMovementComponent.tscn" id="9_bpkbs"]
 [ext_resource type="Resource" uid="uid://dsvtcbyspfi4s" path="res://Features/Combat/UltimateAbility/DebugAbilityData.tres" id="9_tkqry"]
+[ext_resource type="Script" uid="uid://cliob1ecmgalf" path="res://Features/Movement/PlayerInputPattern.cs" id="10_0f25a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfp5l"]
 size = Vector2(10, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gey8w"]
 size = Vector2(12, 15)
+
+[sub_resource type="Resource" id="Resource_yx2pf"]
+script = ExtResource("10_0f25a")
+MoveSpeed = 15.0
+metadata/_custom_type_script = "uid://cliob1ecmgalf"
 
 [node name="StanSpaceship" type="CharacterBody2D" unique_id=2030279024 groups=["Ship"]]
 motion_mode = 1
@@ -25,8 +31,6 @@ texture = ExtResource("1_6x5f7")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1758375043]
 position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_vfp5l")
-
-[node name="MovementComponent" parent="." unique_id=401531261 instance=ExtResource("2_vfp5l")]
 
 [node name="HitboxComponent" parent="." unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("4_ca47c")]
 collision_mask = 10
@@ -39,6 +43,9 @@ debug_color = Color(0.7270476, 0.36695454, 0.77557635, 0.41960785)
 
 [node name="HealthComponent" parent="." unique_id=876423460 instance=ExtResource("5_wu61r")]
 SpaceshipData = ExtResource("7_6dyat")
+
+[node name="PlayerMovementComponent" parent="." unique_id=768917647 instance=ExtResource("9_bpkbs")]
+Pattern = SubResource("Resource_yx2pf")
 
 [node name="PlayerWeaponComponent" parent="." unique_id=179142284 node_paths=PackedStringArray("ShotPoints") instance=ExtResource("6_em42f")]
 Pattern = ExtResource("7_rs81c")
