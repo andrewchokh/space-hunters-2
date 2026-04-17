@@ -12,8 +12,11 @@ using System;
 [GlobalClass]
 public abstract partial class MovementComponent : Node2D, IComponent
 {
+    public Node2D Actor => GetParent() as Node2D;
+
+    /// <summary>
+    /// The movement logic resource that determines how this component moves the Actor.
+    /// </summary>
     [Export]
     public MovePattern Pattern;
-
-    public Node2D Actor => GetParent() as Node2D;
 }

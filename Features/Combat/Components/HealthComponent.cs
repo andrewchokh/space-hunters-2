@@ -12,13 +12,23 @@ using System;
 [GlobalClass]
 public partial class HealthComponent : Node2D, IComponent
 {
+    public Node2D Actor => GetParent() as Node2D;
+    
+    /// <summary>
+    /// Triggered whenever the health value changes. Useful for updating health bars or UI.
+    /// </summary>
     [Signal]
     public delegate void HealthChangedEventHandler(int oldHealth, int newHealth);
+
+    /// <summary>
+    /// Triggered when health reaches zero.
+    /// </summary>
     [Signal]
     public delegate void ActorDiedEventHandler();
 
-    public Node2D Actor => GetParent() as Node2D;
-
+    /// <summary>
+    /// The data resource containing the base health and protection stats for this entity.
+    /// </summary>
     [Export]
     public SpaceshipData SpaceshipData;
 
@@ -54,7 +64,7 @@ public partial class HealthComponent : Node2D, IComponent
     }
 
     /// <summary>
-    /// Subscribes to necessary signals for entity death.
+    /// Initializes health and protection from the data resource and prepares the death cleanup.
     /// </summary>
     public override void _Ready()
     {
@@ -63,24 +73,26 @@ public partial class HealthComponent : Node2D, IComponent
         _health = SpaceshipData.BaseHealth;
         _protection = SpaceshipData.BaseProtection;
 
+        // Automatically removes the actor from the game world when it dies.
         ActorDied += Actor.QueueFree;
     }
 
     /// <summary>
-    /// Applies damage to the entity, factoring in protection and invincibility frames.
+    /// Handles reducing health based on incoming damage, armor, and temporary invincibility.
     /// </summary>
     /// <param name="damage">The raw amount of damage to inflict.</param>
     public async void TakeDamage(int damage)
     {
         if (_isInvincible) return;
 
+        // Damage is reduced by protection, but will always deal at least 1 damage.
         Health -= Mathf.Max(1, damage - Protection);
 
-        if (_health <= 0)
-            return;
+        if (_health <= 0) return;
 
         if (!SpaceshipData.HasInvincibilityFrames) return;
 
+        // Start temporary invincibility period.
         _isInvincible = true;
         await ToSignal(Actor.GetTree().CreateTimer(2.0f), SceneTreeTimer.SignalName.Timeout);
         _isInvincible = false;

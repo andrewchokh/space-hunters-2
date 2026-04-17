@@ -12,7 +12,8 @@ public abstract partial class AbilityData : Resource
     public virtual void Enter(CharacterBody2D actor) =>
         actor.DebugLog($"\"{actor.Name}\" activated its ultimate ability!");
 
-    public abstract void Execute(CharacterBody2D actor, double delta);
+    public virtual void Execute(CharacterBody2D actor, double delta) =>
+        actor.DebugLog($"\"{actor.Name}\"'s ability is running!");
 
     public virtual void Exit(CharacterBody2D actor) =>
         actor.DebugLog($"The ultimate ability of \"{actor.Name}\" finished!");

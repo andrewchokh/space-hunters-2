@@ -14,11 +14,14 @@ public partial class HitboxComponent : Area2D, IComponent
 {
     public Node2D Actor => GetParent() as Node2D;
 
+    /// <summary>
+    /// The health system that this hitbox will send damage to.
+    /// </summary>
     [Export]
     public HealthComponent HealthComponent;
 
     /// <summary>
-    /// Validates required dependencies and subscribes to collision events to handle fatal ship-to-ship collisions.
+    /// Connects collision events and handles "crash" logic between ships.
     /// </summary>
     /// <remarks>
     /// Listens for incoming areas and triggers a catastrophic damage response (999 damage)
