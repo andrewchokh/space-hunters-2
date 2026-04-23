@@ -8,8 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://20qngelbjp5l" path="res://Features/Combat/Components/AbilityComponent.tscn" id="7_god0j"]
 [ext_resource type="Resource" uid="uid://duhquk30jstjb" path="res://Spaceships/Players/Stan/StanAttackPattern.tres" id="7_rs81c"]
 [ext_resource type="PackedScene" uid="uid://cvqklqdyesf3g" path="res://Spaceships/Components/PlayerMovementComponent.tscn" id="9_bpkbs"]
-[ext_resource type="Resource" uid="uid://dsvtcbyspfi4s" path="res://Features/Combat/UltimateAbility/DebugAbilityData.tres" id="9_tkqry"]
 [ext_resource type="Script" uid="uid://cliob1ecmgalf" path="res://Features/Movement/PlayerInputPattern.cs" id="10_0f25a"]
+[ext_resource type="Script" uid="uid://brbjuf1ebp2f0" path="res://Features/Combat/UltimateAbility/DebugAbilityData.cs" id="10_bpkbs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vfp5l"]
 size = Vector2(10, 13)
@@ -19,8 +19,11 @@ size = Vector2(12, 15)
 
 [sub_resource type="Resource" id="Resource_yx2pf"]
 script = ExtResource("10_0f25a")
-MoveSpeed = 15.0
 metadata/_custom_type_script = "uid://cliob1ecmgalf"
+
+[sub_resource type="Resource" id="Resource_0f25a"]
+script = ExtResource("10_bpkbs")
+metadata/_custom_type_script = "uid://brbjuf1ebp2f0"
 
 [node name="StanSpaceship" type="CharacterBody2D" unique_id=2030279024 groups=["Ship"]]
 motion_mode = 1
@@ -56,4 +59,4 @@ ShotPoints = [NodePath("ShotPoint")]
 position = Vector2(6, 0)
 
 [node name="AbilityComponent" parent="." unique_id=452013189 instance=ExtResource("7_god0j")]
-AbilityData = ExtResource("9_tkqry")
+Data = SubResource("Resource_0f25a")
