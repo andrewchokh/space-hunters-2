@@ -1,36 +1,9 @@
 [gd_scene format=3 uid="uid://booe2en3u4wmp"]
 
-[ext_resource type="Script" uid="uid://b4mw44nphibyu" path="res://Main.cs" id="1_glv2v"]
+[ext_resource type="PackedScene" uid="uid://blyay0mcxh1r4" path="res://UI/Menus/MainMenu.tscn" id="1_glv2v"]
 
-[node name="Main" type="Control" unique_id=532325153 node_paths=PackedStringArray("PlayButton", "QuitButton")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("1_glv2v")
-PlayButton = NodePath("VBoxContainer/PlayButton")
-QuitButton = NodePath("VBoxContainer/QuitButton")
+[node name="Main" type="Node2D" unique_id=1672397824]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1700521636]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -70.0
-offset_top = -33.0
-offset_right = 70.0
-offset_bottom = 33.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=312721862]
 
-[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1803209987]
-layout_mode = 2
-text = "Play"
-
-[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=830305857]
-layout_mode = 2
-text = "Quit"
+[node name="MainMenu" parent="CanvasLayer" unique_id=1069879811 instance=ExtResource("1_glv2v")]
