@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="EnemySpaceshipData" format=3 uid="uid://c6n3dgnab44m8"]
 
+[ext_resource type="Texture2D" uid="uid://dtlld4nquxs85" path="res://Spaceships/Enemies/Rookie/rookie_spaceship.png" id="1_68dl7"]
 [ext_resource type="Script" uid="uid://iy3k70k3vq80" path="res://Spaceships/Base/EnemySpaceshipData.cs" id="1_d2umv"]
 
 [resource]
@@ -7,6 +8,8 @@ script = ExtResource("1_d2umv")
 ID = "rookie"
 DisplayName = "Rookie"
 Description = "The weakest unit."
+SpaceshipTexture = ExtResource("1_68dl7")
+SpaceshipScenePath = "uid://byve8a0fvr13j"
 BaseHealth = 9
 BaseProtection = 0
 metadata/_custom_type_script = "uid://iy3k70k3vq80"
