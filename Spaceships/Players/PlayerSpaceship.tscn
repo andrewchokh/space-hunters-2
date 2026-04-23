@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://d3ncp7i87fleo"]
+
+[ext_resource type="PackedScene" uid="uid://2ik8hctdy84d" path="res://Spaceships/Spaceship.tscn" id="1_0qdvg"]
+[ext_resource type="Script" uid="uid://60lpy7lbnxfb" path="res://Features/Combat/Components/AbilityComponent.cs" id="2_m5xpd"]
+[ext_resource type="Script" uid="uid://d3qnsbahkap2m" path="res://Spaceships/Components/PlayerMovementComponent.cs" id="3_q3vlt"]
+[ext_resource type="Script" uid="uid://wc8ec58h8qgq" path="res://Spaceships/Components/PlayerWeaponComponent.cs" id="4_n3hyy"]
+
+[node name="PlayerSpaceship" unique_id=61375011 instance=ExtResource("1_0qdvg")]
+
+[node name="HitboxComponent" parent="." index="3" unique_id=574661659 node_paths=PackedStringArray("HealthComponent")]
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="AbilityComponent" type="Node2D" parent="." index="4" unique_id=1132220766]
+script = ExtResource("2_m5xpd")
+metadata/_custom_type_script = "uid://60lpy7lbnxfb"
+
+[node name="PlayerMovementComponent" type="Node2D" parent="." index="5" unique_id=2145630718]
+script = ExtResource("3_q3vlt")
+metadata/_custom_type_script = "uid://d3qnsbahkap2m"
+
+[node name="PlayerWeaponComponent" type="Node2D" parent="." index="6" unique_id=1157072885 node_paths=PackedStringArray("ShotPoints")]
+script = ExtResource("4_n3hyy")
+ShotPoints = []
+metadata/_custom_type_script = "uid://wc8ec58h8qgq"
+
+[node name="ShotPoint" type="Marker2D" parent="PlayerWeaponComponent" index="0" unique_id=1218491604]

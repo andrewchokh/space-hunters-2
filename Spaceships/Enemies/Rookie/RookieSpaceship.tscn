@@ -1,14 +1,14 @@
-[gd_scene format=3 uid="uid://byve8a0fvr13j"]
+[gd_scene format=3 uid="uid://y5j1kqgi2lj4"]
 
-[ext_resource type="Texture2D" uid="uid://dtlld4nquxs85" path="res://Spaceships/Enemies/Rookie/rookie_spaceship.png" id="1_40xb2"]
+[ext_resource type="Texture2D" uid="uid://dtlld4nquxs85" path="res://Spaceships/Enemies/Rookie/rookie_spaceship.png" id="2_nnsbv"]
+[ext_resource type="Resource" uid="uid://c6n3dgnab44m8" path="res://Spaceships/Enemies/Rookie/RookieData.tres" id="3_3ews3"]
+[ext_resource type="Script" uid="uid://06neeu1njkex" path="res://Features/Movement/LinearMovePattern.cs" id="4_nq8g5"]
 [ext_resource type="PackedScene" uid="uid://dscbmxoqxt2pw" path="res://Core/Components/DisposableComponent.tscn" id="4_t4kex"]
-[ext_resource type="Resource" uid="uid://c6n3dgnab44m8" path="res://Spaceships/Enemies/Rookie/RookieData.tres" id="5_aqq6k"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://Features/Combat/Components/HealthComponent.tscn" id="5_cu4d8"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://Features/Combat/Components/HitboxComponent.tscn" id="6_yngdg"]
 [ext_resource type="PackedScene" uid="uid://r538fk5itnpp" path="res://Features/Combat/Components/BountyComponent.tscn" id="8_8wmx3"]
 [ext_resource type="Script" uid="uid://cmlh560b12e7i" path="res://Spaceships/Components/EnemyWeaponComponent.cs" id="9_bcnlr"]
 [ext_resource type="PackedScene" uid="uid://djt3hymfhbdcf" path="res://Spaceships/Components/EnemyMovementComponent.tscn" id="9_fava4"]
-[ext_resource type="Script" uid="uid://06neeu1njkex" path="res://Features/Movement/LinearMovePattern.cs" id="10_274e4"]
 [ext_resource type="Resource" uid="uid://b3ynmp3jas2mm" path="res://Spaceships/Enemies/Rookie/RookieAttackPattern.tres" id="10_bcnlr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yngdg"]
@@ -18,7 +18,7 @@ size = Vector2(10, 13)
 size = Vector2(12, 15)
 
 [sub_resource type="Resource" id="Resource_exrlp"]
-script = ExtResource("10_274e4")
+script = ExtResource("4_nq8g5")
 MoveSpeed = 55.0
 metadata/_custom_type_script = "uid://06neeu1njkex"
 
@@ -31,7 +31,7 @@ velocity = Vector2(-10, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1383606160]
 position = Vector2(1.509958e-07, 1)
-texture = ExtResource("1_40xb2")
+texture = ExtResource("2_nnsbv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1046453216 groups=["Ship"]]
 position = Vector2(0, 0.5)
@@ -42,7 +42,7 @@ position = Vector2(-1, -1)
 rect = Rect2(-1, -2, 4, 4)
 
 [node name="HealthComponent" parent="." unique_id=876423460 instance=ExtResource("5_cu4d8")]
-SpaceshipData = ExtResource("5_aqq6k")
+SpaceshipData = ExtResource("3_3ews3")
 
 [node name="HitboxComponent" parent="." unique_id=574661659 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("6_yngdg")]
 collision_layer = 2
@@ -66,7 +66,7 @@ metadata/_custom_type_script = "uid://cmlh560b12e7i"
 position = Vector2(6, -9.0597484e-07)
 
 [node name="BountyComponent" parent="." unique_id=432254669 node_paths=PackedStringArray("HealthComponent") instance=ExtResource("8_8wmx3")]
-EnemySpaceshipData = ExtResource("5_aqq6k")
+EnemySpaceshipData = ExtResource("3_3ews3")
 HealthComponent = NodePath("../HealthComponent")
 
 [node name="EnemyMovementComponent" parent="." unique_id=1402468263 instance=ExtResource("9_fava4")]
