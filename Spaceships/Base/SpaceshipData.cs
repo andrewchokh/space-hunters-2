@@ -26,6 +26,18 @@ public abstract partial class SpaceshipData : Resource, IIdentifiable, IDescript
     [Export]
     public string Description { get; set; }
 
+    [ExportGroup("Meta Data")]
+    /// <summary>
+    /// The texture of the spaceship utilized by UI.
+    /// </summary>
+    [Export]
+    public Texture2D SpaceshipTexture;
+    /// <summary>
+    /// A link to the spaceship's scene file (UID).
+    /// </summary>
+    [Export]
+    public string SpaceshipScenePath;
+
     [ExportGroup("Base Stats")]
     /// <summary>
     /// The starting health pool for this ship.
