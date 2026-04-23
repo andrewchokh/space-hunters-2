@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://Features/Spawning/RowSpawner.tscn" id="2_i77b0"]
 [ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://Core/Camera/GameCamera.tscn" id="3_i77b0"]
 [ext_resource type="PackedScene" uid="uid://byve8a0fvr13j" path="res://Spaceships/Enemies/Rookie/RookieSpaceship.tscn" id="4_uojrr"]
-[ext_resource type="Script" uid="uid://cnc5yvwg7lihy" path="res://UI/Elements/ScoreLabel.cs" id="5_7s5hy"]
+[ext_resource type="Script" uid="uid://cnc5yvwg7lihy" path="res://UI/Widgets/ScoreLabel.cs" id="5_7s5hy"]
 
 [node name="Game" type="Node2D" unique_id=1342168030]
 
