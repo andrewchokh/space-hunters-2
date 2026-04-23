@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SingleAttackPattern" format=3 uid="uid://duhquk30jstjb"]
+
+[ext_resource type="PackedScene" uid="uid://dkpuijkoo3x0y" path="res://Features/Combat/Projectiles/StanProjectile/StanProjectile.tscn" id="1_0dwd3"]
+[ext_resource type="Script" uid="uid://cfmn04tx3l2xp" path="res://Features/Combat/Attack/SingleAttackPattern.cs" id="1_jsltw"]
+
+[resource]
+script = ExtResource("1_jsltw")
+ProjectileScene = ExtResource("1_0dwd3")
+metadata/_custom_type_script = "uid://cfmn04tx3l2xp"

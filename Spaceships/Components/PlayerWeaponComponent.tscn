@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://d3prrkq8v213b"]
+
+[ext_resource type="Script" uid="uid://wc8ec58h8qgq" path="res://Spaceships/Components/PlayerWeaponComponent.cs" id="1_1o73i"]
+
+[node name="PlayerWeaponComponent" type="Node2D" unique_id=179142284]
+script = ExtResource("1_1o73i")
+metadata/_custom_type_script = "uid://wc8ec58h8qgq"

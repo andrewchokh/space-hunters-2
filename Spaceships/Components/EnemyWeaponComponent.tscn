@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://f61hrkjapgba"]
+
+[ext_resource type="Script" uid="uid://cmlh560b12e7i" path="res://Spaceships/Components/EnemyWeaponComponent.cs" id="1_nqyjn"]
+
+[node name="EnemyWeaponComponent" type="Node2D" unique_id=188442400]
+script = ExtResource("1_nqyjn")

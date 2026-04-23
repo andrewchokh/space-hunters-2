@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://uqpb1gp4wski"]
+
+[ext_resource type="Script" uid="uid://cetask0hya7no" path="res://Features/Combat/Projectiles/LinearProjectile.cs" id="1_24lyg"]
+[ext_resource type="Resource" uid="uid://c6n3dgnab44m8" path="res://Spaceships/Enemies/Rookie/RookieData.tres" id="2_o2prb"]
+[ext_resource type="Texture2D" uid="uid://bqpwyibqqky18" path="res://Features/Combat/Projectiles/EnemyProjectile/rookie_projectile.png" id="3_o2prb"]
+[ext_resource type="Script" uid="uid://bpne3n3mjyvsx" path="res://Core/Components/DisposableComponent.cs" id="4_37mux"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3x2ha"]
+size = Vector2(4, 1)
+
+[node name="RookieProjectile" type="Area2D" unique_id=2018646106]
+collision_layer = 8
+script = ExtResource("1_24lyg")
+ID = "rookie_projectile"
+SpaceshipData = ExtResource("2_o2prb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=142323513]
+texture = ExtResource("3_o2prb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=465603003]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_3x2ha")
+
+[node name="DisposableComponent" type="VisibleOnScreenNotifier2D" parent="." unique_id=1807368199]
+rect = Rect2(-2, -1, 4, 1)
+script = ExtResource("4_37mux")
+metadata/_custom_type_script = "uid://bpne3n3mjyvsx"

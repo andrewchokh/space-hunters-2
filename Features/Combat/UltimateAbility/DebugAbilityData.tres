@@ -1,0 +1,7 @@
+[gd_resource type="Resource" format=3 uid="uid://dsvtcbyspfi4s"]
+
+[ext_resource type="Script" uid="uid://brbjuf1ebp2f0" path="res://Features/Combat/UltimateAbility/DebugAbilityData.cs" id="1_lcrmr"]
+
+[resource]
+script = ExtResource("1_lcrmr")
+metadata/_custom_type_script = "uid://brbjuf1ebp2f0"

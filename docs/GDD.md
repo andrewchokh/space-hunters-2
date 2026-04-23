@@ -1,62 +1,94 @@
-# 🎮 Game Design Document — «Space Hunters 2»
-##### *«Hold the line against the endless hoards of foes!»*
+# 🎮 **«Space Hunters 2»** — GDD
 
-## ⚔️ Vision
+```text
+Game Design Document
+«Hold the line against the endless hoards of foes!»
+
+Version: 2.0
+Last Updated: Apr 21, 2026
+```
+
+---
+
+## 1. ⚔️ Project Vision & Summary
+
 ### 📜 Description
-*Take a place of the soldier standing againts the impending doom! The alien civilization took its course right at the Earth. You have volunteered to become the space guardian —  a brave soldier that defendes not only their home, but the galaxy against its offenders. Your courage knows no bounds, as you marching at the heart of the very evil all by yourself. Hovewer, no matter how hard you try, you just don't see the end of it... Which is good, because there will always be a plenty of foes to slay!* 
+Take the place of a lone soldier standing against impending doom. An alien civilization has set its course directly for Earth, and you have volunteered to be the first and last line of defense. As a space guardian, your courage knows no bounds as you march into the heart of evil. No matter how many foes you slay, the horde seems endless—which is perfect, because there will always be more enemies to hunt.
 
-## 📄 Summary
-**Space Hunters 2** is an arcade shooter in the outer space. It combines both classic arcade shooter and roguelite genres, providing dynamic gameplay and variety for every run. The player will take on role of a space soldier, fighting their foes without an end. 
+### 📄 Summary
+**Space Hunters 2** is a high-octane arcade shooter set in deep space. It blends classic arcade "shmup" action with modern roguelite variety to ensure every run feels unique. Players pilot powerful spaceships against waves of diverse enemies, ranging from simple rookies to complex bosses requiring tactical precision.
 
-On the battlefield, the player will encounter hoards of enemies: starting from one-pattern rookies, ending with multi-pattern enemies that to which a special treatment is advised. The various upgrades of the spaceship and random event system are meant to spice up the gameplay with new possibilities. 
+---
 
-## 🏛️ Core Mechanics
+## 2. 🕹️ Core Gameplay Mechanics
 
-### ↕️ Movement
-The battlefield is divided in 5 horisontal rows. All entities will move only in bounds of these rows.
+The game utilizes a **Hybrid Feature-Based Structure** where players and enemies interact within a strictly defined battlefield.
 
-#### 🤖 Player
-The player can move from one row to another, up and down with a slight delay.
+### ↕️ The Five-Row System
+The battlefield is locked into **5 horizontal rows**. All movement and combat occur within these bounds.
+* **Player Movement:** Players switch between rows with a slight, intentional delay to reward timing and prediction.
+* **Enemy Navigation:** Enemies spawn on random rows and move forward. If ignored, they eventually exit the screen.
 
-#### 👽 Enemy
-The most enemies appears and moves on a random-selected row. They are constantly moving forward, eventually leaving the battlefield if player ignores them.
+### 🔫 Combat & Shooting
+Combat follows a "Shoot and Reload" rhythm, creating windows of vulnerability for both the player and the AI.
 
-### 🔫 Shooting
+| Entity | Shooting Style | Strategic Note |
+| :--- | :--- | :--- |
+| **Player** | Rapid-fire laser machine guns (variant-dependent). | Weaponry changes based on the chosen ship. |
+| **Enemies** | Pattern-based bursts with clear reload windows. | Players should strike while the enemy is reloading. |
 
-#### 🤖 Player
-The spaceship of the player is armed with laser machine gun that allows to fight back against enemies. Weapon and ammunition can differ depending on a spaceship the player is steering.
+---
 
-#### 👽 Enemy
-Most enemies share the same shooting principle: shoot and reload. While they reloading their weapons, it gives a moment of opportunity for player to strike them. Shoot patterns will differ depending on enemy type.
+## 3. 🌪️ Dynamic Systems
 
-### 🎯 Score
+To keep the gameplay loop engaging, several systems introduce randomness and tactical depth.
 
 ### ⚠️ Random Events
-While the player spends their time on the battlefield, there is a chance for a accidental event to occur. The event itself is neither good nor bad: the player may exploit it or struggle against it. In either case, events can severely impact the gameplay. Hovewer, they are always temporary and will dissaper after some time.
+Temporary "World Events" can trigger at any time. These are neutral modifiers that can be exploited for gain or struggled against, significantly shifting the battlefield's behavior for a limited duration.
 
 ### ⚡ Power-Ups
-Upon killing an enemy, there are a slight chance for them to drop a power-up. The power-up is used only by the player. It gives a slight boost to the specific attribute of the player for the short period of time.  
+Destroyed enemies have a chance to drop temporary boosts.
+* **Targeting:** Only accessible to the player.
+* **Effect:** Provides a short-term buff to specific attributes like fire rate or speed.
 
-### 💥 Ultimate Ability
-Each spaceship of the player has its own ultimate ability. The features of every ability are unique and supporting the flavor of the spaceship it belongs to. The player can use the ability at the any time on the battlefield. After usage, it comes to cooldown which are depending on specific ability.
+### 💥 Ultimate Abilities
+Every ship in the **Players/** and related categories features a unique "ability".
+* **Flavor-Driven:** Abilities are tailored to the ship's specific role (e.g., area clear vs. high damage).
+* **Resource:** Governed by a cooldown timer to prevent spamming.
 
-### 👺 Boss Fights
-Upon collecting specific amounts of score, the boss ship will appear. After that, the boss fight will begin. While the boss fight lasts, there can be no any enemy spawn (besides if it is intended by a specific boss ship) and random events. The boss ship is the ultimate enemy that is strongest of all possible units. The
+---
 
-The boss fight is going with two different phases. The first phase is started at the beggining of the boss fight. Second phase is starter when boss ship is left with half of its max health. The boss ship has 2-3 patterns of attack per phase. Also, unlike all other enemies, the boss can move between different rows, just like the player do.
+## 4. 👺 Boss Fights & Progression
 
-### 💰 Shop
-*Is to be corrected...*
+### 👹 The Boss Encounter
+Bosses are the ultimate test of a player's skill. Upon reaching a score milestone, a Boss ship appears, suspending all standard spawns and events.
 
-## 📈 Scope
+* **Phases:** Bosses have two distinct phases (Phase 2 triggers at 50% Health).
+* **Patterns:** Each phase introduces 2-3 unique attack patterns.
+* **Mobility:** Unlike standard enemies, Bosses can switch rows just like the player.
 
-### 🛠️ Prototype
-In order for build to count as a prototype, it must have the following things implemented:
-- 3 player spaceships; each having different style of the gameplay.
-- 5 enemies spaceships; each with unique attack patterns.
-- 1 boss ship.
-- 3 random events.
-- 5 power-ups. 
+### 💰 The Shop
+*(Currently under refinement)* — This system will allow players to trade score or currency for permanent or semi-permanent ship upgrades between combat waves.
+
+---
+
+## 5. 📈 Development Scope
+
+The project follows a modular **Vertical Slicing** approach to ensure that each milestone is playable and polished.
+
+### 🛠️ Demo Milestone
+To reach a successful *DEMO* state, the following content must be fully implemented and integrated:
+
+| Category | Requirement |
+| :--- | :--- |
+| **Player Ships** | 3 distinct models with unique gameplay styles. |
+| **Enemy Ships** | 5 unique variants with distinct attack/move patterns. |
+| **Bosses** | 1 fully realized Boss ship with two phases. |
+| **Systems** | 3 Random Events and 5 unique Power-Ups. |
+
+---
 
 ### 🎉 Full Release
-*Is to be corrected...*
+*(To be corrected and expanded...)*
+
+This document serves as the creative guide for all contributors, ensuring the "feel" of the game remains consistent even as the technical architecture evolves.

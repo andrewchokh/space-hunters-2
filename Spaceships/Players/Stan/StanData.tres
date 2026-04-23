@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PlayerSpaceshipData" format=3 uid="uid://bdup6wa42p22x"]
+
+[ext_resource type="Texture2D" uid="uid://76sklcu3hlts" path="res://Spaceships/Players/Stan/stan_spaceship.png" id="1_wbsvs"]
+[ext_resource type="Script" uid="uid://dbm167lyxf11b" path="res://Spaceships/Base/PlayerSpaceshipData.cs" id="2_tkcgp"]
+
+[resource]
+script = ExtResource("2_tkcgp")
+ID = "stan"
+DisplayName = "Stan"
+Description = "The standart spaceship."
+SpaceshipTexture = ExtResource("1_wbsvs")
+SpaceshipScenePath = "uid://bwi4onkso4xm5"
+HasInvincibilityFrames = true

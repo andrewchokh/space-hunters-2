@@ -1,10 +1,12 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
+.build/
 
 # VS Code specific ignores
 .vscode/
 *.user
+*.old
 
 # IDEA specific ignores
 .idea/
