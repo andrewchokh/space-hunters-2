@@ -2,9 +2,9 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-public partial class Database : Node
+public partial class DataManager : Node
 {
-    public static Database Instance { get; private set; }
+    public static DataManager Instance { get; private set; }
 
     [Export]
     public SpaceshipData[] Spaceships;

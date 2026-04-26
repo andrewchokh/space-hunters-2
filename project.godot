@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 MapManager="*uid://be7eyi5r6ilwn"
 ScoreManager="*uid://ic4a0ue8o76y"
-Database="*uid://10wdphgvrey"
+DataManager="*uid://10wdphgvrey"
 
 [debug]
 
