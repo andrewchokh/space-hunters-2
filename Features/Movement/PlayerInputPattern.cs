@@ -7,10 +7,8 @@ using System;
 [GlobalClass]
 public partial class PlayerInputPattern : MovePattern
 {
-    /// <summary>
-    /// A convenient shortcut to access the global MapManager instance.
-    /// </summary>
-    public MapManager MapInstance => MapManager.Instance;
+    [Export]
+    public PlayerSpaceshipData PlayerData;
 
     /// <summary>
     /// The current row number the player is located in or moving toward.
@@ -30,7 +28,7 @@ public partial class PlayerInputPattern : MovePattern
     public override void Execute(CharacterBody2D body, double delta) 
     {
         // Smoothly calculates the next step toward the target row height.
-        var newY = Mathf.Lerp(body.GlobalPosition.Y, TargetY, Mathf.Min(MoveSpeed * (float)delta, 1.0f));
+        var newY = Mathf.Lerp(body.GlobalPosition.Y, TargetY, Mathf.Min(PlayerData.VerticalMoveSpeed * (float)delta, 1.0f));
         body.GlobalPosition = new Vector2(body.GlobalPosition.X, newY);
 
         body.MoveAndSlide();
@@ -42,8 +40,10 @@ public partial class PlayerInputPattern : MovePattern
     /// <param name="actor">The player object to be positioned.</param>
     public void SetupPlayerPosition(Node2D actor) 
     {
-        RowIndex = (int)Mathf.Floor(MapInstance.FixedRows.Length / 2);
-        TargetY = MapManager.Instance.GetRowY(RowIndex);
+        var mapInstance = MapManager.Instance;
+
+        RowIndex = (int)Mathf.Floor(mapInstance.FixedRows.Length / 2);
+        TargetY = mapInstance.GetRowY(RowIndex);
 
         actor.GlobalPosition = new Vector2(actor.GlobalPosition.X, TargetY);
     }

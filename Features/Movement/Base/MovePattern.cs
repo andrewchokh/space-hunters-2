@@ -8,12 +8,6 @@ using System;
 public abstract partial class MovePattern : Resource
 {
     /// <summary>
-    /// The base speed at which the entity should travel.
-    /// </summary>
-    [Export]
-    public float MoveSpeed = 15.0f;
-
-    /// <summary>
     /// The specific math or logic that determines the entity's movement every frame.
     /// </summary>
     /// <param name="actor">The character body that will be moved.</param>

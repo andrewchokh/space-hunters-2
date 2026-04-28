@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://76sklcu3hlts" path="res://Spaceships/Players/Stan/stan_spaceship.png" id="2_wpja8"]
 [ext_resource type="Resource" uid="uid://bdup6wa42p22x" path="res://Spaceships/Players/Stan/StanData.tres" id="3_wpja8"]
 [ext_resource type="Script" uid="uid://brbjuf1ebp2f0" path="res://Features/Combat/UltimateAbility/DebugAbilityData.cs" id="4_lgaeh"]
+[ext_resource type="Script" uid="uid://dbm167lyxf11b" path="res://Spaceships/Base/PlayerSpaceshipData.cs" id="5_a0lml"]
 [ext_resource type="Script" uid="uid://cliob1ecmgalf" path="res://Features/Movement/PlayerInputPattern.cs" id="5_a5tnp"]
-[ext_resource type="Resource" uid="uid://duhquk30jstjb" path="res://Spaceships/Players/Stan/StanAttackPattern.tres" id="7_rs81c"]
+[ext_resource type="Resource" uid="uid://duhquk30jstjb" path="res://Spaceships/Players/Stan/Patterns/StanAttackPattern.tres" id="7_rs81c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tmjm1"]
 size = Vector2(10, 13)
@@ -17,8 +18,13 @@ size = Vector2(12, 15)
 script = ExtResource("4_lgaeh")
 metadata/_custom_type_script = "uid://brbjuf1ebp2f0"
 
+[sub_resource type="Resource" id="Resource_em42f"]
+script = ExtResource("5_a0lml")
+metadata/_custom_type_script = "uid://dbm167lyxf11b"
+
 [sub_resource type="Resource" id="Resource_vgwpi"]
 script = ExtResource("5_a5tnp")
+PlayerData = SubResource("Resource_em42f")
 metadata/_custom_type_script = "uid://cliob1ecmgalf"
 
 [node name="StanSpaceship" unique_id=61375011 instance=ExtResource("1_tmjm1")]
