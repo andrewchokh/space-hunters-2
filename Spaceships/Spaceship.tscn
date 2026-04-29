@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://2ik8hctdy84d"]
+
+[ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://Features/Combat/Components/HealthComponent.tscn" id="1_rntx7"]
+[ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://Features/Combat/Components/HitboxComponent.tscn" id="2_a05sc"]
+
+[node name="Spaceship" type="CharacterBody2D" unique_id=61375011]
+motion_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1281850007]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=509576615]
+
+[node name="HealthComponent" parent="." unique_id=876423460 instance=ExtResource("1_rntx7")]
+
+[node name="HitboxComponent" parent="." unique_id=574661659 instance=ExtResource("2_a05sc")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent" unique_id=712037967]
+debug_color = Color(0.7254902, 0.36862746, 0.7764706, 0.41960785)

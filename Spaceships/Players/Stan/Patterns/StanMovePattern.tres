@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="PlayerInputPattern" format=3 uid="uid://b1sxs5xba5kel"]
+
+[ext_resource type="Script" uid="uid://cliob1ecmgalf" path="res://Features/Movement/PlayerInputPattern.cs" id="1_ewrva"]
+
+[resource]
+script = ExtResource("1_ewrva")
+metadata/_custom_type_script = "uid://cliob1ecmgalf"

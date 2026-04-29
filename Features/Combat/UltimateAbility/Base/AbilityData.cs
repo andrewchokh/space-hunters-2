@@ -2,8 +2,13 @@ using Godot;
 using System;
 
 [GlobalClass]
-public abstract partial class AbilityData : Resource
+public abstract partial class AbilityData : Resource, IIdentifiable
 {
+    [ExportCategory("Identification")]
+    [Export]
+    public string ID { get; set; }
+
+    [ExportCategory("Timings")]
     [Export]
     public float Duration = 5.0f;
     [Export]

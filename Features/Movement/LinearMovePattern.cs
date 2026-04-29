@@ -7,6 +7,9 @@ using System;
 [GlobalClass]
 public partial class LinearMovePattern : MovePattern, IDirectable
 {
+    [Export]
+    public float MoveSpeed = 45.0f;
+
     /// <summary>
     /// The specific direction the object will travel in.
     /// </summary>

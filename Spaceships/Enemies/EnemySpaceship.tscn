@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://nvunhqkd4gcd"]
+
+[ext_resource type="PackedScene" uid="uid://2ik8hctdy84d" path="res://Spaceships/Spaceship.tscn" id="1_ejg08"]
+[ext_resource type="Script" uid="uid://c1dpy8t0uenq5" path="res://Features/Combat/Components/BountyComponent.cs" id="2_3aa47"]
+[ext_resource type="Script" uid="uid://beyk6kiepx5aa" path="res://Spaceships/Components/EnemyMovementComponent.cs" id="3_vkybr"]
+[ext_resource type="Script" uid="uid://cmlh560b12e7i" path="res://Spaceships/Components/EnemyWeaponComponent.cs" id="4_jt3ft"]
+
+[node name="EnemySpaceship" unique_id=61375011 instance=ExtResource("1_ejg08")]
+rotation = 3.1415927
+
+[node name="HitboxComponent" parent="." index="3" unique_id=574661659 node_paths=PackedStringArray("HealthComponent")]
+HealthComponent = NodePath("../HealthComponent")
+
+[node name="BountyComponent" type="Node2D" parent="." index="4" unique_id=443878319 node_paths=PackedStringArray("HealthComponent")]
+script = ExtResource("2_3aa47")
+HealthComponent = NodePath("../HealthComponent")
+metadata/_custom_type_script = "uid://c1dpy8t0uenq5"
+
+[node name="EnemyMovementComponent" type="Node2D" parent="." index="5" unique_id=1738161645]
+script = ExtResource("3_vkybr")
+metadata/_custom_type_script = "uid://beyk6kiepx5aa"
+
+[node name="EnemyWeaponComponent" type="Node2D" parent="." index="6" unique_id=324146899 node_paths=PackedStringArray("ShotPoints")]
+script = ExtResource("4_jt3ft")
+ShotPoints = []
+metadata/_custom_type_script = "uid://cmlh560b12e7i"
+
+[node name="ShotPoint" type="Marker2D" parent="EnemyWeaponComponent" index="0" unique_id=801912666]

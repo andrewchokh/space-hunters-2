@@ -9,12 +9,8 @@ using System.ComponentModel.DataAnnotations;
 /// Built on top of Area2D to serve as a lightweight combat trigger rather than a heavy physics body.
 /// Movement is tied to the engine's physics step to ensure reliable hit registration without clipping through targets.
 /// </remarks>
-public abstract partial class Projectile : Area2D, IIdentifiable
+public abstract partial class Projectile : Area2D
 {
-    [ExportGroup("Identification")]
-    [Export]
-    public string ID { get; set; }
-
     [ExportGroup("Data")]
     [Export]
     public SpaceshipData SpaceshipData;

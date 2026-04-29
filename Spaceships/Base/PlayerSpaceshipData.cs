@@ -12,5 +12,5 @@ public partial class PlayerSpaceshipData : SpaceshipData
     /// </summary>
     [ExportGroup("Movement")]
     [Export]
-    public float RowMoveSpeed = 15;
+    public float VerticalMoveSpeed = 15.0f;
 }
