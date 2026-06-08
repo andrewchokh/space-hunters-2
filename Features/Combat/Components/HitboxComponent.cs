@@ -34,8 +34,11 @@ public partial class HitboxComponent : Area2D, IComponent
             if (area is not HitboxComponent)
                 return;
 
-            if (GetParent().IsInGroup("Ship") && area.GetParent().IsInGroup("Ship"))
-                HealthComponent.TakeDamage(999);
+            if (GetParent().IsInGroup("Ship") && area.GetParent().IsInGroup("Ship")) {
+                HealthComponent.TakeDamage(999, true);
+                (area as HitboxComponent).HealthComponent.TakeDamage(999, true);
+            }
+                
         };
     }
 
