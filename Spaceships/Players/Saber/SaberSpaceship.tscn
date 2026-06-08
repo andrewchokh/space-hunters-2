@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://rua2amina3sy"]
+
+[ext_resource type="PackedScene" uid="uid://d3ncp7i87fleo" path="res://Spaceships/Players/PlayerSpaceship.tscn" id="1_pb73c"]
+
+[node name="SaberSpaceship" unique_id=61375011 instance=ExtResource("1_pb73c")]
