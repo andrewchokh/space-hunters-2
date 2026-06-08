@@ -8,7 +8,7 @@ motion_mode = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1281850007]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=509576615]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=509576615 groups=["Ship"]]
 
 [node name="HealthComponent" parent="." unique_id=876423460 instance=ExtResource("1_rntx7")]
 
