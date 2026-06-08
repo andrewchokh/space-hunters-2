@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerSpaceshipData" format=3 uid="uid://7cwngottavgg"]
+
+[ext_resource type="Script" uid="uid://dbm167lyxf11b" path="res://Spaceships/Base/PlayerSpaceshipData.cs" id="1_q13hh"]
+[ext_resource type="Texture2D" uid="uid://cvv1o87lxkef0" path="res://Spaceships/Players/Saber/saber_spaceship.png" id="1_qcy8j"]
+
+[resource]
+script = ExtResource("1_q13hh")
+VerticalMoveSpeed = 30.0
+ID = "saber"
+DisplayName = "Saber"
+Description = "The fast spaceship (I can`t stop)"
+SpaceshipTexture = ExtResource("1_qcy8j")
+SpaceshipScenePath = "uid://rua2amina3sy"
+BaseHealth = 4
+BaseProtection = 0
+HasInvincibilityFrames = true
+ProjectileSpeed = 520.0
+ProjectileDamage = 1

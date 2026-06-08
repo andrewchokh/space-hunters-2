@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PlayerInputPattern" format=3 uid="uid://bs2dxq2duon1r"]
+
+[ext_resource type="Script" uid="uid://cliob1ecmgalf" path="res://Features/Movement/PlayerInputPattern.cs" id="1_wh66y"]
+[ext_resource type="Resource" uid="uid://7cwngottavgg" path="res://Spaceships/Players/Saber/SaberData.tres" id="1_ws3ii"]
+
+[resource]
+script = ExtResource("1_wh66y")
+PlayerData = ExtResource("1_ws3ii")
