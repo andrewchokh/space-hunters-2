@@ -81,9 +81,9 @@ public partial class HealthComponent : Node2D, IComponent
     /// Handles reducing health based on incoming damage, armor, and temporary invincibility.
     /// </summary>
     /// <param name="damage">The raw amount of damage to inflict.</param>
-    public async void TakeDamage(int damage)
+    public async void TakeDamage(int damage, bool ignoreInvincibility = false)
     {
-        if (_isInvincible) return;
+        if (_isInvincible && !ignoreInvincibility) return;
 
         // Damage is reduced by protection, but will always deal at least 1 damage.
         Health -= Mathf.Max(1, damage - Protection);
