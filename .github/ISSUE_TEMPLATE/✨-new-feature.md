@@ -1,24 +1,19 @@
 ---
 name: "✨ New Feature"
 about: A task to implement a specific game mechanic or content.
-title: "[FEATURE]"
+title: ''
 labels: enhancement
 assignees: ''
 
 ---
 
-## 🎯 What are we building?
-*Example: The basic movement logic for the player ship, allowing them to switch lanes.*
+## 🎯 The Objective
+*Explain the intent behind the task. This allows for creativity to solve the problem.*
 
-## ⚙️ How should it work?
-- [ ] Logic A
-- [ ] Logic B
+## 🚧 Constraints & Boundaries
+*Define the ground rules of the issue.*
 
-## ✅ Definition of Done
-- [ ] Feature is implemented in the engine.
-- [ ] No game-breaking bugs when using this feature.
-- [ ] Variables (speed, health, etc.) are exposed in the Inspector for tweaking.
-
-## 📝 Additional Notes
+## ✅ Acceptance Criteria
+*Define the list of criteria, upon finishing which the issue can be counted as finished.*
 
 ## 🖼️ Reference / Assets
