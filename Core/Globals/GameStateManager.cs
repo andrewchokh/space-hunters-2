@@ -7,8 +7,11 @@ public partial class GameStateManager : Node
 	public GameState CurrentState => _currentState;
 	public static GameStateManager Instance { get; private set; }
 
-	public override void _Ready() => Instance = this;
-	
+	public override void _Ready()
+	{
+		Instance = this;
+		_currentState = GameState.MainMenu;
+	}
 
 	public void ChangeState(GameState newState)
 	{
