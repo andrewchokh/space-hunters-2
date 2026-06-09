@@ -5,6 +5,9 @@ public partial class GameStateManager : Node
 {
 	private GameState _currentState;
 	public GameState CurrentState => _currentState;
+
+	public event Action<GameState> OnStateChanged;
+
 	public static GameStateManager Instance { get; private set; }
 
 	public override void _Ready()
@@ -37,6 +40,8 @@ public partial class GameStateManager : Node
 			case GameState.Cutscene:
 				break;
 		}
+
+		OnStateChanged?.Invoke(_currentState);
 	}
 
 	public bool IsInputAllowed()
