@@ -1,30 +1,21 @@
 using Godot;
 using System;
 
-/// <summary>    
-/// Defines the available global states within the game.    
-/// </summary>
-public enum GameState
-{
-	MainMenu,
-	Playing,
-	Paused,
-	GameOver,
-	Cutscene
-}
-
 /// <summary>
 /// Manages the global state of the game, ensuring valid transitions between different gameplay phases.
 /// Use this to query the current state or trigger state changes across the application.
 /// </summary>
 public partial class GameStateManager : Node
 {
-	private GameState _currentState;
+	/// <summary>
+	/// A current game state with default state main menu.
+	/// </summary>
+	private GameState _state = GameState.MainMenu;
 
 	/// <summary>
 	/// A read-only property that returns the current state of the game.
 	/// </summary>
-	public GameState CurrentState => _currentState;
+	public GameState State => _state;
 
 	/// <summary>
 	/// Invoked whenever the game state successfully changes. 
@@ -35,13 +26,9 @@ public partial class GameStateManager : Node
 	public static GameStateManager Instance { get; private set; }
 
 	/// <summary>
-	/// Initializes the singleton instance and sets the default state to MainMenu upon application launch.
+	/// Initializes the singleton instance.
 	/// </summary>
-	public override void _Ready()
-	{
-		Instance = this;
-		_currentState = GameState.MainMenu;
-	}
+	public override void _Ready() => Instance = this;
 
 	/// <summary>
 	/// Attempts to transition the game to a new state.
@@ -54,13 +41,13 @@ public partial class GameStateManager : Node
 	/// </remarks>
 	public void ChangeState(GameState newState)
 	{
-		if (_currentState == newState)
+		if (_state == newState)
 			return;
 
-		if (newState == GameState.Paused && _currentState != GameState.Playing)
+		if (newState == GameState.Paused && _state != GameState.Playing)
 			return;
 
-		_currentState = newState;
+		_state = newState;
 
 		switch (newState)
 		{
@@ -77,20 +64,6 @@ public partial class GameStateManager : Node
 				break;
 		}
 
-		OnStateChanged?.Invoke(_currentState);
-	}
-
-	/// <summary>
-	/// Determines whether global player input should be processed based on the current game state.
-	/// </summary>
-	/// <returns>
-	/// <c>false</c> if the game is in a Cutscene or GameOver state; otherwise, <c>true</c>.
-	/// </returns>
-	public bool IsInputAllowed()
-	{
-		if (_currentState is GameState.Cutscene or GameState.GameOver)
-			return false;
-
-		return true;
+		OnStateChanged?.Invoke(_state);
 	}
 }
