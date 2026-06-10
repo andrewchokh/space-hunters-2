@@ -41,7 +41,6 @@ public partial class GameStateManager : Node
 	{
 		Instance = this;
 		_currentState = GameState.MainMenu;
-		GD.Print("Base state:" + _currentState);
 	}
 
 	/// <summary>
@@ -78,7 +77,6 @@ public partial class GameStateManager : Node
 				break;
 		}
 
-		GD.Print("Chane state to: " + newState);
 		OnStateChanged?.Invoke(_currentState);
 	}
 
