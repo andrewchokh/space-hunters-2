@@ -83,8 +83,8 @@ public partial class GameStateManager : Node
 	}
 
 	/// <summary>    
-	/// /// Defines the available global states within the game.    
-	/// /// </summary>
+	/// Defines the available global states within the game.    
+	/// </summary>
 	public enum GameState
 	{
 		MainMenu,
