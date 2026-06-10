@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://1jaqfvkfofdo"]
 
+[ext_resource type="Script" uid="uid://78etj8ytdysc" path="res://Game.cs" id="1_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://Features/Spawning/RowSpawner.tscn" id="2_i77b0"]
 [ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://Core/Camera/GameCamera.tscn" id="3_i77b0"]
 [ext_resource type="PackedScene" uid="uid://y5j1kqgi2lj4" path="res://Spaceships/Enemies/Rookie/RookieSpaceship.tscn" id="4_uojrr"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://rua2amina3sy" path="res://Spaceships/Players/Saber/SaberSpaceship.tscn" id="5_t88pq"]
 
 [node name="Game" type="Node2D" unique_id=1342168030]
+script = ExtResource("1_r0x5m")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2053618181]
 
