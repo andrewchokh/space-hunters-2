@@ -1,6 +1,18 @@
 using Godot;
 using System;
 
+/// <summary>    
+/// Defines the available global states within the game.    
+/// </summary>
+public enum GameState
+{
+	MainMenu,
+	Playing,
+	Paused,
+	GameOver,
+	Cutscene
+}
+
 /// <summary>
 /// Manages the global state of the game, ensuring valid transitions between different gameplay phases.
 /// Use this to query the current state or trigger state changes across the application.
@@ -29,6 +41,7 @@ public partial class GameStateManager : Node
 	{
 		Instance = this;
 		_currentState = GameState.MainMenu;
+		GD.Print("Base state:" + _currentState);
 	}
 
 	/// <summary>
@@ -65,6 +78,7 @@ public partial class GameStateManager : Node
 				break;
 		}
 
+		GD.Print("Chane state to: " + newState);
 		OnStateChanged?.Invoke(_currentState);
 	}
 
@@ -80,17 +94,5 @@ public partial class GameStateManager : Node
 			return false;
 
 		return true;
-	}
-
-	/// <summary>    
-	/// Defines the available global states within the game.    
-	/// </summary>
-	public enum GameState
-	{
-		MainMenu,
-		Playing,
-		Paused,
-		GameOver,
-		Cutscene
 	}
 }
