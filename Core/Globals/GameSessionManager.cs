@@ -1,6 +1,13 @@
 using Godot;
 using System;
 
+/// <summary>
+/// A passive data container that tracks and broadcasts the player's progress during a single game session.
+/// </summary>
+/// <remarks>
+/// This class does not contain gameplay logic. It relies on other managers (such as ScoreManager) to calculate values,
+/// while it focuses purely on storing the data and notifying UI elements through signals.
+/// </remarks>
 public partial class GameSessionManager : Node
 {
 	public static GameSessionManager Instance { get; private set; }
@@ -60,6 +67,13 @@ public partial class GameSessionManager : Node
 
 	public override void _Ready() => Instance = this;
 
+	/// <summary>
+	/// Processes the active session time every frame.
+	/// </summary>
+	/// <param name="delta">The time elapsed since the last frame, in seconds.</param>
+	/// <remarks>
+	/// (e.g., in a menu, game over screen, or paused), the time increment is ignored.
+	/// </remarks>
 	public override void _Process(double delta)
 	{
 		if (GameStateManager.Instance.State != GameState.Playing)
@@ -68,6 +82,13 @@ public partial class GameSessionManager : Node
 		SessionTime += (float)delta;
 	}
 
+	/// <summary>
+	/// Resets all tracked session data fields to their default values (zero).
+	/// </summary>
+	/// <remarks>
+	/// This method must be called at the very beginning of a new session 
+	/// to ensure the player starts with a clean slate, regardless of previous states.
+	/// </remarks>
 	public void Reset()
 	{
 		Wave = 0;
