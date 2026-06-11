@@ -60,6 +60,14 @@ public partial class GameSessionManager : Node
 
 	public override void _Ready() => Instance = this;
 
+	public override void _Process(double delta)
+	{
+		if (GameStateManager.Instance.State != GameState.Playing)
+			return;
+
+		SessionTime += (float)delta;
+	}
+
 	public void Reset()
 	{
 		if (GameStateManager.Instance.State != GameState.GameOver)
