@@ -10,7 +10,7 @@ public partial class ScoreLabel : Label
     public override void _Ready()
     {
         Text = ScoreManager.Instance.Score.ToString();
-        ScoreManager.Instance.ScoreChanged += OnScoreChanged;
+        GameSessionManager.Instance.ScoreUpdated += OnScoreChanged;
     }
 
     /// <summary>

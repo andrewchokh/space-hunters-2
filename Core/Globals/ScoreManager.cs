@@ -12,18 +12,6 @@ public partial class ScoreManager : Node
     public static ScoreManager Instance { get; private set; }
 
     /// <summary>
-    /// An event that tells other parts of the game (like the UI) that the score has increased.
-    /// </summary>
-    /// <param name="newScore">The updated total score.</param>
-    [Signal]
-    public delegate void ScoreChangedEventHandler(int newScore);
-
-    /// <summary>
-    /// The private number that actually stores the score value.
-    /// </summary>
-    private int _score;
-
-    /// <summary>
     /// Gets or sets the player's current score.
     /// </summary>
     /// <value>The total score accumulated by the player.</value>
@@ -34,14 +22,13 @@ public partial class ScoreManager : Node
     /// </remarks>
     public int Score
     {
-        get => _score;
+        get => GameSessionManager.Instance.Score;
         set
         {
-            if (value <= _score)
+            if (value <= GameSessionManager.Instance.Score)
                 return;
 
-            _score = value;
-            EmitSignal(SignalName.ScoreChanged, _score);
+            GameSessionManager.Instance.Score = value;
             this.DebugLog("New Score: " + Score);
         }
     }
