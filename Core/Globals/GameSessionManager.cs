@@ -70,9 +70,6 @@ public partial class GameSessionManager : Node
 
 	public void Reset()
 	{
-		if (GameStateManager.Instance.State != GameState.GameOver)
-			return;
-
 		Wave = 0;
 		Score = 0;
 		DefeatedBosses = 0;
