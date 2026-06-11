@@ -5,19 +5,67 @@ public partial class GameSessionManager : Node
 {
 	public static GameSessionManager Instance { get; private set; }
 
-	public int Wave = 1;
-	public int Score { get; set; }
-	public int DefeatedBosses;
-	public float SessionTime;
+	[Signal]
+	public delegate void WaveUpdatedEventHandler(int wave);
+	[Signal]
+	public delegate void DefeatedBossesUpdatedEventHandler(int defeatedBosses);
+	[Signal]
+	public delegate void ScoreUpdatedEventHandler(int score);
+	[Signal]
+	public delegate void SessionTimeUpdatedEventHandler(float sessionTime);
 
-    public override void _Ready() => Instance = this;
+	private int _wave;
+	public int Wave
+	{
+		get => _wave;
+		set
+		{
+			_wave = value;
+			EmitSignal(SignalName.WaveUpdated, _wave);
+		}
+	}
+
+	private int _score;
+	public int Score
+	{
+		get => _score;
+		set
+		{
+			_score = value;
+			EmitSignal(SignalName.ScoreUpdated, _score);
+		}
+	}
+
+	private int _defeatedBosses;
+	public int DefeatedBosses
+	{
+		get => _defeatedBosses;
+		set
+		{
+			_defeatedBosses = value;
+			EmitSignal(SignalName.DefeatedBossesUpdated, _defeatedBosses);
+		}
+	}
+
+	private float _sessionTime;
+	public float SessionTime
+	{
+		get => _sessionTime;
+		set
+		{
+			_sessionTime = value;
+			EmitSignal(SignalName.SessionTimeUpdated, _sessionTime);
+		}
+	}
+
+	public override void _Ready() => Instance = this;
 
 	public void Reset()
 	{
 		if (GameStateManager.Instance.State != GameState.GameOver)
 			return;
 
-		Wave = 1;
+		Wave = 0;
 		Score = 0;
 		DefeatedBosses = 0;
 		SessionTime = 0;
