@@ -1,10 +1,14 @@
 [gd_scene format=3 uid="uid://2ik8hctdy84d"]
 
+[ext_resource type="Script" uid="uid://d002ox2tjkw7c" path="res://Spaceships/Spaceship.cs" id="1_a05sc"]
 [ext_resource type="PackedScene" uid="uid://cs3ckjbxxt6np" path="res://Features/Combat/Components/HealthComponent.tscn" id="1_rntx7"]
 [ext_resource type="PackedScene" uid="uid://cahmoifldxf8o" path="res://Features/Combat/Components/HitboxComponent.tscn" id="2_a05sc"]
 
-[node name="Spaceship" type="CharacterBody2D" unique_id=61375011 groups=["Ship"]]
+[node name="Spaceship" type="CharacterBody2D" unique_id=61375011 node_paths=PackedStringArray("HealthComponent", "HitboxComponent") groups=["Ship"]]
 motion_mode = 1
+script = ExtResource("1_a05sc")
+HealthComponent = NodePath("HealthComponent")
+HitboxComponent = NodePath("HitboxComponent")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1281850007]
 

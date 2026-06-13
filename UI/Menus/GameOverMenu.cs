@@ -14,8 +14,7 @@ public partial class GameOverMenu : Control
 
 	public override void _Ready()
 	{
-		GameStateManager.Instance.ChangeState(GameState.GameOver);
-		ScoreLabel.Text = ScoreManager.Instance.Score.ToString(); // ???
+		ScoreLabel.Text = "Your score - " + ScoreManager.Instance.Score.ToString();
 		TryAgainButton.Pressed += TryAgainButtonPressed;
 		BackToMainMenuButton.Pressed += BackToMainMenuButtonPressed;
 		QuitTheGameButton.Pressed += QuitTheGameButtonPressed;
@@ -30,7 +29,7 @@ public partial class GameOverMenu : Control
 	private void BackToMainMenuButtonPressed()
 	{
 		GameStateManager.Instance.ChangeState(GameState.MainMenu);
-		GetTree().ChangeSceneToFile("uid://booe2en3u4wmp"); // TODO it`s right exacly uid?
+		GetTree().ChangeSceneToFile("uid://booe2en3u4wmp");
 	}
 
 	private void QuitTheGameButtonPressed() => GetTree().Quit();

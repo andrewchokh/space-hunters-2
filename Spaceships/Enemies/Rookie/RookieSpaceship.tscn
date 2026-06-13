@@ -22,7 +22,7 @@ script = ExtResource("4_nq8g5")
 MoveSpeed = 55.0
 metadata/_custom_type_script = "uid://06neeu1njkex"
 
-[node name="RookieSpaceship" type="CharacterBody2D" unique_id=448440192 groups=["Ship"]]
+[node name="RookieSpaceship" type="CharacterBody2D" unique_id=448440192 groups=["EnemySpaceship", "Ship"]]
 position = Vector2(0, -1)
 rotation = -3.1415925
 collision_layer = 2
