@@ -17,4 +17,6 @@ public partial class ScoreLabel : Label
     /// Updates the label's text only when the score actually changes.
     /// </summary>
     private void OnScoreChanged(int newScore) => Text = newScore.ToString();
+
+    public override void _ExitTree() => GameSessionManager.Instance.ScoreUpdated -= OnScoreChanged;
 }
