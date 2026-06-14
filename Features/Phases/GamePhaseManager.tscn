@@ -1,3 +1,6 @@
 [gd_scene format=3 uid="uid://bwfd7j3ysgvba"]
 
+[ext_resource type="Script" uid="uid://bk4qcckyjxbi2" path="res://Features/Phases/GamePhaseManager.cs" id="1_y4i3c"]
+
 [node name="GamePhaseManager" type="Node2D" unique_id=2046906371]
+script = ExtResource("1_y4i3c")
