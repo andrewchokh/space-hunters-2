@@ -31,9 +31,20 @@ public partial class RowSpawner : Node2D
     /// <summary>
     /// Subscribes to the spawn timer and initializes the spawning cycle.
     /// </summary>
+
+    /// <summary>
+    /// The phase manager that this spawner listens to in order to start or stop spawning.
+    /// </summary>
+    [Export]
+    public GamePhaseManager PhaseManager;
+
     public override void _Ready()
     {
+        if (PhaseManager == null)
+            return;
+
         Timer.Timeout += SpawnEntity;
+        PhaseManager.OnPhaseChanged += UpdateSpawnerState;
     }
 
     /// <summary>
@@ -46,11 +57,23 @@ public partial class RowSpawner : Node2D
         int randomRowIndex = GD.RandRange(0, rowCount - 1);
 
         var enemyInstance = Entity.Instantiate<CharacterBody2D>();
-        
+
         // Positions the entity using the fixed row height and the horizontal offset.
         enemyInstance.GlobalPosition = new Vector2(0 + OffsetX,
             MapManager.Instance.GetRowY(randomRowIndex));
 
         GetParent().AddChild(enemyInstance);
+    }
+
+    /// <summary>
+    /// Starts or stops the spawn timer based on the current game phase.
+    /// Spawning is active only during the <see cref="GamePhase.Wave"/> phase.
+    /// </summary>
+    private void UpdateSpawnerState(GamePhase phase)
+    {
+        if (phase == GamePhase.Wave && Timer.IsStopped())
+            Timer.Start();
+        else
+            Timer.Stop();
     }
 }
