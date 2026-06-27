@@ -1,9 +1,0 @@
-[gd_scene format=3 uid="uid://ncfyugwd3gnm"]
-
-[ext_resource type="PackedScene" uid="uid://d02v7levc7nmy" path="res://UI/Menus/GameOverMenu.tscn" id="1_40baj"]
-
-[node name="GameOver" type="Node2D" unique_id=447398208]
-
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=66748994]
-
-[node name="GameOverMenu" parent="CanvasLayer" unique_id=1133903023 instance=ExtResource("1_40baj")]

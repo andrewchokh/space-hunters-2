@@ -34,6 +34,7 @@ public partial class RowSpawner : Node2D
     public override void _Ready()
     {
         Timer.Timeout += SpawnEntity;
+        GameStateManager.Instance.OnStateChanged += HandleStateChanged;
     }
 
     /// <summary>
@@ -46,11 +47,23 @@ public partial class RowSpawner : Node2D
         int randomRowIndex = GD.RandRange(0, rowCount - 1);
 
         var enemyInstance = Entity.Instantiate<CharacterBody2D>();
-        
+
         // Positions the entity using the fixed row height and the horizontal offset.
         enemyInstance.GlobalPosition = new Vector2(0 + OffsetX,
             MapManager.Instance.GetRowY(randomRowIndex));
 
         GetParent().AddChild(enemyInstance);
+    }
+
+    /// <summary>
+    /// Handles global game state changes, halting entity spawning upon game over.
+    /// </summary>
+    /// <param name="state">The new state transitioned to by the GameStateManager.</param>
+    private void HandleStateChanged(GameState state)
+    {
+        if (state != GameState.GameOver)
+            return;
+
+        Timer.Stop();
     }
 }
