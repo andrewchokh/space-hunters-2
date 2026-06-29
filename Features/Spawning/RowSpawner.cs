@@ -31,10 +31,20 @@ public partial class RowSpawner : Node2D
     /// <summary>
     /// Subscribes to the spawn timer and initializes the spawning cycle.
     /// </summary>
+
+    /// <summary>
+    /// The phase manager that this spawner listens to in order to start or stop spawning.
+    /// </summary>
+    [Export]
+    public GamePhaseManager PhaseManager;
+
     public override void _Ready()
     {
+        if (PhaseManager == null)
+            return;
+
         Timer.Timeout += SpawnEntity;
-        GameStateManager.Instance.OnStateChanged += HandleStateChanged;
+        PhaseManager.OnPhaseChanged += UpdateSpawnerState;
     }
 
     /// <summary>
@@ -56,14 +66,14 @@ public partial class RowSpawner : Node2D
     }
 
     /// <summary>
-    /// Handles global game state changes, halting entity spawning upon game over.
+    /// Starts or stops the spawn timer based on the current game phase.
+    /// Spawning is active only during the <see cref="GamePhase.Wave"/> phase.
     /// </summary>
-    /// <param name="state">The new state transitioned to by the GameStateManager.</param>
-    private void HandleStateChanged(GameState state)
+    private void UpdateSpawnerState(GamePhase phase)
     {
-        if (state != GameState.GameOver)
-            return;
-
-        Timer.Stop();
+        if (phase == GamePhase.Wave && Timer.IsStopped())
+            Timer.Start();
+        else
+            Timer.Stop();
     }
 }
