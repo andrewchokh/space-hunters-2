@@ -44,6 +44,8 @@ project/assembly_name="space-hunters-2"
 [global_group]
 
 Ship=""
+PlayerSpaceship=""
+EnemySpaceship=""
 
 [input]
 
