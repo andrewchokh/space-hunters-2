@@ -13,7 +13,7 @@ public partial class EnemySpaceshipData : SpaceshipData
     [Export]
     public int Bounty = 100;
 
-    private int _tier = 1;
+    private int _tier = 3;
 
     /// <summary>
     /// The power tier of the enemy. 0 is reserved for bosses, while 1 to 3 represent regular enemies from weakest to strongest.
