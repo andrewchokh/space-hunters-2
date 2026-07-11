@@ -12,4 +12,22 @@ public partial class EnemySpaceshipData : SpaceshipData
     /// </summary>
     [Export]
     public int Bounty = 100;
+
+    private int _tier = 3;
+
+    /// <summary>
+    /// The power tier of the enemy. 0 is reserved for bosses, while 1 to 3 represent regular enemies from weakest to strongest.
+    /// </summary>
+    [Export(PropertyHint.Range, "0,3")]
+    public int Tier
+    {
+        get => _tier;
+        set
+        {
+            if (value < 0 || value > 3)
+                return;
+
+            _tier = value;
+        }
+    }
 }
