@@ -1,4 +1,5 @@
 using Godot;
+using Microsoft.VisualBasic;
 using System;
 
 /// <summary>
@@ -11,10 +12,10 @@ using System;
 public partial class RowSpawner : Node2D
 {
     /// <summary>
-    /// The prefab or scene that will be created at each spawn interval.
+    /// The enemy data that will be created at each spawn interval.
     /// </summary>
     [Export]
-    public PackedScene Entity;
+    public EnemySpaceshipData EnemyData;
 
     /// <summary>
     /// The horizontal distance from the screen edge where the entity will appear.
@@ -38,10 +39,17 @@ public partial class RowSpawner : Node2D
     [Export]
     public GamePhaseManager PhaseManager;
 
+    private PackedScene _enemyScene;
+
     public override void _Ready()
     {
+        if (EnemyData == null)
+            return;
+
         if (PhaseManager == null)
             return;
+
+        _enemyScene = ResourceLoader.Load<PackedScene>(EnemyData.SpaceshipScenePath);
 
         Timer.Timeout += SpawnEntity;
         PhaseManager.OnPhaseChanged += UpdateSpawnerState;
@@ -52,11 +60,14 @@ public partial class RowSpawner : Node2D
     /// </summary>
     private void SpawnEntity()
     {
+        if (_enemyScene == null)
+            return;
+
         // Randomly selects a row from the MapManager to provide vertical variety.
         int rowCount = MapManager.Instance.FixedRows.Length;
         int randomRowIndex = GD.RandRange(0, rowCount - 1);
 
-        var enemyInstance = Entity.Instantiate<CharacterBody2D>();
+        var enemyInstance = _enemyScene.Instantiate<CharacterBody2D>();
 
         // Positions the entity using the fixed row height and the horizontal offset.
         enemyInstance.GlobalPosition = new Vector2(0 + OffsetX,
