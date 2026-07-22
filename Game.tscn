@@ -1,14 +1,13 @@
 [gd_scene format=3 uid="uid://1jaqfvkfofdo"]
 
 [ext_resource type="Script" uid="uid://78etj8ytdysc" path="res://Game.cs" id="1_r0x5m"]
-[ext_resource type="PackedScene" path="res://UI/Menus/GameOverMenu.tscn" id="2_3mrqo"]
+[ext_resource type="PackedScene" uid="uid://d02v7levc7nmy" path="res://UI/Menus/GameOverMenu.tscn" id="2_3mrqo"]
 [ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://Features/Spawning/RowSpawner.tscn" id="2_i77b0"]
 [ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://Core/Camera/GameCamera.tscn" id="3_i77b0"]
-[ext_resource type="PackedScene" uid="uid://y5j1kqgi2lj4" path="res://Spaceships/Enemies/Rookie/RookieSpaceship.tscn" id="4_uojrr"]
 [ext_resource type="PackedScene" uid="uid://bwfd7j3ysgvba" path="res://Features/Phases/GamePhaseManager.tscn" id="5_3mrqo"]
 [ext_resource type="Script" uid="uid://cnc5yvwg7lihy" path="res://UI/Widgets/ScoreLabel.cs" id="5_7s5hy"]
+[ext_resource type="Resource" uid="uid://c6n3dgnab44m8" path="res://Spaceships/Enemies/Rookie/RookieData.tres" id="5_joorw"]
 [ext_resource type="PackedScene" uid="uid://rua2amina3sy" path="res://Spaceships/Players/Saber/SaberSpaceship.tscn" id="5_t88pq"]
-[ext_resource type="Script" uid="uid://bk4qcckyjxbi2" path="res://Features/Phases/GamePhaseManager.cs" id="6_joorw"]
 
 [node name="Game" type="Node2D" unique_id=1342168030 node_paths=PackedStringArray("GameOverMenu")]
 script = ExtResource("1_r0x5m")
@@ -30,12 +29,11 @@ horizontal_alignment = 2
 script = ExtResource("5_7s5hy")
 
 [node name="RowSpawner" parent="." unique_id=1130102641 node_paths=PackedStringArray("PhaseManager") instance=ExtResource("2_i77b0")]
-Entity = ExtResource("4_uojrr")
+EnemyData = Array[Object]([ExtResource("5_joorw")])
 OffsetX = 110.0
 PhaseManager = NodePath("../GamePhaseManager")
 
 [node name="GamePhaseManager" parent="." unique_id=2046906371 instance=ExtResource("5_3mrqo")]
-script = ExtResource("6_joorw")
 
 [node name="GameCamera" parent="." unique_id=1530620862 instance=ExtResource("3_i77b0")]
 
