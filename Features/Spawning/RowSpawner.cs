@@ -1,6 +1,6 @@
 using Godot;
-using Microsoft.VisualBasic;
 using System;
+using Godot.Collections;
 
 /// <summary>
 /// A node that periodically spawns entities into the game world at dynamic positions.
@@ -12,10 +12,10 @@ using System;
 public partial class RowSpawner : Node2D
 {
     /// <summary>
-    /// The enemy data that will be created at each spawn interval.
+    /// A collection of enemy spaceship configurations available for spawning.
     /// </summary>
     [Export]
-    public EnemySpaceshipData EnemyData;
+    public Array<EnemySpaceshipData> EnemyData;
 
     /// <summary>
     /// The horizontal distance from the screen edge where the entity will appear.
@@ -30,16 +30,10 @@ public partial class RowSpawner : Node2D
     public Timer Timer;
 
     /// <summary>
-    /// Subscribes to the spawn timer and initializes the spawning cycle.
-    /// </summary>
-
-    /// <summary>
     /// The phase manager that this spawner listens to in order to start or stop spawning.
     /// </summary>
     [Export]
     public GamePhaseManager PhaseManager;
-
-    private PackedScene _enemyScene;
 
     public override void _Ready()
     {
@@ -48,8 +42,6 @@ public partial class RowSpawner : Node2D
 
         if (PhaseManager == null)
             return;
-
-        _enemyScene = ResourceLoader.Load<PackedScene>(EnemyData.SpaceshipScenePath);
 
         Timer.Timeout += SpawnEntity;
         PhaseManager.OnPhaseChanged += UpdateSpawnerState;
@@ -60,18 +52,24 @@ public partial class RowSpawner : Node2D
     /// </summary>
     private void SpawnEntity()
     {
-        if (_enemyScene == null)
+        if (EnemyData == null || EnemyData.Count == 0)
             return;
 
         // Randomly selects a row from the MapManager to provide vertical variety.
         int rowCount = MapManager.Instance.FixedRows.Length;
         int randomRowIndex = GD.RandRange(0, rowCount - 1);
 
-        var enemyInstance = _enemyScene.Instantiate<CharacterBody2D>();
+        EnemySpaceshipData selectEnemyByWave = SelectEnemyByWave();
+
+        if (selectEnemyByWave == null)
+            return;
+
+        var enemyInstance = GD.Load<PackedScene>(
+            selectEnemyByWave.SpaceshipScenePath).Instantiate<CharacterBody2D>();
 
         // Positions the entity using the fixed row height and the horizontal offset.
         enemyInstance.GlobalPosition = new Vector2(0 + OffsetX,
-            MapManager.Instance.GetRowY(randomRowIndex));
+          MapManager.Instance.GetRowY(randomRowIndex));
 
         GetParent().AddChild(enemyInstance);
     }
@@ -86,5 +84,55 @@ public partial class RowSpawner : Node2D
             Timer.Start();
         else
             Timer.Stop();
+    }
+
+    /// <summary>
+    /// Selects an enemy spaceship configuration using a weighted random probability system tied to the current wave.
+    /// </summary>
+    /// <returns>
+    /// A randomly chosen <see cref="EnemySpaceshipData"/> matching the rolled tier, 
+    /// or <see langword="null"/> if the calculated weight is zero or no matching enemies are found.
+    /// </returns>
+    /// <remarks>
+    /// The selection probability dynamically shifts as the wave number increases:
+    /// Tier 3 weight decreases over time, Tier 2 begins appearing after wave 5, 
+    /// and Tier 1 begins appearing after wave 10.
+    /// </remarks>
+    private EnemySpaceshipData SelectEnemyByWave()
+    {
+        int tier1 = Math.Max(0, 2 * (GameSessionManager.Instance.Wave - 10));
+        int tier2 = Math.Max(0, 6 * (GameSessionManager.Instance.Wave - 5));
+        int tier3 = Math.Max(0, 100 - 5 * (GameSessionManager.Instance.Wave - 1));
+
+        int totalWeight = tier1 + tier2 + tier3;
+
+        // Roll a random number to determine which tier spawns.
+        int roll = GD.RandRange(0, totalWeight - 1);
+        int chosenTier;
+
+        // Check the roll against the accumulated weights to pick the tier.
+        if (roll < tier3)
+            chosenTier = 3;
+        else if (roll < tier3 + tier2)
+            chosenTier = 2;
+        else
+            chosenTier = 1;
+
+        // Filter the master enemy list to find only ships matching the chosen tier.
+        Array<EnemySpaceshipData> chosenEnemy = new Array<EnemySpaceshipData>();
+
+        for (int i = 0; i < EnemyData.Count; i++)
+        {
+            if (EnemyData[i].Tier == chosenTier)
+            {
+                chosenEnemy.Add(EnemyData[i]);
+            }
+        }
+
+        if (chosenEnemy == null || chosenEnemy.Count == 0)
+            return null;
+
+        // Randomly select one enemy from the valid pool.
+        return chosenEnemy[GD.RandRange(0, chosenEnemy.Count - 1)];
     }
 }
