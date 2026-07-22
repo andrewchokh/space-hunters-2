@@ -59,13 +59,13 @@ public partial class RowSpawner : Node2D
         int rowCount = MapManager.Instance.FixedRows.Length;
         int randomRowIndex = GD.RandRange(0, rowCount - 1);
 
-        EnemySpaceshipData selectEnemyByWave = SelectEnemyByWave();
+        var enemyData = SelectEnemyByWave();
 
-        if (selectEnemyByWave == null)
+        if (enemyData == null)
             return;
 
         var enemyInstance = GD.Load<PackedScene>(
-            selectEnemyByWave.SpaceshipScenePath).Instantiate<CharacterBody2D>();
+            enemyData.SpaceshipScenePath).Instantiate<CharacterBody2D>();
 
         // Positions the entity using the fixed row height and the horizontal offset.
         enemyInstance.GlobalPosition = new Vector2(0 + OffsetX,
@@ -119,20 +119,20 @@ public partial class RowSpawner : Node2D
             chosenTier = 1;
 
         // Filter the master enemy list to find only ships matching the chosen tier.
-        Array<EnemySpaceshipData> chosenEnemy = new Array<EnemySpaceshipData>();
+        var tierEnemies = new Array<EnemySpaceshipData>();
 
         for (int i = 0; i < EnemyData.Count; i++)
         {
             if (EnemyData[i].Tier == chosenTier)
             {
-                chosenEnemy.Add(EnemyData[i]);
+                tierEnemies.Add(EnemyData[i]);
             }
         }
 
-        if (chosenEnemy == null || chosenEnemy.Count == 0)
+        if (tierEnemies == null || tierEnemies.Count == 0)
             return null;
 
         // Randomly select one enemy from the valid pool.
-        return chosenEnemy[GD.RandRange(0, chosenEnemy.Count - 1)];
+        return tierEnemies[GD.RandRange(0, tierEnemies.Count - 1)];
     }
 }
