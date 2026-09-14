@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="EnemyDatabase" format=3 uid="uid://cn0mtrpruwn8u"]
+
+[ext_resource type="Resource" uid="uid://c6n3dgnab44m8" path="res://Spaceships/Enemies/Rookie/RookieData.tres" id="1_gxdhb"]
+[ext_resource type="Script" uid="uid://cmp1mk3kk1lbt" path="res://Core/Resources/EnemyDatabase.cs" id="2_wqlnk"]
+
+[resource]
+script = ExtResource("2_wqlnk")
+EnemyDataList = Array[Object]([ExtResource("1_gxdhb")])
