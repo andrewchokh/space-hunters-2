@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://Core/Camera/GameCamera.tscn" id="3_i77b0"]
 [ext_resource type="PackedScene" uid="uid://bwfd7j3ysgvba" path="res://Features/Phases/GamePhaseManager.tscn" id="5_3mrqo"]
 [ext_resource type="Script" uid="uid://cnc5yvwg7lihy" path="res://UI/Widgets/ScoreLabel.cs" id="5_7s5hy"]
-[ext_resource type="Resource" uid="uid://c6n3dgnab44m8" path="res://Spaceships/Enemies/Rookie/RookieData.tres" id="5_joorw"]
 [ext_resource type="PackedScene" uid="uid://rua2amina3sy" path="res://Spaceships/Players/Saber/SaberSpaceship.tscn" id="5_t88pq"]
 
 [node name="Game" type="Node2D" unique_id=1342168030 node_paths=PackedStringArray("GameOverMenu")]
@@ -29,7 +28,6 @@ horizontal_alignment = 2
 script = ExtResource("5_7s5hy")
 
 [node name="RowSpawner" parent="." unique_id=1130102641 node_paths=PackedStringArray("PhaseManager") instance=ExtResource("2_i77b0")]
-EnemyData = Array[Object]([ExtResource("5_joorw")])
 OffsetX = 110.0
 PhaseManager = NodePath("../GamePhaseManager")
 

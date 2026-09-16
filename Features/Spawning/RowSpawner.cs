@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using Godot.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// A node that periodically spawns entities into the game world at dynamic positions.
@@ -11,12 +11,6 @@ using Godot.Collections;
 /// </remarks>
 public partial class RowSpawner : Node2D
 {
-    /// <summary>
-    /// A collection of enemy spaceship configurations available for spawning.
-    /// </summary>
-    [Export]
-    public Array<EnemySpaceshipData> EnemyData;
-
     /// <summary>
     /// The horizontal distance from the screen edge where the entity will appear.
     /// </summary>
@@ -35,9 +29,20 @@ public partial class RowSpawner : Node2D
     [Export]
     public GamePhaseManager PhaseManager;
 
+    /// <summary>
+    /// The database of enemy spaceship configurations that this spawner draws from.
+    /// </summary>
+    [Export]
+    public EnemyDatabase EnemyDatabase;
+
+    /// <summary>
+    /// Cache of already-loaded enemy scenes, keyed by <see cref="SpaceshipData.SpaceshipScenePath"/>.
+    /// </summary>
+    private readonly Dictionary<string, PackedScene> _sceneCache = new();
+
     public override void _Ready()
     {
-        if (EnemyData == null)
+        if (EnemyDatabase == null)
             return;
 
         if (PhaseManager == null)
@@ -48,13 +53,33 @@ public partial class RowSpawner : Node2D
     }
 
     /// <summary>
+    /// Retrieves the packed scene for the given enemy, loading and caching it on first use.
+    /// </summary>
+    /// <param name="enemyData">The enemy configuration whose scene should be retrieved.</param>
+    /// <returns>The cached or newly loaded <see cref="PackedScene"/>, or <see langword="null"/> if loading failed.</returns>
+    /// <remarks>
+    /// Scenes are loaded lazily: <see cref="GD.Load"/> runs once per unique enemy type on its first spawn,
+    /// and every subsequent spawn of that type reads from <see cref="_sceneCache"/> instead of hitting disk again.
+    /// </remarks>
+    private PackedScene GetOrLoadScene(EnemySpaceshipData enemyData)
+    {
+        if (_sceneCache.TryGetValue(enemyData.SpaceshipScenePath, out var scene))
+            return scene;
+
+        scene = GD.Load<PackedScene>(enemyData.SpaceshipScenePath);
+
+        if (scene == null)
+            return null;
+
+        _sceneCache[enemyData.SpaceshipScenePath] = scene;
+        return scene;
+    }
+
+    /// <summary>
     /// Instantiates the entity, calculates its adaptive spawn coordinates, and adds it to the scene.
     /// </summary>
     private void SpawnEntity()
     {
-        if (EnemyData == null || EnemyData.Count == 0)
-            return;
-
         // Randomly selects a row from the MapManager to provide vertical variety.
         int rowCount = MapManager.Instance.FixedRows.Length;
         int randomRowIndex = GD.RandRange(0, rowCount - 1);
@@ -64,12 +89,16 @@ public partial class RowSpawner : Node2D
         if (enemyData == null)
             return;
 
-        var enemyInstance = GD.Load<PackedScene>(
-            enemyData.SpaceshipScenePath).Instantiate<CharacterBody2D>();
+        var scene = GetOrLoadScene(enemyData);
+
+        if (scene == null)
+            return;
+
+        var enemyInstance = scene.Instantiate<CharacterBody2D>();
 
         // Positions the entity using the fixed row height and the horizontal offset.
         enemyInstance.GlobalPosition = new Vector2(0 + OffsetX,
-          MapManager.Instance.GetRowY(randomRowIndex));
+            MapManager.Instance.GetRowY(randomRowIndex));
 
         GetParent().AddChild(enemyInstance);
     }
@@ -90,12 +119,12 @@ public partial class RowSpawner : Node2D
     /// Selects an enemy spaceship configuration using a weighted random probability system tied to the current wave.
     /// </summary>
     /// <returns>
-    /// A randomly chosen <see cref="EnemySpaceshipData"/> matching the rolled tier, 
+    /// A randomly chosen <see cref="EnemySpaceshipData"/> matching the rolled tier,
     /// or <see langword="null"/> if the calculated weight is zero or no matching enemies are found.
     /// </returns>
     /// <remarks>
     /// The selection probability dynamically shifts as the wave number increases:
-    /// Tier 3 weight decreases over time, Tier 2 begins appearing after wave 5, 
+    /// Tier 3 weight decreases over time, Tier 2 begins appearing after wave 5,
     /// and Tier 1 begins appearing after wave 10.
     /// </remarks>
     private EnemySpaceshipData SelectEnemyByWave()
@@ -119,15 +148,7 @@ public partial class RowSpawner : Node2D
             chosenTier = 1;
 
         // Filter the master enemy list to find only ships matching the chosen tier.
-        var tierEnemies = new Array<EnemySpaceshipData>();
-
-        for (int i = 0; i < EnemyData.Count; i++)
-        {
-            if (EnemyData[i].Tier == chosenTier)
-            {
-                tierEnemies.Add(EnemyData[i]);
-            }
-        }
+        var tierEnemies = EnemyDatabase.GetEnemiesDataByTier(chosenTier);
 
         if (tierEnemies == null || tierEnemies.Count == 0)
             return null;
