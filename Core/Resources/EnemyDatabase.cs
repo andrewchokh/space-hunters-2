@@ -11,7 +11,7 @@ public partial class EnemyDatabase : Resource
 	public EnemySpaceshipData GetEnemyDataByID(string ID) {
 		var data = EnemyDataList.FirstOrDefault(e => e.ID == ID);
 
-		if (data != null) 
+		if (data == null) 
 			GD.PushWarning($"No enemy spaceship found by ID: {ID}");
 
 		return data;
