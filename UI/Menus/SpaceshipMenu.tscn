@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dwo1uwi8p3t0"]
+
+[ext_resource type="Script" uid="uid://cgm66id5sognr" path="res://UI/Menus/SpaceshipMenu.cs" id="1_2mfgt"]
+
+[node name="SpaceshipMenu" type="Control" unique_id=1519889490 node_paths=PackedStringArray("BackButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2mfgt")
+BackButton = NodePath("BackButton")
+
+[node name="BackButton" type="Button" parent="." unique_id=819274349]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 38.0
+text = "BACK"
