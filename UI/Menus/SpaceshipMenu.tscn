@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dwo1uwi8p3t0"]
 
 [ext_resource type="Script" uid="uid://cgm66id5sognr" path="res://UI/Menus/SpaceshipMenu.cs" id="1_2mfgt"]
+[ext_resource type="Resource" uid="uid://p51ap8tck4cp" path="res://Core/Resources/PlayerDatabase.tres" id="2_42i55"]
 
 [node name="SpaceshipMenu" type="Control" unique_id=1519889490 node_paths=PackedStringArray("BackButton")]
 layout_mode = 3
@@ -10,6 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2mfgt")
+PlayerDatabase = ExtResource("2_42i55")
 BackButton = NodePath("BackButton")
 
 [node name="BackButton" type="Button" parent="." unique_id=819274349]
@@ -17,3 +19,35 @@ layout_mode = 0
 offset_right = 100.0
 offset_bottom = 38.0
 text = "BACK"
+
+[node name="SpaceshipImage" type="TextureRect" parent="." unique_id=1216595175]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LeftButton" type="Button" parent="." unique_id=1782190185]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 167.0
+offset_right = 276.0
+offset_bottom = 198.0
+text = "<"
+
+[node name="RightButton" type="Button" parent="." unique_id=1795066812]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 165.0
+offset_right = 382.0
+offset_bottom = 196.0
+text = ">"
