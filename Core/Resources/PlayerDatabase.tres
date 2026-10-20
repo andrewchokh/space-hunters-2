@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="PlayerDatabase" format=3 uid="uid://p51ap8tck4cp"]
+
+[ext_resource type="Resource" uid="uid://7cwngottavgg" path="res://Spaceships/Players/Saber/SaberData.tres" id="1_qxojl"]
+[ext_resource type="Script" uid="uid://clspdrtcfj42d" path="res://Core/Resources/PlayerDatabase.cs" id="1_ty78o"]
+[ext_resource type="Resource" uid="uid://bdup6wa42p22x" path="res://Spaceships/Players/Stan/StanData.tres" id="2_dbesa"]
+
+[resource]
+script = ExtResource("1_ty78o")
+PlayerDataList = Array[Object]([ExtResource("1_qxojl"), ExtResource("2_dbesa")])
