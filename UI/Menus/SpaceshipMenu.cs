@@ -38,8 +38,11 @@ public partial class SpaceshipMenu : Control
         SpaceshipImage.Texture = PlayerDatabase.PlayerDataList[_index].SpaceshipTexture;
     }
 
-    private void OnBackButtonPressed() =>
+    private void OnBackButtonPressed()
+    {
+        GameSessionManager.Instance.SelectedSpaceship = PlayerDatabase.PlayerDataList[_index];
         GetTree().ChangeSceneToFile("uid://blyay0mcxh1r4");
+    }
 
     private void OnPreviousButtonPressed() =>
         ChangeSpaceship(-1);

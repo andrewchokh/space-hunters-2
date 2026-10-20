@@ -9,5 +9,5 @@ ID = "stan"
 DisplayName = "Stan"
 Description = "The standart spaceship."
 SpaceshipTexture = ExtResource("1_wbsvs")
-SpaceshipScenePath = "uid://bwi4onkso4xm5"
+SpaceshipScenePath = "uid://b1y46nyjppyoa"
 HasInvincibilityFrames = true

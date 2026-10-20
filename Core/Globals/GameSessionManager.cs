@@ -21,6 +21,8 @@ public partial class GameSessionManager : Node
 	[Signal]
 	public delegate void SessionTimeUpdatedEventHandler(float sessionTime);
 
+    public PlayerSpaceshipData SelectedSpaceship { get; set; }
+
 	private int _wave;
 	public int Wave
 	{
@@ -86,7 +88,7 @@ public partial class GameSessionManager : Node
 	/// Resets all tracked session data fields to their default values (zero).
 	/// </summary>
 	/// <remarks>
-	/// This method must be called at the very beginning of a new session 
+	/// This method must be called at the very beginning of a new session
 	/// to ensure the player starts with a clean slate, regardless of previous states.
 	/// </remarks>
 	public void Reset()

@@ -3,14 +3,16 @@
 [ext_resource type="Script" uid="uid://78etj8ytdysc" path="res://Game.cs" id="1_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://d02v7levc7nmy" path="res://UI/Menus/GameOverMenu.tscn" id="2_3mrqo"]
 [ext_resource type="PackedScene" uid="uid://os1vgtj30mvn" path="res://Features/Spawning/RowSpawner.tscn" id="2_i77b0"]
+[ext_resource type="Resource" uid="uid://p51ap8tck4cp" path="res://Core/Resources/PlayerDatabase.tres" id="2_joorw"]
 [ext_resource type="PackedScene" uid="uid://os30ykx5x3n6" path="res://Core/Camera/GameCamera.tscn" id="3_i77b0"]
 [ext_resource type="PackedScene" uid="uid://bwfd7j3ysgvba" path="res://Features/Phases/GamePhaseManager.tscn" id="5_3mrqo"]
 [ext_resource type="Script" uid="uid://cnc5yvwg7lihy" path="res://UI/Widgets/ScoreLabel.cs" id="5_7s5hy"]
-[ext_resource type="PackedScene" uid="uid://rua2amina3sy" path="res://Spaceships/Players/Saber/SaberSpaceship.tscn" id="5_t88pq"]
 
-[node name="Game" type="Node2D" unique_id=1342168030 node_paths=PackedStringArray("GameOverMenu")]
+[node name="Game" type="Node2D" unique_id=1342168030 node_paths=PackedStringArray("GameOverMenu", "PlayerSpawnpoint")]
 script = ExtResource("1_r0x5m")
 GameOverMenu = NodePath("CanvasLayer/GameOverMenu")
+PlayerSpawnpoint = NodePath("PlayerSpawnpoint")
+PlayerDatabase = ExtResource("2_joorw")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2053618181]
 
@@ -35,5 +37,5 @@ PhaseManager = NodePath("../GamePhaseManager")
 
 [node name="GameCamera" parent="." unique_id=1530620862 instance=ExtResource("3_i77b0")]
 
-[node name="SaberSpaceship" parent="." unique_id=61375011 instance=ExtResource("5_t88pq")]
+[node name="PlayerSpawnpoint" type="Marker2D" parent="." unique_id=613167966]
 position = Vector2(-64, 0)

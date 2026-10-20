@@ -9,6 +9,10 @@ public partial class Game : Node2D
 {
 	[Export]
 	public Control GameOverMenu;
+    [Export]
+    public Marker2D PlayerSpawnpoint;
+    [Export]
+    public PlayerDatabase PlayerDatabase;
 	/// <summary>
 	/// Resets the session, sets the game state to Playing,
 	/// and subscribes to the player's death event to trigger game over.
@@ -18,16 +22,39 @@ public partial class Game : Node2D
 		GameSessionManager.Instance.Reset();
 		GameStateManager.Instance.ChangeState(GameState.Playing);
 
-		var player = GetTree().GetFirstNodeInGroup("PlayerSpaceship") as Spaceship;
+        if (PlayerDatabase == null)
+            return;
 
-		if (GameOverMenu == null)
-			return;
+        if(PlayerSpawnpoint == null)
+            return;
 
+        var spaceshipData = GameSessionManager.Instance.SelectedSpaceship;
+
+        if (spaceshipData == null)
+        {
+            spaceshipData = PlayerDatabase.PlayerDataList[0];
+            GameSessionManager.Instance.SelectedSpaceship = spaceshipData;
+        }
+
+        var packedScene = GD.Load<PackedScene>(spaceshipData.SpaceshipScenePath);
+
+        if(packedScene == null)
+            return;
+
+        var player = packedScene.Instantiate<Spaceship>();
+        
 		if (player == null)
 		{
 			this.SoftWarn("Player spaceship not found in scene!");
 			return;
 		}
+
+        AddChild(player);
+        player.GlobalPosition = PlayerSpawnpoint.GlobalPosition;
+
+        if (GameOverMenu == null)
+            return;
+
 		player.HealthComponent.ActorDied += GameOver;
 		GameStateManager.Instance.OnStateChanged += HandleStateChanged;
 	}
@@ -38,7 +65,7 @@ public partial class Game : Node2D
 	public void GameOver() => GameStateManager.Instance.ChangeState(GameState.GameOver);
 
 	/// <summary>
-	/// Processes changes in the global game state to update scene-level elements, 
+	/// Processes changes in the global game state to update scene-level elements,
 	/// such as displaying the game-over user interface.
 	/// </summary>
 	public void HandleStateChanged(GameState state)
