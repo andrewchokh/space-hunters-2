@@ -148,7 +148,7 @@ public partial class RowSpawner : Node2D
             chosenTier = 1;
 
         // Filter the master enemy list to find only ships matching the chosen tier.
-        var tierEnemies = EnemyDatabase.GetEnemiesDataByTier(chosenTier);
+        var tierEnemies = EnemyDatabase.GetSpaceshipDataByTier(chosenTier);
 
         if (tierEnemies == null || tierEnemies.Count == 0)
             return null;

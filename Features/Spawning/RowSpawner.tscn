@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://os1vgtj30mvn"]
 
 [ext_resource type="Script" uid="uid://bef2cugx0yxuj" path="res://Features/Spawning/RowSpawner.cs" id="1_d6rcf"]
-[ext_resource type="Resource" uid="uid://cn0mtrpruwn8u" path="res://Core/Resources/EnemyDatabase.tres" id="2_opx42"]
+[ext_resource type="Resource" uid="uid://cn0mtrpruwn8u" path="res://Core/Resources/Database/EnemySpaceshipDatabase.tres" id="2_opx42"]
 
 [node name="RowSpawner" type="Node2D" unique_id=1130102641 node_paths=PackedStringArray("Timer")]
 script = ExtResource("1_d6rcf")
