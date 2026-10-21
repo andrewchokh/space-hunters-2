@@ -8,7 +8,7 @@ public partial class PlayerSpaceshipDatabase : Database
     [Export]
     public Array<PlayerSpaceshipData> PlayerSpaceshipDataEntries { get; private set; }
 
-    public PlayerSpaceshipData GetPlayerSpaceshipDataByID(string ID)
+    public PlayerSpaceshipData GetSpaceshipDataByID(string ID)
     {
         var data = PlayerSpaceshipDataEntries.FirstOrDefault(e => e.ID == ID);
 
