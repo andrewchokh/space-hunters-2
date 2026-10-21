@@ -3,7 +3,7 @@ using Godot;
 using Godot.Collections;
 
 [GlobalClass]
-public partial class EnemyDatabase : Resource
+public partial class EnemyDatabase : Database
 {
 	[Export]
 	public Array<EnemySpaceshipData> EnemyDataList { get; private set; }
