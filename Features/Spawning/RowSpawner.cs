@@ -33,7 +33,7 @@ public partial class RowSpawner : Node2D
     /// The database of enemy spaceship configurations that this spawner draws from.
     /// </summary>
     [Export]
-    public EnemyDatabase EnemyDatabase;
+    public EnemySpaceshipDatabase EnemySpaceshipDatabase;
 
     /// <summary>
     /// Cache of already-loaded enemy scenes, keyed by <see cref="SpaceshipData.SpaceshipScenePath"/>.
@@ -42,7 +42,7 @@ public partial class RowSpawner : Node2D
 
     public override void _Ready()
     {
-        if (EnemyDatabase == null)
+        if (EnemySpaceshipDatabase == null)
             return;
 
         if (PhaseManager == null)
@@ -148,7 +148,7 @@ public partial class RowSpawner : Node2D
             chosenTier = 1;
 
         // Filter the master enemy list to find only ships matching the chosen tier.
-        var tierEnemies = EnemyDatabase.GetSpaceshipDataByTier(chosenTier);
+        var tierEnemies = EnemySpaceshipDatabase.GetSpaceshipDataByTier(chosenTier);
 
         if (tierEnemies == null || tierEnemies.Count == 0)
             return null;

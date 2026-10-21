@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dwo1uwi8p3t0"]
 
 [ext_resource type="Script" uid="uid://cgm66id5sognr" path="res://UI/Menus/SpaceshipMenu.cs" id="1_2mfgt"]
-[ext_resource type="Resource" uid="uid://p51ap8tck4cp" path="res://Core/Resources/PlayerDatabase.tres" id="2_42i55"]
+[ext_resource type="Resource" uid="uid://0pavlrq5g3et" path="res://Core/Resources/Database/PlayerSpaceshipDatabase.tres" id="2_42i55"]
 
 [node name="SpaceshipMenu" type="Control" unique_id=1519889490 node_paths=PackedStringArray("SpaceshipImage", "BackButton", "PreviousButton", "NextButton")]
 layout_mode = 3
@@ -11,7 +11,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_2mfgt")
-PlayerDatabase = ExtResource("2_42i55")
+PlayerSpaceshipDatabase = ExtResource("2_42i55")
 SpaceshipImage = NodePath("HBoxContainer/SpaceshipImage")
 BackButton = NodePath("BackButton")
 PreviousButton = NodePath("HBoxContainer/PreviousButton")
