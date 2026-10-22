@@ -3,49 +3,89 @@ using System;
 
 /// <summary>
 /// Root controller for the main gameplay scene.
-/// Manages session lifecycle, locates the player spaceship, and handles the game-over transition.
+/// Spawns the player's selected spaceship, manages the session lifecycle, and handles the game-over transition.
 /// </summary>
+/// <remarks>
+/// The spaceship is taken from <see cref="GameSessionManager.SelectedSpaceship"/>. If nothing was selected
+/// (for example, when this scene is launched directly from the editor), the first spaceship
+/// from <see cref="PlayerSpaceshipDatabase"/> is used as a fallback.
+/// </remarks>
 public partial class Game : Node2D
 {
-	[Export]
-	public Control GameOverMenu;
-	/// <summary>
-	/// Resets the session, sets the game state to Playing,
-	/// and subscribes to the player's death event to trigger game over.
-	/// </summary>
-	public override void _Ready()
-	{
-		GameSessionManager.Instance.Reset();
-		GameStateManager.Instance.ChangeState(GameState.Playing);
+    [Export]
+    public Control GameOverMenu;
+    [Export]
+    public Marker2D PlayerSpawnpoint;
+    [Export]
+    public PlayerSpaceshipDatabase PlayerSpaceshipDatabase;
 
-		var player = GetTree().GetFirstNodeInGroup("PlayerSpaceship") as Spaceship;
+    /// <summary>
+    /// Resets the session, spawns the player spaceship, and subscribes to game-over events.
+    /// </summary>
+    public override void _Ready()
+    {
+        GameSessionManager.Instance.Reset();
 
-		if (GameOverMenu == null)
-			return;
+        var player = SpawnPlayer();
 
-		if (player == null)
-		{
-			this.SoftWarn("Player spaceship not found in scene!");
-			return;
-		}
-		player.HealthComponent.ActorDied += GameOver;
-		GameStateManager.Instance.OnStateChanged += HandleStateChanged;
-	}
+        if(player == null)
+            return;
 
-	/// <summary>
-	/// Transitions the game to the Game Over state.
-	/// </summary>
-	public void GameOver() => GameStateManager.Instance.ChangeState(GameState.GameOver);
+        if (GameOverMenu == null)
+            return;
 
-	/// <summary>
-	/// Processes changes in the global game state to update scene-level elements, 
-	/// such as displaying the game-over user interface.
-	/// </summary>
-	public void HandleStateChanged(GameState state)
-	{
-		if (state != GameState.GameOver)
-			return;
+        player.HealthComponent.ActorDied += GameOver;
 
-		GameOverMenu.Visible = true;
-	}
+        GameStateManager.Instance.OnStateChanged += HandleStateChanged;
+        GameStateManager.Instance.ChangeState(GameState.Playing);
+    }
+
+    /// <summary>
+    /// Transitions the game to the Game Over state.
+    /// </summary>
+    public void GameOver() => GameStateManager.Instance.ChangeState(GameState.GameOver);
+
+    /// <summary>
+    /// Processes changes in the global game state to update scene-level elements,
+    /// such as displaying the game-over user interface.
+    /// </summary>
+    public void HandleStateChanged(GameState state)
+    {
+        if (state != GameState.GameOver)
+            return;
+
+        GameOverMenu.Visible = true;
+    }
+
+    /// <summary>
+    /// Creates the selected player spaceship at <see cref="PlayerSpawnpoint"/>.
+    /// </summary>
+    /// <returns>The spawned spaceship, or <c>null</c> if the database, spawnpoint, or spaceship scene is missing.</returns>
+    private Spaceship SpawnPlayer()
+    {
+        if (PlayerSpaceshipDatabase == null)
+            return null;
+
+        if (PlayerSpawnpoint == null)
+            return null;
+
+        var spaceshipData = GameSessionManager.Instance.SelectedSpaceship;
+
+        if (spaceshipData == null)
+        {
+            spaceshipData = PlayerSpaceshipDatabase.PlayerSpaceshipDataEntries[0];
+            GameSessionManager.Instance.SelectedSpaceship = spaceshipData;
+        }
+
+        var packedScene = GD.Load<PackedScene>(spaceshipData.SpaceshipScenePath);
+
+        if (packedScene == null)
+            return null;
+
+        var player = packedScene.Instantiate<Spaceship>();
+        AddChild(player);
+        player.GlobalPosition = PlayerSpawnpoint.GlobalPosition;
+
+        return player;
+    }
 }
