@@ -10,6 +10,8 @@ using System;
 /// </remarks>
 public partial class SpaceshipMenu : Control
 {
+    [Signal]
+    public delegate void BackButtonPressedEventHandler();
     [Export]
     public PlayerSpaceshipDatabase PlayerSpaceshipDatabase;
     [Export]
@@ -47,16 +49,14 @@ public partial class SpaceshipMenu : Control
 
         _index = (_index + direction + totalItems) % totalItems;
         SpaceshipImage.Texture = PlayerSpaceshipDatabase.PlayerSpaceshipDataEntries[_index].SpaceshipTexture;
+        GameSessionManager.Instance.SelectedSpaceship = PlayerSpaceshipDatabase.PlayerSpaceshipDataEntries[_index];
     }
 
     /// <summary>
-    /// Saves the currently highlighted spaceship as the player's choice and returns to the main menu scene.
+    /// Notifies the owner that the player wants to go back.
     /// </summary>
-    private void OnBackButtonPressed()
-    {
-        GameSessionManager.Instance.SelectedSpaceship = PlayerSpaceshipDatabase.PlayerSpaceshipDataEntries[_index];
-        GetTree().ChangeSceneToFile("uid://blyay0mcxh1r4");
-    }
+    private void OnBackButtonPressed() =>
+        EmitSignal(SignalName.BackButtonPressed);
 
     private void OnPreviousButtonPressed() =>
         ChangeSpaceship(-1);
