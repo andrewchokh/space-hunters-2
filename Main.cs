@@ -15,6 +15,7 @@ public partial class Main : Node2D
     public override void _Ready()
     {
         SpaceshipMenu.BackButtonPressed += ShowMainMenu;
+        MainMenu.SpaceshipSelectButtonPressed += ShowSpaceshipMenu;
     }
 
     private void ShowMainMenu()
