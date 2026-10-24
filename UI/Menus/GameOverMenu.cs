@@ -17,15 +17,15 @@ public partial class GameOverMenu : Control
 	[Export]
 	public Label ScoreLabel;
 
-	/// <summary>
-	/// Initializes the menu by displaying the final score and subscribing to button press events.
-	/// </summary>
+    /// <summary>
+    /// Subscribes to button press and visibility events.
+    /// </summary>
 	public override void _Ready()
-	{
-		ScoreLabel.Text = "Your score - " + ScoreManager.Instance.Score.ToString();
+    {
 		TryAgainButton.Pressed += TryAgainButtonPressed;
 		BackToMainMenuButton.Pressed += BackToMainMenuButtonPressed;
 		QuitTheGameButton.Pressed += QuitTheGameButtonPressed;
+        VisibilityChanged += OnVisibilityChanged;
 	}
 
 	/// <summary>
@@ -50,4 +50,15 @@ public partial class GameOverMenu : Control
 	/// Terminates the application.
 	/// </summary>
 	private void QuitTheGameButtonPressed() => GetTree().Quit();
+
+    /// <summary>
+    /// Refreshes the final score text each time the menu is shown.
+    /// </summary>
+    private void OnVisibilityChanged()
+    {
+        if (!Visible)
+            return;
+
+        ScoreLabel.Text = "Your score - " + ScoreManager.Instance.Score;
+    }
 }
