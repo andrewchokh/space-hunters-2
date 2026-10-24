@@ -58,6 +58,11 @@ public partial class Game : Node2D
     }
 
     /// <summary>
+    /// Unsubscribes from the game state event to prevent access to disposed nodes after a scene change.
+    /// </summary>
+    public override void _ExitTree() => GameStateManager.Instance.OnStateChanged -= HandleStateChanged;
+
+    /// <summary>
     /// Creates the selected player spaceship at <see cref="PlayerSpawnpoint"/>.
     /// </summary>
     /// <returns>The spawned spaceship, or <c>null</c> if the database, spawnpoint, or spaceship scene is missing.</returns>
