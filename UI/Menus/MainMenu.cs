@@ -6,14 +6,19 @@ using System;
 /// </summary>
 public partial class MainMenu : Control
 {
+    [Signal]
+    public delegate void SpaceshipSelectButtonPressedEventHandler();
     [Export]
     public Button PlayButton;
+    [Export]
+    public Button SpaceshipSelectButton;
     [Export]
     public Button QuitButton;
 
     public override void _Ready()
     {
         PlayButton.Pressed += OnPlayButtonPressed;
+        SpaceshipSelectButton.Pressed += OnSpaceshipSelectButtonPressed;
         QuitButton.Pressed += OnQuitButtonPressed;
     }
 
@@ -22,6 +27,12 @@ public partial class MainMenu : Control
     /// </summary>
     private void OnPlayButtonPressed() =>
         GetTree().ChangeSceneToFile("uid://1jaqfvkfofdo");
+
+    /// <summary>
+    /// Event handler for the spaceship select button. Notifies the owner that the player wants to open the spaceship menu.
+    /// </summary>
+    private void OnSpaceshipSelectButtonPressed() =>
+        EmitSignal(SignalName.SpaceshipSelectButtonPressed);
 
     /// <summary>
     /// Event handler for the quit button. Terminates the application gracefully.
